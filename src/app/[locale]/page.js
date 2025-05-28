@@ -1,14 +1,15 @@
 import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
+import Partners from '@/components/Home/Partners'
 import React from 'react'
 
 const page = async () => {
   const t = await getTranslations()
 
   return (
-    <div>
-      <h1>{t("home.title")}</h1>
-    </div>
+   <>
+   <Partners/>
+   </>
   )
 }
 
