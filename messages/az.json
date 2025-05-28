@@ -1,0 +1,9 @@
+{
+    "welcome": "salam",
+    "home": {
+        "title": "Ev",
+        "description": "Bu, sizin ev səhifənizdir.",
+        "greeting": "Salam, {name}!",
+        "welcomeMessage": "Xoş gəlmisiniz, {name}!"
+    }
+}

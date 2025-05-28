@@ -1,0 +1,9 @@
+{
+    "welcome": "zdrastuvite",
+    "home": {
+        "title": "Dom",
+        "description": "Eta vasha domashnyaya stranitsa.",
+        "greeting": "Privet, {name}!",
+        "welcomeMessage": "Dobro pozhalovat', {name}!"
+    }
+}
