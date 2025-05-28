@@ -9,7 +9,7 @@ const bottomBar2 = 'Güvən və etibar';
 
 const OurSollutions = () => {
     return (
-        <section className="relative flex flex-col items-center py-12 px-10 max-w-7xl mx-auto w-full container">
+        <section className="relative flex flex-col items-center px-10 max-w-7xl mx-auto w-full container">
             {/* Title */}
                   <h2 className="px-[20px] text-[32px] sm:text-[36px] md:text-[48px] text-center">Bizim <span className="font-bold">Həllərimiz</span></h2>
 

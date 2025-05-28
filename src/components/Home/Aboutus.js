@@ -1,8 +1,7 @@
 import React from 'react'
-
 const Aboutus = () => {
     return (
-        <section className="container mx-auto py-12">
+        <section className="container py-12 mx-auto">
             <h1 className="text-[48px] font-extrabold text-center mb-10 text-[#111827]">Haqqımızda</h1>
             <div className="flex flex-col-reverse lg:flex-row items-center md:items-center gap-[10px] lg:gap-[60px]">
                 {/* Left Stats */}
@@ -18,17 +17,17 @@ const Aboutus = () => {
                         </div>
                     </div>
                     {/* Center Map with Marker */}
-                    <div className="relative lg:flex-1 flex justify-center items-center">
+                    <div className="relative flex items-center justify-center lg:flex-1">
                         <img
-                            src="./../../../public/assets/images/map.svg"
+                            src="./assets/images/map.svg"
                             alt="Xəritə"
-                            className="w-full max-w-xs md:max-w-md lg:max-w-lg h-auto object-contain drop-shadow-xl"
+                            className="object-contain w-full h-auto max-w-xs md:max-w-md lg:max-w-lg drop-shadow-xl"
                             style={{ filter: 'drop-shadow(0 0 0 #000)' }}
                         />
                     </div>
                 </div>
                 {/* Right Info */}
-                <div className="flex-1 text-center lg:text-left flex flex-col justify-center">
+                <div className="flex flex-col justify-center flex-1 text-center lg:text-left">
                     <h2 className="text-[32px] md:text-3xl font-bold text-orange-500 mb-4">Azconprice</h2>
                     <p className="text-[#111827] text-[16px] font-medium mb-2">
                         Təmir-tikinti, layihələndirmə və təchizat sahələrində mal-materialların və iş həcmlərinin real bazar qiymətləri əsasında təqdim olunduğu ilk peşəkar platformadır.<br />

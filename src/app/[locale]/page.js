@@ -10,10 +10,14 @@ const page = async () => {
 
   return (
    <>
+   <container>
+
+  
    <Aboutus/>
  
    <OurSollutions/>
      <Partners/>
+      </container>
    </>
   )
 }
