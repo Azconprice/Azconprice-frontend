@@ -9,7 +9,7 @@ const bottomBar2 = 'Güvən və etibar';
 
 const OurSollutions = () => {
     return (
-        <section className="container relative flex flex-col items-center w-full px-10 mx-auto max-w-7xl mb-[220px] mt-[30px]">
+        <section className="container relative flex flex-col items-center w-full px-10 mx-auto max-w-7xl md:mb-[220px] mb-[30px] mt-[30px]">
             {/* Title */}
                   <h2 className="px-[20px] text-[32px] sm:text-[36px] md:text-[48px] text-center">Bizim <span className="font-bold">Həllərimiz</span></h2>
 
@@ -67,7 +67,7 @@ const OurSollutions = () => {
                     </div>
                 </div>
             </div>
-            <div className='lg:hidden pt-[150px]'>
+            <div className='lg:hidden pt-[100px] md:pt-[200px]'>
                 {/* 2x2 Grid for main texts */}
                 <div className="grid grid-cols-1 gap-4 mb-8 sm:grid-cols-2">
                     <div className="p-4 rounded-lg bg-orange-50">

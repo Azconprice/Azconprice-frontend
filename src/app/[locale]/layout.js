@@ -19,7 +19,6 @@ export default async function RootLayout({ children, params }) {
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
-  
   return (
     <html lang="en">
       <body className={`${roboto.className} antialiased`}>
