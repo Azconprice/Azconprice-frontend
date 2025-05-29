@@ -1,9 +1,12 @@
 {
-    "welcome": "Welcome to our application!",
-    "home": {
-        "title": "Home",
-        "description": "This is your home page.",
-        "greeting": "Hello, {name}!",
-        "welcomeMessage": "Welcome, {name}!"
-    }
+   "navbar": {
+    "Home page": "Home",
+    "About us": "About Us",
+    "Məhsullar": "Products",
+    "Contact us": "Contact Us",
+    "Search": "Search",
+    "Login": "Login",
+    "Register": "Register"
+}
+
 }

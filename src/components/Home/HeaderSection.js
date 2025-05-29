@@ -9,8 +9,8 @@ const HeaderSection = () => {
           <span className="text-orange-500">İnşaatınız</span><br />
           <span className="text-[#101827]">bizimlə daha güclü</span>
         </h1>
-        <button className="flex items-center justify-between w-full max-w-[350px] bg-[#101827] hover:bg-orange-500 cursor-pointer rounded-full pr-2 pl-8 border-2 border-[#101827] hover:border-orange-500 transition-colors duration-300">
-          <span className="flex-1 text-lg font-semibold text-center text-white">Məhsulları əlavə et</span>
+        <button className="flex items-center justify-between w-[90%] sm:w-full max-w-[350px] bg-[#101827] hover:bg-orange-500 cursor-pointer rounded-full pr-2 pl-8 border-2 border-[#101827] hover:border-orange-500 transition-colors duration-300">
+          <span className="flex-1 text-lg font-semibold text-center text-white ">Məhsulları əlavə et</span>
           <span className="flex items-center justify-center w-12 h-12 -mr-2 bg-white rounded-full hover:border-orange-500">
             <FiArrowRight size={28} className="text-[#101827] group-hover:text-orange-500" />
           </span>

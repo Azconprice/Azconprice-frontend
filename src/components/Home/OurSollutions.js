@@ -53,13 +53,13 @@ const OurSollutions = () => {
                         className="w-[400px] md:w-[520px] lg:w-[720px] drop-shadow-2xl mx-auto"
                     />
                     {/* Bottom Bars */}
-                    <div className="absolute left-1/2 bottom-[-25%] md:bottom-[-18%] lg:bottom-[-14%]" style={{ transform: 'translateX(-50%)' }}>
+                    <div className="absolute left-1/2 bottom-[-40%] sm:bottom-[-25%] md:bottom-[-18%] lg:bottom-[-14%]" style={{ transform: 'translateX(-50%)' }}>
                         <div className="flex flex-col items-center gap-[10px] md:gap-[15px]">
-                            <div className="w-[350px] md:w-[450px] lg:w-[520px] bg-[#0B1621] text-white text-lg md:text-xl rounded-full py-3 px-6 flex items-center gap-3 rotate-[-4deg] shadow-lg z-10">
+                            <div className="w-[250px] sm:w-[350px] md:w-[450px] lg:w-[520px] bg-[#0B1621] text-white text-[12px] sm:text-lg md:text-xl rounded-full py-3 px-6 flex items-center gap-3 rotate-[-4deg] shadow-lg z-10">
                                 <span className="mr-2">✅</span>
                                 <span>{bottomBar1}</span>
                             </div>
-                            <div className="w-[300px] md:w-[350px] lg:w-[420px] bg-orange-500 text-white text-lg md:text-xl rounded-full py-3 px-6 flex items-center gap-3 rotate-[4deg] shadow-lg z-20">
+                            <div className=" w-[200px] sm:w-[300px] md:w-[350px] lg:w-[420px] bg-orange-500 text-white text-[12px] sm:text-lg md:text-xl rounded-full py-3 px-6 flex items-center gap-3 rotate-[4deg] shadow-lg z-20">
                                 <span className="mr-2">✅</span>
                                 <span>{bottomBar2}</span>
                             </div>
@@ -69,7 +69,7 @@ const OurSollutions = () => {
             </div>
             <div className='lg:hidden pt-[100px] md:pt-[200px]'>
                 {/* 2x2 Grid for main texts */}
-                <div className="grid grid-cols-1 gap-4 mb-8 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4 mb-8 mt-4 sm:grid-cols-2">
                     <div className="p-4 rounded-lg bg-orange-50">
                         <p className="text-sm font-bold text-center text-orange-500">{leftTopText}</p>
                     </div>

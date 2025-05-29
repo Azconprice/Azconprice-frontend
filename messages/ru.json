@@ -1,9 +1,12 @@
 {
-    "welcome": "zdrastuvite",
-    "home": {
-        "title": "Dom",
-        "description": "Eta vasha domashnyaya stranitsa.",
-        "greeting": "Privet, {name}!",
-        "welcomeMessage": "Dobro pozhalovat', {name}!"
-    }
+   "navbar": {
+    "Home page": "Главная",
+    "About us": "О нас",
+    "Məhsullar": "Продукты",
+    "Contact us": "Связаться с нами",
+    "Search": "Поиск",
+    "Login": "Вход",
+    "Register": "Регистрация"
+}
+
 }

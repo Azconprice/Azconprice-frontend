@@ -1,9 +1,11 @@
 {
-    "welcome": "salam",
-    "home": {
-        "title": "Ev",
-        "description": "Bu, sizin ev səhifənizdir.",
-        "greeting": "Salam, {name}!",
-        "welcomeMessage": "Xoş gəlmisiniz, {name}!"
+    "navbar": {
+        "Home page": "Ana səhifə",
+        "About us": "Haqqımızda",
+        "Məhsullar": "Məhsullar",
+        "Contact us": "Əlaqə",
+        "Search": "Axtar",
+        "Login": "Giriş",
+        "Register": "Qeydiyyat"
     }
 }

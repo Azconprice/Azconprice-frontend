@@ -30,7 +30,7 @@ const faqs = [
 ];
 
 const Faq = () => {
-    const [openIndex, setOpenIndex] = useState(0); 
+    const [openIndex, setOpenIndex] = useState(null); 
 
     // Split into two columns
     const leftColumn = faqs.slice(0, 3);
