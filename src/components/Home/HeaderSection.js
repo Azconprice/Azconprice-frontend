@@ -3,15 +3,15 @@ import { FiArrowRight } from 'react-icons/fi';
 
 const HeaderSection = () => {
   return (
-    <section className="w-full flex flex-col pr-0 pb-0 md:flex-row items-center justify-between pl-0 md:pl-12 pt-8 md:pt-20 rounded-3xl overflow-hidden">
+    <section className="flex flex-col items-center justify-between w-full pt-8 pb-0 pl-0 pr-0 overflow-hidden md:flex-row md:pl-12 md:pt-20 rounded-3xl">
       <div className="flex-1 flex flex-col items-center w-full md:w-[50%] md:items-start text-center md:text-left gap-6 md:gap-8 relative z-20">
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+        <h1 className="text-4xl font-bold leading-tight md:text-5xl">
           <span className="text-orange-500">İnşaatınız</span><br />
           <span className="text-[#101827]">bizimlə daha güclü</span>
         </h1>
         <button className="flex items-center justify-between w-full max-w-[350px] bg-[#101827] hover:bg-orange-500 cursor-pointer rounded-full pr-2 pl-8 border-2 border-[#101827] hover:border-orange-500 transition-colors duration-300">
-          <span className="flex-1 text-center font-semibold text-white text-lg">Məhsulları əlavə et</span>
-          <span className="flex items-center justify-center w-12 h-12 bg-white hover:border-orange-500 rounded-full -mr-2">
+          <span className="flex-1 text-lg font-semibold text-center text-white">Məhsulları əlavə et</span>
+          <span className="flex items-center justify-center w-12 h-12 -mr-2 bg-white rounded-full hover:border-orange-500">
             <FiArrowRight size={28} className="text-[#101827] group-hover:text-orange-500" />
           </span>
         </button>
@@ -20,7 +20,7 @@ const HeaderSection = () => {
         <img
           src="/assets/images/AzConPrice.gif"
           alt="AzConPrice Animation"
-          className="absolute bottom-0 right-0  z-10 "
+          className="absolute bottom-0 right-0 z-10 "
         />
         <img
           src="/assets/images/phone-header.svg"

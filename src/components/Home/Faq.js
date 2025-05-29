@@ -42,7 +42,7 @@ const Faq = () => {
         return (
             <div
                 key={globalIndex}
-                className={`mb-4 shadow-md transition-all duration-200 ${
+                className={`mb-4 shadow-md transition-all  duration-200 ${
                     isOpen
                         ? 'bg-[#FF7A00] text-white'
                         : ''
@@ -59,7 +59,7 @@ const Faq = () => {
                     <div className={`font-semibold text-[ 12px] md:text-[20px] w-[80%] ${isOpen ? 'text-white' : 'text-[#181D24]'}`}>
                         {faq.question}
                     </div>
-                    <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white">
+                    <span className="flex items-center justify-center w-10 h-10 bg-white rounded-full">
                         <img
                             src={isOpen ? './assets/images/Vector (5).svg' : './assets/images/Vector (4).svg'}
                             alt="arrow icon"
@@ -86,9 +86,9 @@ const Faq = () => {
     };
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-12 border-none">
+        <div className="max-w-6xl px-4 py-12 mx-auto mt-5 border-none">
             <h2 className="px-[20px] text-[32px] sm:text-[36px] md:text-[48px] text-center mb-10">Tez - Tez verilən <span className="font-bold">suallar</span></h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8">
+            <div className="grid grid-cols-1 gap-0 md:grid-cols-2 md:gap-8">
                 <div>
                     {leftColumn.map((faq, i) => renderFaqItem(faq, i, i))}
                 </div>

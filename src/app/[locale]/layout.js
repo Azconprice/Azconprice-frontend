@@ -21,7 +21,7 @@ export default async function RootLayout({ children, params }) {
   }
   return (
     <html lang="en">
-      <body className={`${roboto.className} antialiased`}>
+      <body className={`${roboto.className} antialiased px-2` }>
         <NextIntlClientProvider>
           <Navbar />
           {children}
