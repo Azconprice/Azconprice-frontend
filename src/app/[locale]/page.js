@@ -5,12 +5,14 @@ import Aboutus from '@/components/Home/Aboutus'
 import React from 'react'
 import OurSollutions from '@/components/Home/OurSollutions'
 import Faq from '@/components/Home/Faq'
+import HeaderSection from '@/components/Home/HeaderSection'
 const page = async () => {
   const t = await getTranslations()
 
   return (
     <>
       <container>
+      
         <Aboutus />
         <OurSollutions />
         <Partners />
