@@ -1,11 +1,11 @@
 import { Marquee } from "@/components/magicui/marquee";
-import Autodesk from "./../../../public/assets/images/autodesk_logo.svg";
-import DesignFoundation from "./../../../public/assets/images/design_foundation_logo.svg";
-import DigitalMarketing from "./../../../public/assets/images/digital_marketing_logo.svg";
-import Fortinet from "./../../../public/assets/images/fortinet_logo.svg";
-import Github from "./../../../public/assets/images/github_logo.svg";
-import Microsoft from "./../../../public/assets/images/microsoft_logo.svg";
-import Redhat from "./../../../public/assets/images/redhat_logo.svg";
+import Autodesk from "@/assets/images/autodesk_logo.svg";
+import DesignFoundation from "@/assets/images/design_foundation_logo.svg";
+import DigitalMarketing from "@/assets/images/digital_marketing_logo.svg";
+import Fortinet from "@/assets/images/fortinet_logo.svg";
+import Github from "@/assets/images/github_logo.svg";
+import Microsoft from "@/assets/images/microsoft_logo.svg";
+import Redhat from "@/assets/images/redhat_logo.svg";
 import Image from "next/image";
 
 

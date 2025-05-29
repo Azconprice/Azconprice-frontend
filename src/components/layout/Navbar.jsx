@@ -7,6 +7,8 @@ import { FaChevronDown } from "react-icons/fa";
 import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import HeaderBackground from "@/assets/images/Subtract.png";
+import Image from 'next/image';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -46,8 +48,8 @@ const Navbar = () => {
 
   return (
     <section className="relative container w-full mt-[40px] mb-[120px] mx-auto flex flex-col">
-      <img
-        src="/assets/images/subtract.png"
+      <Image
+        src={HeaderBackground}
         alt="Background Shape"
         className="absolute z-0 w-full h-full"
       />
