@@ -4,7 +4,7 @@ import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from
 const RegistrationModal = ({ isOpen, onClose, onNext }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [type, setType] = useState('Usta');
+  const [type, setType] = useState('usta');
   const [error, setError] = useState('');
 
   const handleContinue = () => {
@@ -37,8 +37,8 @@ const RegistrationModal = ({ isOpen, onClose, onNext }) => {
         className={modalInputStyles}
         required
       >
-        <option value="Usta">Usta</option>
-        <option value="Şirkət">Şirkət</option>
+        <option value="usta">Usta</option>
+        <option value="sirket">Şirkət</option>
       </select>
       <input
         type="text"

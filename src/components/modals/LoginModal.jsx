@@ -49,7 +49,7 @@ const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
           />
           Yadda saxla
         </label>
-        <button onClick={onForgotPassword} className="text-orange-500 hover:underline">
+        <button onClick={onForgotPassword}  className="text-orange-500 hover:underline">
           Şifrəni unutmusan?
         </button>
       </div>
