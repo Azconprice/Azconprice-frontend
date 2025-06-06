@@ -17,6 +17,7 @@ import MasterModal from '../modals/MasterModal';
 import CompanyModal from '../modals/CompanyModal';
 import ForgotPasswordOtpModal from '../modals/ForgotPasswordOtpModal';
 import ForgotPasswordEmailSentModal from '../modals/ForgotPasswordEmailSentModal';
+import ResetPasswordModal from '../modals/ResetPasswordModal';
 
 
 const Navbar = () => {
@@ -38,6 +39,7 @@ const Navbar = () => {
     try {
       const { pathname, search } = window.location
       const newPath = `/${newLocale}${pathname.replace(/^\/[a-z]{2}/, '')}${search}`
+      sessionStorage.setItem('mobileMenuOpen', mobileMenuOpen)
       router.push(newPath, { scroll: false })
       setLanguageDropdownOpen(false)
     } catch (error) {
@@ -54,6 +56,12 @@ const Navbar = () => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setLanguageDropdownOpen(false)
       }
+    }
+
+    const savedMobileMenuState = sessionStorage.getItem('mobileMenuOpen')
+    if (savedMobileMenuState !== null) {
+      setMobileMenuOpen(savedMobileMenuState === 'true')
+      sessionStorage.removeItem('mobileMenuOpen')
     }
 
     document.addEventListener('mousedown', handleClickOutside)
@@ -102,7 +110,7 @@ const Navbar = () => {
                   <span><FaChevronDown /></span>
                 </button>
                 {languageDropdownOpen && (
-                  <div className="absolute right-0 mt-2 py-2 w-20 bg-white rounded-lg shadow-xl z-50">
+                  <div className="absolute right-0 z-50 w-20 py-2 mt-2 bg-white rounded-lg shadow-xl">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
@@ -119,48 +127,36 @@ const Navbar = () => {
             </div>
           </div>
           <div className="flex lg:hidden w-[25%] justify-end self-start">
-            <button className='cursor-pointer pr-[30px]' onClick={() => setMobileMenuOpen(true)}>
+            <button className='cursor-pointer pr-[30px]' onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               <FiMenu size={32} />
             </button>
           </div>
         </div>
         {mobileMenuOpen && (
-          <div className="fixed inset-0 z-50 bg-white flex flex-col items-center justify-start pt-10 transition-all animate-slide-down">
-            <button className="absolute top-6 right-6 cursor-pointer" onClick={() => setMobileMenuOpen(false)}>
-              <FiX size={36} />
-            </button>
-            <div className="flex flex-col gap-8 mt-10 w-full items-center">
-              <h3 className="text-xl font-semibold hover:text-orange-500 cursor-pointer">{t('Home page')}</h3>
-              <h3 className="text-xl font-semibold hover:text-orange-500 cursor-pointer">{t('About us')}</h3>
-              <h3 className="text-xl font-semibold hover:text-orange-500 cursor-pointer">{t('Məhsullar')}</h3>
-              <h3 className="text-xl font-semibold hover:text-orange-500 cursor-pointer">{t('Contact us')}</h3>
-              <button className="flex items-center gap-2 px-4 py-2 rounded hover:text-orange-500 cursor-pointer">
+          <div className="flex lg:hidden w-full flex-col justify-start h-1/2 overflow-y-auto relative z-40 px-[20px] py-[10px]">
+            <div className="flex flex-row w-full gap-4 mb-4">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  className={`text-[16px] cursor-pointer ${locale === lang.code ? 'text-orange-500' : ''}`}
+                  onClick={() => handleLanguageChange(lang.code)}
+                >
+                  {lang.name}
+                </button>
+              ))}
+            </div>
+            <div className="flex flex-row w-full gap-4 mb-8">
+              <button className="flex items-center gap-2 rounded text-[16px] hover:text-orange-500 cursor-pointer">
                 <FiSearch /> {t('Search')}
               </button>
-              <button onClick={() => setActiveModal('register')} className="bg-orange-500 text-white px-5 py-2 rounded-full shadow cursor-pointer hover:bg-orange-600 transition">{t('Register')}</button>
-              <button onClick={() => setActiveModal('login')} className="hover:text-orange-500 cursor-pointer">{t('Login')}</button>
-              <div className="relative">
-                <button
-                  className="hover:text-orange-500 cursor-pointer"
-                  onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
-                >
-                  {languages.find(lang => lang.code === locale)?.name || 'AZ'}
-                </button>
-                {languageDropdownOpen && (
-                  <div className="absolute left-0 mt-2 py-2 w-20 bg-white rounded-lg shadow-xl z-50">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${locale === lang.code ? 'text-orange-500' : ''
-                          }`}
-                        onClick={() => handleLanguageChange(lang.code)}
-                      >
-                        {lang.name}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <button onClick={() => setActiveModal('login')} className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Login')}</button>
+              <button onClick={() => setActiveModal('register')} className="hover:bg-orange-500 bg-[#F37321] px-5 py-2 text-[16px] cursor-pointer text-white rounded-3xl">{t('Register')}</button>
+            </div>
+            <div className="flex flex-col w-full gap-4">
+              <h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Home page')}</h3>
+              <h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('About us')}</h3>
+              <h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Məhsullar')}</h3>
+              <h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Contact us')}</h3>
             </div>
           </div>
         )}
@@ -172,8 +168,9 @@ const Navbar = () => {
       <SuccessModal isOpen={activeModal === 'success'} onClose={() => setActiveModal(null)} />
       <MasterModal isOpen={activeModal === 'master'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('register')} onSubmit={() => setActiveModal('success')} />
       <CompanyModal isOpen={activeModal === 'company'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('register')} onSubmit={() => setActiveModal('success')} />
-      <ForgotPasswordOtpModal isOpen={activeModal === 'resetPasswordPhone'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} onSuccess={() => setActiveModal('success')} />
-      <ForgotPasswordEmailSentModal isOpen={activeModal === 'resetPasswordEmail'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} onSuccess={() => setActiveModal('success')} />
+      <ForgotPasswordOtpModal isOpen={activeModal === 'resetPasswordPhone'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} onSuccess={() => setActiveModal('resetPassword')} />
+      <ForgotPasswordEmailSentModal isOpen={activeModal === 'resetPasswordEmail'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} />
+        <ResetPasswordModal isOpen={activeModal === 'resetPassword'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} onSuccess={() => setActiveModal('success')} />
     </>
   )
 }
