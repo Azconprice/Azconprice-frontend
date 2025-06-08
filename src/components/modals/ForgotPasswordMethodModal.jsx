@@ -11,7 +11,7 @@ const ForgotPasswordMethodModal = ({ isOpen, onClose, onBack, onSelectMethod }) 
       onClose={onClose}
       onBack={onBack}
       showBackButton={true}
-      title="Şifrəni unutmuşam"
+      title="Parolu necə yeniləmək istəyirsiniz?"
     >
       <div className="flex flex-col w-full gap-4 mb-6">
         <div

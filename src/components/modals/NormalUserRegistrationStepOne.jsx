@@ -1,29 +1,17 @@
-  import React, { useState } from 'react';
+import React from 'react'
   import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from './BaseModal';
 
-  const MasterModal = ({ isOpen, onBack, onSubmit, onClose }) => {
-    const [address, setAddress] = useState('');
-    const [specialty, setSpecialty] = useState('');
-    const [price, setPrice] = useState('');
-    const [experience, setExperience] = useState('');
-    const [error, setError] = useState('');
+const NormalUserRegistrationStepOne = () => {
+  return (
 
-    const handleContinue = () => {
-      if (!address || !specialty || !price || !experience) {
-        setError('Bütün xanaları doldurun.');
-        return;
-      }
-      setError('');
-      onSubmit({ address, specialty, price, experience });
-    };
-
-    return (
       <BaseModal
         isOpen={isOpen}
         onClose={onClose}
         onBack={onBack}
         showBackButton={true}
         className="overflow-y-visible"
+        title="Qeydiyyat"
+      subtitle="Adi İstifadəçi"
       >
         <input
           type="text"
@@ -67,7 +55,7 @@
           Davam et
         </button>
       </BaseModal>
-    );
-  };
+     )
+}
 
-  export default MasterModal; 
+export default NormalUserRegistrationStepOne

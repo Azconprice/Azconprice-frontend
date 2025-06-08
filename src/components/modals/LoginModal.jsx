@@ -7,14 +7,14 @@ const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
 
-  const handleLogin = () => {
-    if (email === 'test@example.com' && password === 'password123') {
-      setError('');
-      onSuccess('Uğurla hesaba daxil olduz');
-    } else {
-      setError('Elektron poçt və ya şifrə yanlışdır.');
-    }
-  };
+    const handleLogin = () => {
+      if (email === 'test@example.com' && password === 'password123') {
+        setError('');
+        onSuccess('Uğurla hesaba daxil olduz');
+      } else {
+        setError('Elektron poçt və ya şifrə yanlışdır.');
+      }
+    };
 
   return (
     <BaseModal
@@ -39,17 +39,17 @@ const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
         className={modalInputStyles}
         required
       />
-      <div className="w-full flex justify-between items-center mb-6 text-white text-sm">
-        <label className="flex items-center">
+      <div className="flex items-center justify-between w-full mb-6 text-sm text-white ">
+        <label className="flex items-center cursor-pointer">
           <input
             type="checkbox"
             checked={rememberMe}
             onChange={e => setRememberMe(e.target.checked)}
-            className="mr-2 accent-orange-500"
+            className="mr-2 cursor-pointer accent-orange-500"
           />
           Yadda saxla
         </label>
-        <button onClick={onForgotPassword}  className="text-orange-500 hover:underline">
+        <button onClick={onForgotPassword}  className="text-orange-500 cursor-pointer hover:underline">
           Şifrəni unutmusan?
         </button>
       </div>

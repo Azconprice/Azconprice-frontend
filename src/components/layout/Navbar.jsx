@@ -18,7 +18,8 @@ import CompanyModal from '../modals/CompanyModal';
 import ForgotPasswordOtpModal from '../modals/ForgotPasswordOtpModal';
 import ForgotPasswordEmailSentModal from '../modals/ForgotPasswordEmailSentModal';
 import ResetPasswordModal from '../modals/ResetPasswordModal';
-
+import ForgotPasswordNumberSentModal from '../modals/ForgotPasswordNumberSentModal';
+import Link from 'next/link'; 
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -47,8 +48,8 @@ const Navbar = () => {
     }
   }
 
-  const handleNext = ({name, phone, type}) => {
-    setActiveModal(type === 'usta' ? 'master' : 'company')
+  const handleNext = ({type}) => {
+    setActiveModal(type === 'normaluser' ? 'normaluser' : 'company')
   }
 
   useEffect(() => {
@@ -79,7 +80,9 @@ const Navbar = () => {
         <div className='relative z-10 p-[20px] justify-between pr-0 w-full flex flex-row gap-[30px]'>
           <div className='flex flex-row items-center w-[70%] gap-[30px]'>
             <div className='cursor-pointer'>
-              <img src="/assets/images/logo.svg" alt="logo" />
+              <Link href="/"> 
+              <img src="/assets/images/logo.svg" alt="logo" className='w-[91px] h-[91px]'/>
+                </Link>
             </div>
             <div className='hidden lg:flex flex-row justify-center w-full items-center gap-[60px]'>
               <h3 className="hover:text-orange-500 bg-[#101827] px-8 text-[14px] text-white rounded-3xl py-2 cursor-pointer">{t('Home page')}</h3>
@@ -162,15 +165,15 @@ const Navbar = () => {
         )}
         <HeaderSection />
       </section>
-      <LoginModal isOpen={activeModal === 'login'} onClose={() => setActiveModal(null)} onForgotPassword={() => setActiveModal('forgotPassword')} onSuccess={() => setActiveModal('success')} />
       <RegistrationModal isOpen={activeModal === 'register'} onClose={() => setActiveModal(null)} onNext={handleNext} />
+      <LoginModal isOpen={activeModal === 'login'} onClose={() => setActiveModal(null)} onForgotPassword={() => setActiveModal('forgotPassword')} onSuccess={() => setActiveModal('success')} />
       <ForgotPasswordMethodModal isOpen={activeModal === 'forgotPassword'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('login')} onSelectMethod={(method) => setActiveModal(method === 'phone' ? 'resetPasswordPhone' : 'resetPasswordEmail')} />
       <SuccessModal isOpen={activeModal === 'success'} onClose={() => setActiveModal(null)} />
-      <MasterModal isOpen={activeModal === 'master'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('register')} onSubmit={() => setActiveModal('success')} />
-      <CompanyModal isOpen={activeModal === 'company'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('register')} onSubmit={() => setActiveModal('success')} />
       <ForgotPasswordOtpModal isOpen={activeModal === 'resetPasswordPhone'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} onSuccess={() => setActiveModal('resetPassword')} />
-      <ForgotPasswordEmailSentModal isOpen={activeModal === 'resetPasswordEmail'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} />
+      <ForgotPasswordEmailSentModal isOpen={activeModal === 'resetPasswordEmail'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} onSuccess={() => setActiveModal('resetPassword')} />
         <ResetPasswordModal isOpen={activeModal === 'resetPassword'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} onSuccess={() => setActiveModal('success')} />
+      <ForgotPasswordNumberSentModal isOpen={activeModal === 'resetPasswordPhone'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} onSubmit={() => setActiveModal('resetPassword')} />
+      
     </>
   )
 }

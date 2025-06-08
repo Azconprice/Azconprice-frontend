@@ -11,27 +11,28 @@ const BaseModal = ({
   showBackButton = false,
   className = '',
   maxHeight = 'max-h-[95vh]',
-  width = 'w-[350px] sm:w-[400px]',
+  width = 'w-[450px] sm:w-[440px]',
   bgColor = 'bg-[#101827]',
   textColor = 'text-white',
 }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-lg bg-opacity-70 overflow-y-auto">
-      <div className={`${bgColor} ${width} rounded-2xl shadow-lg p-8 flex flex-col items-center relative ${maxHeight} overflow-y-auto ${className}`}>
+    <div className="fixed pl-[10px] pr-[10px]  inset-0 z-50 flex items-center justify-center overflow-y-auto backdrop-blur-lg bg-opacity-70">
+      <div className={`${bgColor} ${width} rounded-2xl  shadow-lg p-8 flex flex-col items-center relative ${maxHeight} overflow-y-auto ${className}`}>
         {showBackButton && (
-          <button onClick={onBack} className="absolute top-4 left-4 text-white text-2xl cursor-pointer">
+          <button onClick={onBack} className="absolute text-2xl text-white cursor-pointer top-4 left-4">
             <FiArrowLeft />
           </button>
         )}
-        <button onClick={onClose} className="absolute top-4 right-4 text-white text-2xl cursor-pointer">
+      
+        <button onClick={onClose} className="absolute text-2xl text-white cursor-pointer top-4 right-4">
           <FiX />
         </button>
-
-        {title && (
-          <h2 className={`${textColor} text-[24px] font-bold mb-1`}>{title}</h2>
+   {title && (
+          <h2 className={`${textColor} text-[24px] font-bold  mt-[15px] text-center`}>{title}</h2>
         )}
+       
         {subtitle && (
           <p className={`text-[12px] text-[#F0EEEE] mb-6`}>{subtitle}</p>
         )}
@@ -44,6 +45,6 @@ const BaseModal = ({
 
 export const modalInputStyles = "w-full mb-3 px-4 py-2 rounded-xl bg-white text-black focus:outline-none";
 export const modalButtonStyles = "w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-2xl transition";
-export const modalErrorStyles = "text-red-400 text-sm mb-2";
+export const modalErrorStyles = "text-red-500 text-[16px]  text-center mb-[10px]";
 
 export default BaseModal; 

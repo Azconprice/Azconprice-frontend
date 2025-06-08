@@ -65,7 +65,7 @@ const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method }) 
       title="Parolu unutmuşam"
       subtitle={subtitleText}
     >
-      <div className="w-full flex justify-center gap-4 mb-6">
+      <div className="flex justify-center w-full gap-4 mb-6">
         {otp.map((digit, index) => (
           <input
             key={index}
@@ -79,12 +79,12 @@ const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method }) 
                 document.getElementById(`otp-input-${index - 1}`).focus();
               }
             }}
-            className="w-12 h-12 text-center text-2xl rounded-xl bg-white text-black focus:outline-none"
+            className="w-12 h-12 text-2xl text-center text-black bg-white rounded-xl focus:outline-none"
           />
         ))}
       </div>
 
-      <div className="w-full text-center text-sm text-gray-300 mb-6">
+      <div className="w-full mb-6 text-sm text-center text-gray-300">
         Kodu yenidən göndər: {timeLeft} sn
       </div>
 
