@@ -13,7 +13,7 @@ const RegistrationModal = ({ isOpen, onClose, onNext }) => {
 
   const handleTypeSelect = (selectedType) => {
     setType(selectedType);
-    setError(''); // Seçim edildikdə erroru sil
+    setError('');
   };
 
   const handleContinue = () => {

@@ -22,6 +22,9 @@ import ForgotPasswordNumberSentModal from '../modals/ForgotPasswordNumberSentMod
 import NormalUserRegistrationStepOne from '../modals/NormalUserRegistrationStepOne';
 import NormalUserRegistrationStepTwo from '../modals/NormalUserRegistrationStepTwo';
 import Link from 'next/link'; 
+import MasterRegistrationStepOne from '../modals/MasterRegistrationStepOne';
+import MasterRegistrationStepTwo from '../modals/MasterRegistrationStepTwo';
+import MasterRegistrationStepThree from '../modals/MasterRegistrationStepThree';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -194,6 +197,24 @@ const Navbar = () => {
         isOpen={activeModal === 'normaluserStepTwo'}
         onClose={() => setActiveModal(null)}
         onBack={() => setActiveModal('normaluserStepOne')}
+        onSuccess={handleRegistrationSuccess}
+      />
+      <MasterRegistrationStepOne
+        isOpen={activeModal === 'masterStepOne'}
+        onClose={() => setActiveModal(null)}
+        onBack={() => setActiveModal('register')}
+        onNext={() => setActiveModal('masterStepTwo')}
+      />
+      <MasterRegistrationStepTwo
+        isOpen={activeModal === 'masterStepTwo'}
+        onClose={() => setActiveModal(null)}
+        onBack={() => setActiveModal('masterStepOne')}
+        onNext={() => setActiveModal('masterStepThree')}
+      />
+      <MasterRegistrationStepThree
+        isOpen={activeModal === 'masterStepThree'}
+        onClose={() => setActiveModal(null)}
+        onBack={() => setActiveModal('masterStepTwo')}
         onSuccess={handleRegistrationSuccess}
       />
       <LoginModal 
