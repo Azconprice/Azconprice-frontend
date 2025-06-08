@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from './BaseModal';
+import BaseModal, { modalButtonStyles, modalErrorStyles } from './BaseModal';
 
 const RegistrationModal = ({ isOpen, onClose, onNext }) => {
   const [type, setType] = useState('');
@@ -11,6 +11,20 @@ const RegistrationModal = ({ isOpen, onClose, onNext }) => {
     return `${base} ${isSelected}`;
   };
 
+  const handleTypeSelect = (selectedType) => {
+    setType(selectedType);
+    setError(''); // Seçim edildikdə erroru sil
+  };
+
+  const handleContinue = () => {
+    if (!type) {
+      setError('Zəhmət olmasa bir istifadəçi tipi seçin');
+      return;
+    }
+    setError('');
+    onNext(type);
+  };
+
   return (
     <BaseModal
       isOpen={isOpen}
@@ -19,21 +33,27 @@ const RegistrationModal = ({ isOpen, onClose, onNext }) => {
       subtitle=""
     >
       <div className="w-full flex flex-col gap-[10px] mb-[25px] mt-[40px] justify-center items-center">
-        <button className={getButtonClass('normaluser')} onClick={() => setType('normaluser')}>
+        <button className={getButtonClass('normaluser')} onClick={() => handleTypeSelect('normaluser')}>
           <img src="/assets/icons/normaluser.svg" alt="NormalUser Icon" className='inline-block w-[15px] h-[15px] ml-[20px] mr-[7px]' />
           Adi İstifadəçi
         </button>
-        <button className={getButtonClass('master')} onClick={() => setType('master')}>
+        <button className={getButtonClass('master')} onClick={() => handleTypeSelect('master')}>
           <img src="/assets/icons/master.svg" alt="Usta Icon" className='inline-block w-[18px] h-[18px] ml-[20px] mr-[7px]' />
           Usta
         </button>
-        <button className={getButtonClass('company')} onClick={() => setType('company')}>
+        <button className={getButtonClass('company')} onClick={() => handleTypeSelect('company')}>
           <img src="/assets/icons/company.svg" alt="Company Icon" className='inline-block w-[18px] h-[18px] ml-[20px] mr-[7px]' />
           Şirkət
         </button>
       </div>
 
-      <button className={modalButtonStyles} onClick={() => onNext(type)}>
+      {error && <div className={`${modalErrorStyles} mt-3`}>{error}</div>}
+
+      <button 
+        className={modalButtonStyles} 
+        onClick={handleContinue}
+        disabled={!type}
+      >
         Davam et
       </button>
     </BaseModal>

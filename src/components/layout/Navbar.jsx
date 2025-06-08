@@ -19,6 +19,8 @@ import ForgotPasswordOtpModal from '../modals/ForgotPasswordOtpModal';
 import ForgotPasswordEmailSentModal from '../modals/ForgotPasswordEmailSentModal';
 import ResetPasswordModal from '../modals/ResetPasswordModal';
 import ForgotPasswordNumberSentModal from '../modals/ForgotPasswordNumberSentModal';
+import NormalUserRegistrationStepOne from '../modals/NormalUserRegistrationStepOne';
+import NormalUserRegistrationStepTwo from '../modals/NormalUserRegistrationStepTwo';
 import Link from 'next/link'; 
 
 const Navbar = () => {
@@ -29,6 +31,7 @@ const Navbar = () => {
   const router = useRouter()
   const t = useTranslations('navbar')
   const [activeModal, setActiveModal] = useState(null)
+  const [successMessage, setSuccessMessage] = useState('')
 
   const languages = [
     { code: 'az', name: 'AZ' },
@@ -48,8 +51,19 @@ const Navbar = () => {
     }
   }
 
-  const handleNext = ({type}) => {
-    setActiveModal(type === 'normaluser' ? 'normaluser' : 'company')
+  const handleNext = (type) => {
+    if (type === 'normaluser') {
+      setActiveModal('normaluserStepOne');
+    } else if (type === 'master') {
+      setActiveModal('master');
+    } else if (type === 'company') {
+      setActiveModal('company');
+    }
+  }
+
+  const handleRegistrationSuccess = () => {
+    setSuccessMessage('Qeydiyyat uğurla tamamlandı');
+    setActiveModal('success');
   }
 
   useEffect(() => {
@@ -165,15 +179,64 @@ const Navbar = () => {
         )}
         <HeaderSection />
       </section>
-      <RegistrationModal isOpen={activeModal === 'register'} onClose={() => setActiveModal(null)} onNext={handleNext} />
-      <LoginModal isOpen={activeModal === 'login'} onClose={() => setActiveModal(null)} onForgotPassword={() => setActiveModal('forgotPassword')} onSuccess={() => setActiveModal('success')} />
-      <ForgotPasswordMethodModal isOpen={activeModal === 'forgotPassword'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('login')} onSelectMethod={(method) => setActiveModal(method === 'phone' ? 'resetPasswordPhone' : 'resetPasswordEmail')} />
-      <SuccessModal isOpen={activeModal === 'success'} onClose={() => setActiveModal(null)} />
-      <ForgotPasswordOtpModal isOpen={activeModal === 'resetPasswordPhone'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} onSuccess={() => setActiveModal('resetPassword')} />
-      <ForgotPasswordEmailSentModal isOpen={activeModal === 'resetPasswordEmail'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} onSuccess={() => setActiveModal('resetPassword')} />
-        <ResetPasswordModal isOpen={activeModal === 'resetPassword'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} onSuccess={() => setActiveModal('success')} />
-      <ForgotPasswordNumberSentModal isOpen={activeModal === 'resetPasswordPhone'} onClose={() => setActiveModal(null)} onBack={() => setActiveModal('forgotPassword')} onSubmit={() => setActiveModal('resetPassword')} />
-      
+      <RegistrationModal 
+        isOpen={activeModal === 'register'} 
+        onClose={() => setActiveModal(null)} 
+        onNext={handleNext} 
+      />
+      <NormalUserRegistrationStepOne 
+        isOpen={activeModal === 'normaluserStepOne'} 
+        onClose={() => setActiveModal(null)} 
+        onBack={() => setActiveModal('register')}
+        onNext={() => setActiveModal('normaluserStepTwo')}
+      />
+      <NormalUserRegistrationStepTwo
+        isOpen={activeModal === 'normaluserStepTwo'}
+        onClose={() => setActiveModal(null)}
+        onBack={() => setActiveModal('normaluserStepOne')}
+        onSuccess={handleRegistrationSuccess}
+      />
+      <LoginModal 
+        isOpen={activeModal === 'login'} 
+        onClose={() => setActiveModal(null)} 
+        onForgotPassword={() => setActiveModal('forgotPassword')} 
+        onSuccess={() => setActiveModal('success')} 
+      />
+      <ForgotPasswordMethodModal 
+        isOpen={activeModal === 'forgotPassword'} 
+        onClose={() => setActiveModal(null)} 
+        onBack={() => setActiveModal('login')} 
+        onSelectMethod={(method) => setActiveModal(method === 'phone' ? 'resetPasswordPhone' : 'resetPasswordEmail')} 
+      />
+      <SuccessModal 
+        isOpen={activeModal === 'success'} 
+        onClose={() => setActiveModal(null)}
+        message={successMessage}
+      />
+      <ForgotPasswordOtpModal 
+        isOpen={activeModal === 'resetPasswordPhone'} 
+        onClose={() => setActiveModal(null)} 
+        onBack={() => setActiveModal('forgotPassword')} 
+        onSuccess={() => setActiveModal('resetPassword')} 
+      />
+      <ForgotPasswordEmailSentModal 
+        isOpen={activeModal === 'resetPasswordEmail'} 
+        onClose={() => setActiveModal(null)} 
+        onBack={() => setActiveModal('forgotPassword')} 
+        onSuccess={() => setActiveModal('resetPassword')} 
+      />
+      <ResetPasswordModal 
+        isOpen={activeModal === 'resetPassword'} 
+        onClose={() => setActiveModal(null)} 
+        onBack={() => setActiveModal('forgotPassword')} 
+        onSuccess={() => setActiveModal('success')} 
+      />
+      <ForgotPasswordNumberSentModal 
+        isOpen={activeModal === 'resetPasswordPhone'} 
+        onClose={() => setActiveModal(null)} 
+        onBack={() => setActiveModal('forgotPassword')} 
+        onSubmit={() => setActiveModal('resetPassword')} 
+      />
     </>
   )
 }

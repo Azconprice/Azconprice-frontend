@@ -34,7 +34,7 @@ const BaseModal = ({
         )}
        
         {subtitle && (
-          <p className={`text-[12px] text-[#F0EEEE] mb-6`}>{subtitle}</p>
+          <p className={`text-[13px] text-[rgba(240,238,238,0.54)] mb-[20px] mt-[10px]`}>{subtitle}</p>
         )}
 
         {children}
