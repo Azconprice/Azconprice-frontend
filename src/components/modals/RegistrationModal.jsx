@@ -7,7 +7,7 @@ const RegistrationModal = ({ isOpen, onClose, onNext }) => {
 
   const getButtonClass = (btnType) => {
     const base = 'py-2 font-normal text-black bg-white cursor-pointer w-90 rounded-2xl text-start transition';
-    const isSelected = type === btnType ? ' border-3 border-[#F37321]' : ' border border-transparent';
+    const isSelected = type === btnType ? ' border-3 border-[#F37321]' : ' border-3 border-transparent';
     return `${base} ${isSelected}`;
   };
 

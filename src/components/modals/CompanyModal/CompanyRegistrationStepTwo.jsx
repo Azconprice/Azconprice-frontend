@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import BaseModal, { modalButtonStyles, modalErrorStyles } from './BaseModal';
+import BaseModal, { modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
 const CompanyRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext }) => {
   const [voen, setVoen] = useState('');

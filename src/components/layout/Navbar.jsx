@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState, useRef, useEffect } from 'react'
 import HeaderSection from '../Home/HeaderSection'
 import { FiMenu, FiX, FiSearch } from 'react-icons/fi'
@@ -17,16 +16,10 @@ import ForgotPasswordOtpModal from '../modals/ForgotPasswordOtpModal';
 import ForgotPasswordEmailSentModal from '../modals/ForgotPasswordEmailSentModal';
 import ResetPasswordModal from '../modals/ResetPasswordModal';
 import ForgotPasswordNumberSentModal from '../modals/ForgotPasswordNumberSentModal';
-import NormalUserRegistrationStepOne from '../modals/NormalUserRegistrationStepOne';
-import NormalUserRegistrationStepTwo from '../modals/NormalUserRegistrationStepTwo';
+import NormalUserModals from '../modals/NormalUserModal/NormalUserModals';
+import CompanyModals from '../modals/CompanyModal/CompanyModals';
+import MasterModals from '../modals/MasterModal/MasterModals';
 import Link from 'next/link'; 
-import MasterRegistrationStepOne from '../modals/MasterRegistrationStepOne';
-import MasterRegistrationStepTwo from '../modals/MasterRegistrationStepTwo';
-import MasterRegistrationStepThree from '../modals/MasterRegistrationStepThree';
-import CompanyRegistrationStepOne from '../modals/CompanyRegistrationStepOne';
-import CompanyRegistrationStepTwo from '../modals/CompanyRegistrationStepTwo';
-import CompanyRegistrationStepThree from '../modals/CompanyRegistrationStepThree';
-
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false)
@@ -57,11 +50,11 @@ const Navbar = () => {
 
   const handleNext = (type) => {
     if (type === 'normaluser') {
-      setActiveModal('normaluserStepOne');
+      setActiveModal('normalUserRegistration');
     } else if (type === 'master') {
-      setActiveModal('masterStepOne');
+      setActiveModal('masterRegistration');
     } else if (type === 'company') {
-      setActiveModal('companyStepOne');
+      setActiveModal('companyRegistration');
     }
   }
 
@@ -188,36 +181,7 @@ const Navbar = () => {
         onClose={() => setActiveModal(null)} 
         onNext={handleNext} 
       />
-      <NormalUserRegistrationStepOne 
-        isOpen={activeModal === 'normaluserStepOne'} 
-        onClose={() => setActiveModal(null)} 
-        onBack={() => setActiveModal('register')}
-        onNext={() => setActiveModal('normaluserStepTwo')}
-      />
-      <NormalUserRegistrationStepTwo
-        isOpen={activeModal === 'normaluserStepTwo'}
-        onClose={() => setActiveModal(null)}
-        onBack={() => setActiveModal('normaluserStepOne')}
-        onSuccess={handleRegistrationSuccess}
-      />
-      <MasterRegistrationStepOne
-        isOpen={activeModal === 'masterStepOne'}
-        onClose={() => setActiveModal(null)}
-        onBack={() => setActiveModal('register')}
-        onNext={() => setActiveModal('masterStepTwo')}
-      />
-      <MasterRegistrationStepTwo
-        isOpen={activeModal === 'masterStepTwo'}
-        onClose={() => setActiveModal(null)}
-        onBack={() => setActiveModal('masterStepOne')}
-        onNext={() => setActiveModal('masterStepThree')}
-      />
-      <MasterRegistrationStepThree
-        isOpen={activeModal === 'masterStepThree'}
-        onClose={() => setActiveModal(null)}
-        onBack={() => setActiveModal('masterStepTwo')}
-        onSuccess={handleRegistrationSuccess}
-      />
+    
       <LoginModal 
         isOpen={activeModal === 'login'} 
         onClose={() => setActiveModal(null)} 
@@ -260,22 +224,19 @@ const Navbar = () => {
         onClose={() => setActiveModal(null)}
         message={successMessage}
       />
-      <CompanyRegistrationStepOne
-        isOpen={activeModal === 'companyStepOne'}
+      <NormalUserModals 
+        isOpen={activeModal === 'normalUserRegistration'}
         onClose={() => setActiveModal(null)}
-        onBack={() => setActiveModal('register')}
-        onNext={() => setActiveModal('companyStepTwo')}
+        onSuccess={handleRegistrationSuccess}
       />
-      <CompanyRegistrationStepTwo
-        isOpen={activeModal === 'companyStepTwo'}
+      <CompanyModals 
+        isOpen={activeModal === 'companyRegistration'}
         onClose={() => setActiveModal(null)}
-        onBack={() => setActiveModal('companyStepOne')}
-        onNext={() => setActiveModal('companyStepThree')}
+        onSuccess={handleRegistrationSuccess}
       />
-      <CompanyRegistrationStepThree
-        isOpen={activeModal === 'companyStepThree'}
+      <MasterModals 
+        isOpen={activeModal === 'masterRegistration'}
         onClose={() => setActiveModal(null)}
-        onBack={() => setActiveModal('companyStepTwo')}
         onSuccess={handleRegistrationSuccess}
       />
     </>

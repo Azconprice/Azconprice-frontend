@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from './BaseModal';
+import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
 const CompanyRegistrationStepThree = ({ isOpen, onClose, onBack, onSuccess }) => {
   const [email, setEmail] = useState('');

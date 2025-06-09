@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from './BaseModal';
+import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
-const MasterRegistrationStepOne = ({ isOpen, onClose, onBack, onNext }) => {
+const NormalUserRegistrationStepOne = ({ isOpen, onClose, onBack, onNext }) => {
   const [fullName, setFullName] = useState('');
   const [address, setAddress] = useState('');
   const [rawPhone, setRawPhone] = useState('');
@@ -61,10 +61,10 @@ const MasterRegistrationStepOne = ({ isOpen, onClose, onBack, onNext }) => {
       onBack={onBack}
       showBackButton={true}
       title="Qeydiyyat"
-      subtitle="Usta"
+      subtitle="Adi İstifadəçi"
     >
       <div className="mb-[20px] w-90">
-        <div className="relative mb-4">
+        <div className="relative mb-4 ">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
             <img src="/assets/icons/person.svg" alt="icon" className="w-[16px] h-[16px]" />
           </span>
@@ -76,7 +76,7 @@ const MasterRegistrationStepOne = ({ isOpen, onClose, onBack, onNext }) => {
             className="w-full pl-10 pr-4 py-2 rounded-full bg-[#F3F3F3] text-gray-500 placeholder-gray-400 focus:outline-none"
           />
         </div>
-        <div className="relative mb-4">
+        <div className="relative mb-4 ">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
             <img src="/assets/icons/location.svg" alt="icon" className="w-[16px] h-[16px]" />
           </span>
@@ -110,4 +110,4 @@ const MasterRegistrationStepOne = ({ isOpen, onClose, onBack, onNext }) => {
   );
 };
 
-export default MasterRegistrationStepOne;
+export default NormalUserRegistrationStepOne;
