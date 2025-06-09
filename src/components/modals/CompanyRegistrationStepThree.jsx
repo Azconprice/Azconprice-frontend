@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from './BaseModal';
 
-const MasterRegistrationStepThree = ({ isOpen, onClose, onBack, onSuccess }) => {
+const CompanyRegistrationStepThree = ({ isOpen, onClose, onBack, onSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -40,7 +40,7 @@ const MasterRegistrationStepThree = ({ isOpen, onClose, onBack, onSuccess }) => 
       showBackButton={true}
       className="overflow-y-visible"
       title="Qeydiyyat"
-      subtitle="Usta"
+      subtitle="Şirkət"
     >
       <div className="mb-[10px] w-90">
         <div className="relative mb-4">
@@ -94,4 +94,4 @@ const MasterRegistrationStepThree = ({ isOpen, onClose, onBack, onSuccess }) => 
   );
 };
 
-export default MasterRegistrationStepThree;
+export default CompanyRegistrationStepThree;
