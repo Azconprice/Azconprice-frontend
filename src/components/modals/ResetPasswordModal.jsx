@@ -27,6 +27,7 @@ const ResetPasswordModal = ({ isOpen, onClose, onBack, onSuccess }) => {
       showBackButton={true}
       title="Yeni şifrə təyin et"
     >
+      <div className='mt-[30px] mb-[8px]'>
       <input
         type="password"
         placeholder="Yeni şifrə"
@@ -42,7 +43,7 @@ const ResetPasswordModal = ({ isOpen, onClose, onBack, onSuccess }) => {
         onChange={e => setConfirmPassword(e.target.value)}
         className={modalInputStyles}
         required
-      />
+      /> </div>
       {error && <div className={modalErrorStyles}>{error}</div>}
       <button
         className={modalButtonStyles}

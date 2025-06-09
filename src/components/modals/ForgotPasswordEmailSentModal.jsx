@@ -1,14 +1,11 @@
-
-
 import React, { useState, useRef } from 'react';
 import BaseModal, { modalButtonStyles } from './BaseModal';
 
-const ForgotPasswordEmailSentModal = ({ isOpen, onClose, onBack }) => {
+const ForgotPasswordEmailSentModal = ({ isOpen, onClose, onBack, onSuccess }) => {
   const [error, setError] = useState('');
   const emailRef = useRef(null);
 
   const validateEmail = (email) => {
-    // Sadə email yoxlaması üçün regex
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   };
@@ -22,7 +19,7 @@ const ForgotPasswordEmailSentModal = ({ isOpen, onClose, onBack }) => {
     }
 
     setError('');
-    onClose();
+    if (onSuccess) onSuccess();
   };
 
   return (
@@ -41,11 +38,11 @@ const ForgotPasswordEmailSentModal = ({ isOpen, onClose, onBack }) => {
           placeholder="Emailinizi daxil edin"
           className="text-white placeholder-white border-2 border-orange-500 py-[8px] px-[15px] rounded-4xl"
         />
-       
+
       </div>
-       {error && (
-          <div className="text-[16px] font-medium text-center mb-[10px] text-red-500 ">{error}</div>
-        )}
+      {error && (
+        <div className="text-[16px] font-medium text-center mb-[10px] text-red-500 ">{error}</div>
+      )}
       <button className={modalButtonStyles} onClick={handleSubmit}>
         Göndər
       </button>

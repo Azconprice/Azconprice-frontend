@@ -228,24 +228,26 @@ const Navbar = () => {
         isOpen={activeModal === 'forgotPassword'} 
         onClose={() => setActiveModal(null)} 
         onBack={() => setActiveModal('login')} 
-        onSelectMethod={(method) => setActiveModal(method === 'phone' ? 'resetPasswordPhone' : 'resetPasswordEmail')} 
-      />
-      <SuccessModal 
-        isOpen={activeModal === 'success'} 
-        onClose={() => setActiveModal(null)}
-        message={successMessage}
-      />
-      <ForgotPasswordOtpModal 
-        isOpen={activeModal === 'resetPasswordPhone'} 
-        onClose={() => setActiveModal(null)} 
-        onBack={() => setActiveModal('forgotPassword')} 
-        onSuccess={() => setActiveModal('resetPassword')} 
+        onSelectMethod={(method) => setActiveModal(method === 'phone' ? 'forgotPasswordNumberSent' : 'forgotPasswordEmailSent')} 
       />
       <ForgotPasswordEmailSentModal 
-        isOpen={activeModal === 'resetPasswordEmail'} 
+        isOpen={activeModal === 'forgotPasswordEmailSent'} 
         onClose={() => setActiveModal(null)} 
         onBack={() => setActiveModal('forgotPassword')} 
+        onSuccess={() => setActiveModal('resetPasswordEmailOtp')} 
+      />
+      <ForgotPasswordNumberSentModal 
+        isOpen={activeModal === 'forgotPasswordNumberSent'} 
+        onClose={() => setActiveModal(null)} 
+        onBack={() => setActiveModal('forgotPassword')} 
+        onSubmit={() => setActiveModal('resetPasswordPhoneOtp')} 
+      />
+      <ForgotPasswordOtpModal 
+        isOpen={activeModal === 'resetPasswordPhoneOtp' || activeModal === 'resetPasswordEmailOtp'} 
+        onClose={() => setActiveModal(null)} 
+        onBack={() => setActiveModal(activeModal === 'resetPasswordPhoneOtp' ? 'forgotPasswordNumberSent' : 'forgotPasswordEmailSent')} 
         onSuccess={() => setActiveModal('resetPassword')} 
+        method={activeModal === 'resetPasswordPhoneOtp' ? 'phone' : 'email'}
       />
       <ResetPasswordModal 
         isOpen={activeModal === 'resetPassword'} 
@@ -253,11 +255,10 @@ const Navbar = () => {
         onBack={() => setActiveModal('forgotPassword')} 
         onSuccess={() => setActiveModal('success')} 
       />
-      <ForgotPasswordNumberSentModal 
-        isOpen={activeModal === 'resetPasswordPhone'} 
-        onClose={() => setActiveModal(null)} 
-        onBack={() => setActiveModal('forgotPassword')} 
-        onSubmit={() => setActiveModal('resetPassword')} 
+      <SuccessModal 
+        isOpen={activeModal === 'success'} 
+        onClose={() => setActiveModal(null)}
+        message={successMessage}
       />
       <CompanyRegistrationStepOne
         isOpen={activeModal === 'companyStepOne'}
