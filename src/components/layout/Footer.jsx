@@ -1,6 +1,9 @@
 import React from 'react'
+import { useTranslations } from 'next-intl';
 
 const Footer = () => {
+
+
   return (
     <footer className="pt-[50px] pb-[30px]">
       <div className="container mx-auto px-2 md:px-9 bg-gray-100 text-gray-700 rounded-[48px]">

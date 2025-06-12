@@ -5,14 +5,15 @@ import Aboutus from '@/components/Home/Aboutus'
 import React from 'react'
 import OurSollutions from '@/components/Home/OurSollutions'
 import Faq from '@/components/Home/Faq'
-import HeaderSection from '@/components/Home/HeaderSection'
 import PlanPaymentModal from '@/components/modals/PlanPaymentModal'
+import Guide from '@/components/Home/Guide'
 const page = async () => {
   const t = await getTranslations()
 
   return (
     <>
         <Aboutus />
+         <Guide/>
         <OurSollutions />
         <Partners />
         <Faq />

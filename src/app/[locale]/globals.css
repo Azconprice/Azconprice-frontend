@@ -136,3 +136,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.guide-background-gradient {
+  background: radial-gradient(circle, rgba(253, 186, 116, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+}
