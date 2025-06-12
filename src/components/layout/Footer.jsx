@@ -8,8 +8,8 @@ const Footer = () => {
 
   
   return (
-    <footer className="pt-[50px] pb-[30px]">
-      <div className="container mx-auto px-2 md:px-9 bg-gray-100 text-gray-700 rounded-[48px]">
+    <footer className="pt-[50px] pb-[30px] pl-[15px] pr-[15px] md:pr-[10px] md:pl-[10px]">
+      <div className="footer mx-auto px-2 md:px-9 bg-gray-100 text-gray-700 rounded-[48px]">
         <div className='p-2 pt-[20px] pb-[24px]'>
           <div className="flex flex-col items-center justify-between gap-8 mb-10 md:items-start">
             <div className="flex-shrink-0 mb-6 md:mb-0">
