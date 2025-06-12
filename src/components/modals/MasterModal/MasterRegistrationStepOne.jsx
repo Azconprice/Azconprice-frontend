@@ -51,7 +51,11 @@ const MasterRegistrationStepOne = ({ isOpen, onClose, onBack, onNext }) => {
       return;
     }
     setError('');
-    onNext();
+    onNext({
+      fullName,
+      address,
+      phoneNumber: rawPhone
+    });
   };
 
   return (

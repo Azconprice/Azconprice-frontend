@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FiX, FiArrowLeft } from 'react-icons/fi';
 
 const BaseModal = ({
@@ -15,6 +15,18 @@ const BaseModal = ({
   bgColor = 'bg-[#101827]',
   textColor = 'text-white',
 }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (

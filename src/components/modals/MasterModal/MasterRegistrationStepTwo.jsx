@@ -1,14 +1,106 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Select from 'react-select';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
 const MasterRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext }) => {
-  const [specialty, setSpecialty] = useState('');
+  const [specialty, setSpecialty] = useState([]);
   const [experience, setExperience] = useState('');
   const [price, setPrice] = useState('');
   const [error, setError] = useState('');
 const [voen, setVoen] = useState('');
+  const [specialtyOptions, setSpecialtyOptions] = useState([]);
+  const [isLoadingSpecialties, setIsLoadingSpecialties] = useState(false);
+
+  useEffect(() => {
+    const fetchSpecializations = async () => {
+      setIsLoadingSpecialties(true);
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Specialization/`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch specializations');
+        }
+        const data = await response.json();
+        const options = data.map(specialization => ({
+          value: specialization.id,
+          label: specialization.name
+        }));
+        setSpecialtyOptions(options);
+      } catch (error) {
+        console.error('Error fetching specializations:', error);
+        setError('İxtisaslar yüklənərkən xəta baş verdi');
+      } finally {
+        setIsLoadingSpecialties(false);
+      }
+    };
+
+    if (isOpen) {
+      fetchSpecializations();
+    }
+  }, [isOpen]);
+
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      backgroundColor: '#F3F3F3',
+      border: 'none',
+      borderRadius: '25px',
+      paddingLeft: '35px',
+      paddingRight: '8px',
+      paddingTop: '4px',
+      paddingBottom: '4px',
+      minHeight: '40px',
+      boxShadow: 'none',
+      '&:hover': {
+        border: 'none'
+      }
+    }),
+    valueContainer: (provided) => ({
+      ...provided,
+      padding: '0'
+    }),
+    multiValue: (provided) => ({
+      ...provided,
+      backgroundColor: '#FED7AA',
+      borderRadius: '15px',
+      color: '#9A3412'
+    }),
+    multiValueLabel: (provided) => ({
+      ...provided,
+      color: '#9A3412',
+      fontSize: '12px'
+    }),
+    multiValueRemove: (provided) => ({
+      ...provided,
+      color: '#9A3412',
+      '&:hover': {
+        backgroundColor: '#FB923C',
+        color: '#7C2D12'
+      }
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: '#9CA3AF',
+      fontSize: '14px'
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected ? '#FB923C' : state.isFocused ? '#FED7AA' : 'white',
+      color: state.isSelected ? 'white' : '#374151'
+    }),
+    indicatorSeparator: () => ({
+      display: 'none'
+    }),
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      color: '#9CA3AF'
+    }),
+    menuPortal: (provided) => ({
+      ...provided,
+      zIndex: 9999
+    })
+  };
   const handleContinue = () => {
-    if (!specialty || !experience || !price || !voen) {
+    if (specialty.length === 0 || !experience || !price || !voen) {
       setError('Bütün xanaları doldurun');
       return;
     }
@@ -24,7 +116,12 @@ const [voen, setVoen] = useState('');
     }
 
     setError('');
-    onNext();
+    onNext({
+      specialty: specialty.map(item => item.value),
+      experience: parseInt(experience),
+      price: parseFloat(price),
+      voen
+    });
   };
 
   return (
@@ -50,15 +147,24 @@ const [voen, setVoen] = useState('');
           />
         </div>
         <div className="relative mb-4">
-          <span className="absolute text-gray-400 -translate-y-1/2 left-4 top-1/2">
+          <span className="absolute text-gray-400 left-4 top-1/2 -translate-y-1/2 z-20">
             <img src="/assets/icons/ixtisas.svg" alt="icon" className="w-[16px] h-[16px]" />
           </span>
-          <input
-            type="text"
-            placeholder="İxtisas"
+          <Select
+            isMulti
             value={specialty}
-            onChange={e => setSpecialty(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 rounded-full bg-[#F3F3F3] text-gray-500 placeholder-gray-400 focus:outline-none"
+            onChange={setSpecialty}
+            options={specialtyOptions}
+            placeholder={isLoadingSpecialties ? "İxtisaslar yüklənir..." : "İxtisas seçin"}
+            styles={customStyles}
+            closeMenuOnSelect={false}
+            hideSelectedOptions={false}
+            className="w-full"
+            menuPortalTarget={document.body}
+            menuPosition="fixed"
+            isLoading={isLoadingSpecialties}
+            isDisabled={isLoadingSpecialties}
+            noOptionsMessage={() => "İxtisas tapılmadı"}
           />
         </div>
         <div className="flex flex-row  gap-[10px]">

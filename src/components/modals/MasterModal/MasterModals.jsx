@@ -27,15 +27,48 @@ const MasterModals = ({ isOpen, onClose, onSuccess }) => {
     try {
       const completeData = {
         ...formData,
-        ...finalData
+        ...finalData,
+        phoneNumber: `+994${formData.phoneNumber?.slice(1)}`
       }
+
+      console.log(completeData)
       
-      // TODO: Implement your API call here
-      console.log('Submitting master data:', completeData)
+      const nameParts = completeData.fullName.trim().split(' ')
+      const firstName = nameParts[0] || ''
+      const lastName = nameParts.slice(1).join(' ') || ''
       
-      onSuccess()
+      const formDataToSend = new FormData()
+      formDataToSend.append('FirstName', firstName)
+      formDataToSend.append('LastName', lastName)
+      formDataToSend.append('Email', completeData.email)
+      formDataToSend.append('Password', completeData.password)
+      formDataToSend.append('ConfirmPassword', completeData.confirmPassword)
+      formDataToSend.append('PhoneNumber', completeData.phoneNumber)
+      formDataToSend.append('Specizalizations', completeData.specialty)
+      formDataToSend.append('HaveTaxId', completeData.voen ? 'true' : 'false')
+      formDataToSend.append('TaxId', completeData.voen || '')
+      formDataToSend.append('Address', completeData.address)
+      formDataToSend.append('Experience', completeData.experience.toString())
+      formDataToSend.append('Price', completeData.price.toString())
+      
+
+   
+      
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/register/worker`, {
+        method: 'POST',
+        body: formDataToSend
+      })
+
+      if (response.ok) {
+        onSuccess()
+      } else {
+        const errorData = await response.text()
+        console.error('Registration failed:', errorData)
+        throw new Error('Registration failed')
+      }
     } catch (error) {
       console.error('Error submitting form:', error)
+      throw error
     }
   }
 

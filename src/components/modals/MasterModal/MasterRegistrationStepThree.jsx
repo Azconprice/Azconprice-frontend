@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
-const MasterRegistrationStepThree = ({ isOpen, onClose, onBack, onSuccess }) => {
+const MasterRegistrationStepThree = ({ isOpen, onClose, onBack, onNext }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleContinue = () => {
+  const handleSubmit = () => {
     if (!email || !password || !confirmPassword) {
       setError('Bütün xanaları doldurun');
       return;
@@ -29,7 +29,11 @@ const MasterRegistrationStepThree = ({ isOpen, onClose, onBack, onSuccess }) => 
     }
 
     setError('');
-    onSuccess();
+    onNext({
+      email,
+      password,
+      confirmPassword
+    });
   };
 
   return (
@@ -86,7 +90,7 @@ const MasterRegistrationStepThree = ({ isOpen, onClose, onBack, onSuccess }) => 
       {error && <div className={modalErrorStyles}>{error}</div>}
       <button
         className={modalButtonStyles}
-        onClick={handleContinue}
+        onClick={handleSubmit}
       >
         Davam et
       </button>
