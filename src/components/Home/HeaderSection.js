@@ -1,16 +1,20 @@
 import React from 'react';
 import { FiArrowRight } from 'react-icons/fi';
+import { useTranslations } from 'next-intl';
 
 const HeaderSection = () => {
+
+    const t = useTranslations('HeaderSection');
+  
   return (
     <section className="flex flex-col items-center justify-between w-full pt-8 pb-0 pl-0 pr-0 overflow-hidden md:flex-row md:pl-12 md:pt-20 rounded-3xl">
       <div className="flex-1 flex flex-col items-center w-full md:w-[50%] md:items-start text-center md:text-left gap-6 md:gap-8 relative z-20">
         <h1 className="text-4xl font-bold leading-tight md:text-[72px]">
-          <span className="text-orange-500">İnşaatınız</span><br />
-          <span className="text-[#101827]">bizimlə daha güclü</span>
+          <span className="text-orange-500">{t('Your construction')}</span><br />
+          <span className="text-[#101827]">{t('Strong with us')}</span>
         </h1>
         <button className="flex items-center justify-between w-[90%] sm:w-full max-w-[350px] bg-[#101827] hover:bg-orange-500 cursor-pointer rounded-full pr-2 pl-8 border-2 border-[#101827] hover:border-orange-500 transition-colors duration-300">
-          <span className="flex-1 text-lg font-semibold text-center text-white ">Məhsulları əlavə et</span>
+          <span className="flex-1 text-lg font-semibold text-center text-white ">{t('Add products')}</span>
           <span className="flex items-center justify-center w-12 h-12 -mr-2 bg-white rounded-full hover:border-orange-500">
             <FiArrowRight size={28} className="text-[#101827] group-hover:text-orange-500" />
           </span>

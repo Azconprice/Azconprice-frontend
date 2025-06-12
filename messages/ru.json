@@ -1,12 +1,25 @@
 {
-   "navbar": {
-    "Home page": "Главная",
-    "About us": "О нас",
-    "Məhsullar": "Продукты",
-    "Contact us": "Связаться с нами",
-    "Search": "Поиск",
-    "Login": "Вход",
-    "Register": "Регистрация"
-}
-
+    "navbar": {
+        "Home page": "Главная",
+        "About us": "О нас",
+        "Məhsullar": "Продукты",
+        "Contact us": "Связаться с нами",
+        "Search": "Поиск",
+        "Login": "Вход",
+        "Register": "Регистрация"
+    },
+    "footer": {
+        "Phone": "Контактный номер",
+        "Phone type": "Телефон/WhatsApp",
+        "Adress": "Адрес",
+        "Get news from us": "Получать новости от нас",
+         "News decription": "Подпишитесь на нас, чтобы получать последние обновления!",
+         "Location": "Баку, Каспиан Плаза, Дж. Джаббарлы 44.",
+         "Copyright footer": "AzConPrice. Все права защищены"
+    },
+     "HeaderSection":{
+        "Your construction": "Ваше строительство",
+        "Strong with us": "Сильнее с нами",
+        "Add products": "Добавить продукты"
+    }
 }

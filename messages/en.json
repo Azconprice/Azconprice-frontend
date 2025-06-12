@@ -1,12 +1,25 @@
 {
-   "navbar": {
-    "Home page": "Home",
-    "About us": "About Us",
-    "Məhsullar": "Products",
-    "Contact us": "Contact Us",
-    "Search": "Search",
-    "Login": "Login",
-    "Register": "Register"
-}
-
+    "navbar": {
+        "Home page": "Home",
+        "About us": "About Us",
+        "Məhsullar": "Products",
+        "Contact us": "Contact Us",
+        "Search": "Search",
+        "Login": "Login",
+        "Register": "Register"
+    },
+    "footer": {
+        "Phone": "Contact Number",
+        "Phone type": "Mobile/Whatsapp",
+        "Adress": "Address",
+        "Get news from us": "Get News from Us",
+         "News decription": "Subscribe to us to get the latest updates!",
+         "Location":"Baku, Caspian Plaza, C.Cabbarli 44.",
+         "Copyright footer":"AzConPrice. All rights reserved"
+    },
+    "HeaderSection":{
+        "Your construction": "Your Construction",
+        "Strong with us": "Strong with Us",
+        "Add products": "Add Products"
+    }
 }

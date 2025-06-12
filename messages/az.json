@@ -5,7 +5,21 @@
         "Məhsullar": "Məhsullar",
         "Contact us": "Əlaqə",
         "Search": "Axtar",
-        "Login": "Giriş",
+        "Login": "Daxil ol",
         "Register": "Qeydiyyat"
+    },
+    "footer": {
+        "Phone": "Əlaqə nömrəsi",
+        "Phone type": "Mobil/Whatsapp",
+        "Adress": "Ünvan",
+        "Get news from us": "Bizdən xəbər al",
+        "News decription": "Ən son yenilikləri əldə etmək üçün bizə abunə olun!",
+        "Location":"Bakı, Caspian Plaza, C.Cabbarlı 44.",
+        "Copyright footer":"AzConPrice. Bütün hüquqlar qorunur"
+    },
+    "HeaderSection":{
+        "Your construction": "Inşaatınızın",
+        "Strong with us": "Bizimlə güclü",
+        "Add products": "Məhsul əlavə et"
     }
 }

@@ -3,7 +3,10 @@ import { useTranslations } from 'next-intl';
 
 const Footer = () => {
 
+  const t = useTranslations('footer')
 
+
+  
   return (
     <footer className="pt-[50px] pb-[30px]">
       <div className="container mx-auto px-2 md:px-9 bg-gray-100 text-gray-700 rounded-[48px]">
@@ -15,16 +18,16 @@ const Footer = () => {
 
             <div className="grid items-center justify-between w-full grid-cols-1 gap-6 md:grid-cols-3">
               <div className="bg-white text-center md:text-left p-4 rounded-3xl rounded-tl-[0px] shadow-sm min-h-[90px] flex flex-col justify-center">
-                <h4 className="font-semibold pl-[10px] lg:pl-[30px]">Əlaqə telefon</h4>
+                <h4 className="font-semibold pl-[10px] lg:pl-[30px]"> {t('Phone')}</h4>
                 <p className='lg:pl-[30px] pl-[10px] font-extrabold'>+994 70 570 30 30</p>
               </div>
               <div className="bg-white p-4 text-center md:text-left rounded-3xl rounded-tl-[0px] shadow-sm min-h-[90px] flex flex-col justify-center">
-                <h4 className="font-semibold lg:pl-[30px] pl-[10px]">Mobil/Whatsapp</h4>
+                <h4 className="font-semibold lg:pl-[30px] pl-[10px]">{t('Phone type')}</h4>
                 <p className='lg:pl-[30px] pl-[10px] font-extrabold'>+994 70 200 53 11</p>
               </div>
               <div className="bg-white p-4 text-center md:text-left rounded-3xl rounded-tl-[0px] shadow-sm min-h-[90px] flex flex-col justify-center">
-                <h4 className="font-semibold lg:pl-[30px] pl-[10px]">Ünvan</h4>
-                <p className='lg:pl-[30px] pl-[0] font-extrabold'>Bakı, Caspian Plaza, C.Cabbarlı 44,</p>
+                <h4 className="font-semibold lg:pl-[30px] pl-[10px]">{t('Adress')}</h4>
+                <p className='lg:pl-[30px] pl-[0] font-extrabold'>{t('Location')}</p>
               </div>
             </div>
           </div>
@@ -70,8 +73,8 @@ const Footer = () => {
 
             <div className='lg:max-w-[330px]'>
               <div className="p-6 text-white bg-[#0E1C26] rounded-4xl">
-                <h4 className="mb-2 text-lg font-bold">Bizdən xəbər al</h4>
-                <p className="mb-4 text-sm text-gray-400">Ən son yenilikləri ilk əldə etmək üçün bizə abunə olun!</p>
+                <h4 className="mb-2 text-lg font-bold">{t('Get news from us')}</h4>
+                <p className="mb-4 text-sm text-gray-400">{t('News decription')}</p>
                 <div className="flex items-center py-2 mb-6 border-b border-gray-400">
                   <input type="email" placeholder="E-mail" className="w-full px-2 py-1 mr-3 leading-tight text-white placeholder-gray-400 bg-transparent border-none appearance-none focus:outline-none" />
                   <button type="submit" className="flex-shrink-0">
@@ -101,7 +104,7 @@ const Footer = () => {
           </div>
 
           <div className="mt-10 pt-6 border-t border-gray-300 text-center text-[14px] text-[#1018278F]">
-            © {new Date().getFullYear()} AzConPrice. Bütün hüquqlar qorunur
+            © {new Date().getFullYear()} {t('Copyright footer')}
           </div>
         </div>
       </div>

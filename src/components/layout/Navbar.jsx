@@ -96,28 +96,23 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className='hidden lg:flex flex-row justify-center w-full items-center gap-[60px]'>
-              <h3 className="hover:text-orange-500 bg-[#101827] px-8 text-[14px] text-white rounded-3xl py-2 cursor-pointer">{t('Home page')}</h3>
-              <h3 className="hover:text-orange-500 cursor-pointer text-[14px]">{t('About us')}</h3>
-              <h3 className="hover:text-orange-500 cursor-pointer text-[14px]">{t('Məhsullar')}</h3>
-              <h3 className="hover:text-orange-500 cursor-pointer text-[14px]">{t('Contact us')}</h3>
+              <h3 className="hover:text-orange-500 bg-[#101827] px-8 text-[16px] text-white rounded-3xl py-2 cursor-pointer">{t('Home page')}</h3>
+              <h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('About us')}</h3>
+              <h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Məhsullar')}</h3>
+              <h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Contact us')}</h3>
             </div>
           </div>
-          <div className='hidden lg:flex flex-row justify-end gap-[10px] xl:gap-[20px] items-center mt-[-40px]'>
+          <div className='hidden lg:flex flex-row justify-start gap-[10px] xl:gap-[30px] items-center mt-[-40px]'>
             <div>
-              <button className="flex items-center gap-2 rounded text-[14px] hover:text-orange-500 cursor-pointer">
-                <FiSearch /> {t('Search')}
-              </button>
+              <button onClick={() => setActiveModal('login')} className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Login')}</button>
             </div>
             <div>
-              <button onClick={() => setActiveModal('login')} className="hover:text-orange-500 cursor-pointer text-[14px]">{t('Login')}</button>
-            </div>
-            <div>
-              <button onClick={() => setActiveModal('register')} className="hover:bg-orange-500 bg-[#F37321] px-5 xl:px-8 py-2 text-[14px] cursor-pointer text-white rounded-3xl">{t('Register')}</button>
+              <button onClick={() => setActiveModal('register')} className="hover:bg-orange-500 bg-[#F37321] px-5 xl:px-8 py-2 text-[16px] cursor-pointer text-white rounded-3xl">{t('Register')}</button>
             </div>
             <div>
               <div className="relative" ref={dropdownRef}>
                 <button
-                  className="hover:text-orange-500 cursor-pointer text-[14px] flex flex-row items-center gap-[3px]"
+                  className="hover:text-orange-500 cursor-pointer text-[16px] flex flex-row items-center gap-[3px]"
                   onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
                 >
                   {languages.find(lang => lang.code === locale)?.name || 'AZ'}
@@ -128,7 +123,7 @@ const Navbar = () => {
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
-                        className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${locale === lang.code ? 'text-orange-500' : ''
+                        className={`block w-full text-left px-4 py-2 text-[16px] hover:bg-gray-100 ${locale === lang.code ? 'text-orange-500' : ''
                           }`}
                         onClick={() => handleLanguageChange(lang.code)}
                       >
@@ -160,9 +155,7 @@ const Navbar = () => {
               ))}
             </div>
             <div className="flex flex-row w-full gap-4 mb-8">
-              <button className="flex items-center gap-2 rounded text-[16px] hover:text-orange-500 cursor-pointer">
-                <FiSearch /> {t('Search')}
-              </button>
+            
               <button onClick={() => setActiveModal('login')} className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Login')}</button>
               <button onClick={() => setActiveModal('register')} className="hover:bg-orange-500 bg-[#F37321] px-5 py-2 text-[16px] cursor-pointer text-white rounded-3xl">{t('Register')}</button>
             </div>
