@@ -2,7 +2,7 @@ import React from 'react'
 const Aboutus = () => {
     return (
         <section className="container py-1 mx-auto mb-[50px]">
-            <h1 className="text-[32px] sm:text-[36px] md:text-[48px] font-extrabold text-center mb-10 text-[#111827]">Haqqımızda</h1>
+            <h1 className="text-[32px] sm:text-[36px] md:text-[48px] font-extrabold text-center mb-5 text-[#111827]">Haqqımızda</h1>
             <div className="flex flex-col-reverse lg:flex-row items-center md:items-center gap-[10px] lg:gap-[60px]">
                 {/* Left Stats */}
                 <div className='flex flex-row gap-[20px] lg:gap-[30px] items-center w-full lg:w-[50%]'>

@@ -102,15 +102,19 @@ const Navbar = () => {
               <h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Contact us')}</h3>
             </div>
           </div>
-          <div className='hidden lg:flex flex-row justify-start gap-[10px] xl:gap-[30px] items-center mt-[-40px]'>
+          <div className='hidden lg:flex flex-row justify-between gap-[10px] xl:gap-[20px] items-center mt-[-50px] mr-[10px] '>
             <div>
               <button onClick={() => setActiveModal('login')} className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Login')}</button>
             </div>
             <div>
               <button onClick={() => setActiveModal('register')} className="hover:bg-orange-500 bg-[#F37321] px-5 xl:px-8 py-2 text-[16px] cursor-pointer text-white rounded-3xl">{t('Register')}</button>
+          
             </div>
-            <div>
-              <div className="relative" ref={dropdownRef}>
+          
+              
+          
+           
+              <div className="relative " ref={dropdownRef}>
                 <button
                   className="hover:text-orange-500 cursor-pointer text-[16px] flex flex-row items-center gap-[3px]"
                   onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
@@ -133,6 +137,8 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
+              
+                 <div>
             </div>
           </div>
           <div className="flex lg:hidden w-[25%] justify-end self-start">
