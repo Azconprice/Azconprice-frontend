@@ -51,9 +51,6 @@ const MasterModals = ({ isOpen, onClose, onSuccess }) => {
       formDataToSend.append('Experience', completeData.experience.toString())
       formDataToSend.append('Price', completeData.price.toString())
       
-
-   
-      
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/register/worker`, {
         method: 'POST',
         body: formDataToSend

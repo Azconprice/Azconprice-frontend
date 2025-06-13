@@ -7,6 +7,8 @@ import OurSollutions from '@/components/Home/OurSollutions'
 import Faq from '@/components/Home/Faq'
 import PlanPaymentModal from '@/components/modals/PlanPaymentModal'
 import Guide from '@/components/Home/Guide'
+import ContactForm from '@/components/Home/ContactForm'
+
 const page = async () => {
   const t = await getTranslations()
 
@@ -16,6 +18,7 @@ const page = async () => {
          <Guide/>
         <OurSollutions />
         <Partners />
+        <ContactForm/>
         <Faq />
       
         
