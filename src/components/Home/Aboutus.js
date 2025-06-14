@@ -7,11 +7,11 @@ const Aboutus = () => {
                 {/* Left Stats */}
                 <div className='flex flex-row gap-[20px] lg:gap-[30px] items-center w-full lg:w-[50%]'>
                     <div className="flex flex-col flex-1 gap-2 md:gap-0">
-                        <div className="md:w-[130px] md:h-[130px] w-[100px] h-[100px] flex flex-col items-center justify-center rounded-full border-8 border-orange-500 bg-[#0A1621] text-white shadow-lg">
+                        <div className="md:w-[130px] md:h-[130px] w-[100px] h-[100px] flex flex-col items-center justify-center xl:ml-[40px] rounded-full border-8 border-orange-500 bg-[#0A1621] text-white shadow-lg">
                             <span className="md:text-[20px] text-[16px] font-extrabold">34<span className="md-text-[20px] text-[16px]">K</span></span>
                             <span className="md-text-[20px] text-[16px] mt-2">Usta</span>
                         </div>
-                        <div className="md:w-[130px] md:h-[130px] w-[100px] h-[100px] flex flex-col items-center self-end justify-center rounded-full border-8 border-orange-500 bg-[#0A1621] text-white shadow-lg">
+                        <div className="md:w-[130px] md:h-[130px] w-[100px] h-[100px] flex flex-col items-center self-end justify-center xl:mr-[40px] rounded-full border-8 border-orange-500 bg-[#0A1621] text-white shadow-lg">
                             <span className="text-[20px] font-extrabold">800<span className="md-text-[20px] text-[16px]">+</span></span>
                             <span className="md-text-[20px] text-[16px]mt-2">Şirkət</span>
                         </div>

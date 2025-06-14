@@ -7,6 +7,7 @@ import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import HeaderBackground from "@/assets/images/Subtract.png";
+import HeaderBackgroundMobile from "@/assets/images/Subtract-mobile.png"
 import Image from 'next/image';
 import LoginModal from '../modals/LoginModal';
 import RegistrationModal from '../modals/RegistrationModal';
@@ -22,6 +23,7 @@ import MasterModals from '../modals/MasterModal/MasterModals';
 import Link from 'next/link'; 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false)
   const dropdownRef = useRef(null)
   const locale = useLocale()
@@ -80,11 +82,21 @@ const Navbar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024) // 1024px is the lg breakpoint in Tailwind
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   return (
     <>
       <section className="relative container w-full mt-[40px] mb-[120px] mx-auto flex flex-col">
         <Image
-          src={HeaderBackground}
+          src={isMobile ? HeaderBackgroundMobile : HeaderBackground}
           alt="Background Shape"
           className="absolute z-0 w-full h-full"
         />
@@ -102,7 +114,7 @@ const Navbar = () => {
               <h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Contact us')}</h3>
             </div>
           </div>
-          <div className='hidden lg:flex flex-row justify-between gap-[10px] xl:gap-[20px] items-center mt-[-50px] mr-[10px] '>
+          <div className='hidden lg:flex flex-row justify-between gap-[10px] xl:gap-[20px] items-center mt-[-50px] mr-[10px] 2xl:mr-[60px]'>
             <div>
               <button onClick={() => setActiveModal('login')} className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Login')}</button>
             </div>
