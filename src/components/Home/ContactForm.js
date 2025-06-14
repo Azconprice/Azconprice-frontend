@@ -210,8 +210,8 @@ const ContactForm = () => {
           
          {submitStatus === 'error' && (
             <div className="text-red-700 ">
-              Sorğunuzu təqdim edərkən xəta baş verdi. Yenidən cəhd edin.
-            </div>
+Sorğunuzu təqdim edərkən xəta baş verdi. Yenidən cəhd edin.         
+   </div>
           )} 
           
           <div className="pt-2">

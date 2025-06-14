@@ -94,7 +94,10 @@ const Navbar = () => {
 
   return (
     <>
-      <section className="relative container w-full mt-[40px] mb-[120px] mx-auto flex flex-col">
+    <div className='pl-[15px] pr-[15px] md:pr-[10px] md:pl-[10px]'>
+      
+  
+      <section className="relative  w-full mt-[40px] mb-[120px] mx-auto flex flex-col ">
         <Image
           src={isMobile ? HeaderBackgroundMobile : HeaderBackground}
           alt="Background Shape"
@@ -187,6 +190,7 @@ const Navbar = () => {
         )}
         <HeaderSection />
       </section>
+        </div>
       <RegistrationModal 
         isOpen={activeModal === 'register'} 
         onClose={() => setActiveModal(null)} 
