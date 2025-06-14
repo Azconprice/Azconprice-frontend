@@ -7,24 +7,24 @@ const MasterRegistrationStepOne = ({ isOpen, onClose, onBack, onNext }) => {
   const [rawPhone, setRawPhone] = useState('');
   const [error, setError] = useState('');
 
-  const allowedOperators = ['077', '070', '050', '055', '051', '099', '012'];
+  const allowedOperators = ['77', '70', '50', '55', '51', '99', '12'];
 
   const formatPhoneNumber = (value) => {
-    const cleaned = value.replace(/\D/g, '').slice(0, 10);
+    const cleaned = value.replace(/\D/g, '').slice(0, 9);
     const parts = [];
 
-    if (cleaned.length > 0) parts.push(cleaned.slice(0, 3));
-    if (cleaned.length > 3) parts.push(cleaned.slice(3, 6));
-    if (cleaned.length > 6) parts.push(cleaned.slice(6, 8));
-    if (cleaned.length > 8) parts.push(cleaned.slice(8, 10));
+    if (cleaned.length > 0) parts.push(cleaned.slice(0, 2));
+    if (cleaned.length > 2) parts.push(cleaned.slice(2, 5));
+    if (cleaned.length > 5) parts.push(cleaned.slice(5, 7));
+    if (cleaned.length > 7) parts.push(cleaned.slice(7, 9));
 
     return parts.join(' ');
   };
 
   const validatePhone = (number) => {
     const cleaned = number.replace(/\D/g, '');
-    if (cleaned.length !== 10) return false;
-    const operatorCode = cleaned.slice(0, 3);
+    if (cleaned.length !== 9) return false;
+    const operatorCode = cleaned.slice(0, 2);
     return allowedOperators.includes(operatorCode);
   };
 
@@ -36,7 +36,7 @@ const MasterRegistrationStepOne = ({ isOpen, onClose, onBack, onNext }) => {
       return;
     }
 
-    const cleaned = input.replace(/\D/g, '').slice(0, 10);
+    const cleaned = input.replace(/\D/g, '').slice(0, 9);
     setRawPhone(cleaned);
     setError('');
   };
@@ -96,7 +96,7 @@ const MasterRegistrationStepOne = ({ isOpen, onClose, onBack, onNext }) => {
           <span className="pl-2 pr-2 text-gray-500">+994</span>
           <input
             type="tel"
-            placeholder="XXX XXX XX XX"
+            placeholder="XX XXX XX XX"
             value={formatPhoneNumber(rawPhone)}
             onChange={handlePhoneChange}
             className="flex-1 bg-transparent text-gray-500 placeholder-gray-400 focus:outline-none"

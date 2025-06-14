@@ -15,7 +15,7 @@ const [voen, setVoen] = useState('');
     const fetchSpecializations = async () => {
       setIsLoadingSpecialties(true);
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Specialization/`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Specialization/all`);
         if (!response.ok) {
           throw new Error('Failed to fetch specializations');
         }
