@@ -10,6 +10,10 @@ const ContactForm = () => {
     notes: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [validationErrors, setValidationErrors] = useState({});
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -18,9 +22,80 @@ const ContactForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    const errors = {};
+
+    if (!formData.fullName.trim()) {
+      errors.fullName = 'Full name is required';
+    }
+
+    if (!formData.phoneNumber.trim()) {
+      errors.phoneNumber = 'Phone number is required';
+    } else if (!/^[\+]?[1-9][\d]{0,15}$/.test(formData.phoneNumber.replace(/\s/g, ''))) {
+      errors.phoneNumber = 'Please enter a valid phone number';
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+
+    if (!formData.applicationType) {
+      errors.applicationType = 'Please select an application type';
+    }
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    if (!validateForm()) {
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const requestBody = {
+        fullName: formData.fullName,
+        phoneNumber: formData.phoneNumber,
+        email: formData.email,
+        type: formData.applicationType,
+        note: formData.notes
+      };
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Request`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setValidationErrors({});
+        setFormData({
+          fullName: '',
+          phoneNumber: '',
+          email: '',
+          applicationType: '',
+          notes: ''
+        }
+      );
+      } 
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+      
+      
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -42,8 +117,15 @@ const ContactForm = () => {
               placeholder="Full Name"
               value={formData.fullName}
               onChange={handleInputChange}
-              className="w-full px-0 py-2 border-0 border-b text-[20px] border-[rgba(16,24,39,1)] bg-transparent focus:border-orange-500 focus:outline-none transition-colors duration-200 placeholder-gray-500"
+              className={`w-full px-0 py-2 border-0 border-b text-[18px] bg-transparent focus:outline-none transition-colors duration-200 placeholder-gray-500 ${
+                validationErrors.fullName 
+                  ? 'border-red-500 focus:border-red-500' 
+                  : 'border-[rgba(16,24,39,1)] focus:border-orange-500'
+              }`}
             />
+            {validationErrors.fullName && (
+              <p className="mt-1 text-sm text-red-500">{validationErrors.fullName}</p>
+            )}
           </div>
           
           <div>
@@ -53,8 +135,15 @@ const ContactForm = () => {
               placeholder="Phone Number"
               value={formData.phoneNumber}
               onChange={handleInputChange}
-              className="w-full px-0 py-2 border-0 text-[20px] border-b border-[rgba(16,24,39,1)] bg-transparent focus:border-orange-500 focus:outline-none transition-colors duration-200 placeholder-gray-500"
+              className={`w-full px-0 py-2 border-0 text-[18px] border-b bg-transparent focus:outline-none transition-colors duration-200 placeholder-gray-500 ${
+                validationErrors.phoneNumber 
+                  ? 'border-red-500 focus:border-red-500' 
+                  : 'border-[rgba(16,24,39,1)] focus:border-orange-500'
+              }`}
             />
+            {validationErrors.phoneNumber && (
+              <p className="mt-1 text-sm text-red-500">{validationErrors.phoneNumber}</p>
+            )}
           </div>
           
           <div>
@@ -64,8 +153,15 @@ const ContactForm = () => {
               placeholder="Email"
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full px-0 py-2 border-0 text-[20px] border-b border-[rgba(16,24,39,1)] bg-transparent focus:border-orange-500 focus:outline-none transition-colors duration-200 placeholder-gray-500"
+              className={`w-full px-0 py-2 border-0 text-[18px] border-b bg-transparent focus:outline-none transition-colors duration-200 placeholder-gray-500 ${
+                validationErrors.email 
+                  ? 'border-red-500 focus:border-red-500' 
+                  : 'border-[rgba(16,24,39,1)] focus:border-orange-500'
+              }`}
             />
+            {validationErrors.email && (
+              <p className="mt-1 text-sm text-red-500">{validationErrors.email}</p>
+            )}
           </div>
           
           <div className="relative">
@@ -73,19 +169,26 @@ const ContactForm = () => {
               name="applicationType"
               value={formData.applicationType}
               onChange={handleInputChange}
-              className="w-full px-0 py-2 border-0 border-b text-[20px] border-[rgba(16,24,39,1)] bg-transparent focus:border-orange-500 focus:outline-none transition-colors duration-200 appearance-none cursor-pointer text-gray-500"
+              className={`w-full px-0 py-2 border-0 border-b text-[18px] bg-transparent focus:outline-none transition-colors duration-200 appearance-none cursor-pointer text-gray-500 ${
+                validationErrors.applicationType 
+                  ? 'border-red-500 focus:border-red-500' 
+                  : 'border-[rgba(16,24,39,1)] focus:border-orange-500'
+              }`}
             >
-              <option value="">Type of Application</option>
-              <option value="consultation">Consultation</option>
-              <option value="price-inquiry">Price Inquiry</option>
-              <option value="technical-support">Technical Support</option>
-              <option value="partnership">Partnership</option>
+              <option value="" disabled>Type of Application</option>
+              <option value="PlanInqury">Plan Inqury</option>
+              <option value="Support">Support</option>
+              <option value="Registration">Registration</option>
+              <option value="ComplaintAndSuggestion">Complaint And Suggestion</option>
             </select>
-            <div className="absolute right-0 top-1/2 transform -translate-y-1/2 pointer-events-none">
+            <div className="absolute right-0 transform -translate-y-1/2 pointer-events-none top-1/2">
               <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </div>
+            {validationErrors.applicationType && (
+              <p className="mt-1 text-sm text-red-500">{validationErrors.applicationType}</p>
+            )}
           </div>
           
           <div>
@@ -95,16 +198,33 @@ const ContactForm = () => {
               value={formData.notes}
               onChange={handleInputChange}
               rows={2}
-              className="w-full px-0 py-2 text-[20px] border-0 border-b border-[rgba(16,24,39,1)] bg-transparent focus:border-orange-500 focus:outline-none transition-colors duration-200 placeholder-gray-500 resize-none"
+              className="w-full px-0 py-2 text-[18px] border-0 border-b border-[rgba(16,24,39,1)] bg-transparent focus:border-orange-500 focus:outline-none transition-colors duration-200 placeholder-gray-500 resize-none"
             />
           </div>
           
-          <div className="pt-4">
+          {submitStatus === 'success' && (
+            <div className=" text-[20px] text-green-700 ">
+              Sorğunuz uğurla təqdim edildi!
+            </div>
+          )}
+          
+         {submitStatus === 'error' && (
+            <div className="text-red-700 ">
+              Sorğunuzu təqdim edərkən xəta baş verdi. Yenidən cəhd edin.
+            </div>
+          )} 
+          
+          <div className="pt-2">
             <button
               type="submit"
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold text-[20px] py-3  rounded-full cursor-pointer transition-colors duration-300  "
+              disabled={isSubmitting}
+              className={`w-full font-semibold text-[18px] py-3 rounded-full transition-colors duration-300 ${
+                isSubmitting 
+                  ? 'bg-gray-400 cursor-not-allowed text-white' 
+                  : 'bg-orange-500 hover:bg-orange-600 text-white cursor-pointer'
+              }`}
             >
-              Send Information
+              {isSubmitting ? 'Sending...' : 'Send Information'}
             </button>
           </div>
         </form>
