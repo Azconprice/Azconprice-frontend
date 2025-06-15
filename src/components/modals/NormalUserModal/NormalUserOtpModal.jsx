@@ -2,7 +2,7 @@ import React from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import BaseModal, { modalButtonStyles } from '../BaseModal';
 
-const MasterOtpModal = ({ isOpen, onClose, message  }) => {
+const NormalUserOtpModal = ({ isOpen, onClose, message }) => {
   return (
     <BaseModal
       isOpen={isOpen}
@@ -20,4 +20,4 @@ const MasterOtpModal = ({ isOpen, onClose, message  }) => {
   );
 };
 
-export default MasterOtpModal; 
+export default NormalUserOtpModal; 

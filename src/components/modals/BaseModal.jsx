@@ -14,6 +14,8 @@ const BaseModal = ({
   width = 'w-[450px] sm:w-[440px]',
   bgColor = 'bg-[#101827]',
   textColor = 'text-white',
+  iconColor = 'text-white',
+  
 }) => {
   useEffect(() => {
     if (isOpen) {
@@ -29,8 +31,17 @@ const BaseModal = ({
 
   if (!isOpen) return null;
 
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed pl-[10px] pr-[10px]  inset-0 z-50 flex items-center justify-center overflow-y-auto backdrop-blur-lg bg-opacity-70">
+    <div 
+      className="fixed pl-[10px] pr-[10px]  inset-0 z-50 flex items-center justify-center overflow-y-auto backdrop-blur-lg bg-opacity-70"
+      onClick={handleBackdropClick}
+    >
       <div className={`${bgColor} ${width} rounded-2xl  shadow-lg p-8 flex flex-col items-center relative ${maxHeight} overflow-y-auto ${className}`}>
         {showBackButton && (
           <button onClick={onBack} className="absolute text-2xl text-white cursor-pointer top-4 left-4">
@@ -38,7 +49,7 @@ const BaseModal = ({
           </button>
         )}
       
-        <button onClick={onClose} className="absolute text-2xl text-white cursor-pointer top-4 right-4">
+        <button onClick={onClose} className={`absolute text-3xl ${iconColor} cursor-pointer top-4 right-4`}>
           <FiX />
         </button>
    {title && (

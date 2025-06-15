@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
-const NormalUserRegistrationStepTwo = ({ isOpen, onClose, onBack, onSuccess }) => {
-  const [email, setEmail] = useState('');  // Email state əlavə edildi
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+const NormalUserRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initialData }) => {
+  const [email, setEmail] = useState(initialData?.email || '');
+  const [password, setPassword] = useState(initialData?.password || '');
+  const [confirmPassword, setConfirmPassword] = useState(initialData?.confirmPassword || '');
   const [error, setError] = useState('');
 
   const handleContinue = () => {
@@ -29,7 +29,11 @@ const NormalUserRegistrationStepTwo = ({ isOpen, onClose, onBack, onSuccess }) =
     }
 
     setError('');  
-    onSuccess();
+    onNext({
+      email,
+      password,
+      confirmPassword
+    });
   };
 
   return (

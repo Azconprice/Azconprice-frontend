@@ -139,12 +139,11 @@ const MasterModals = ({ isOpen, onClose, onSuccess }) => {
       )}
       {currentStep === 5 && (
         <MasterOtpModal
-          onNext={handleNext}
           onBack={handleBack}
           initialData={formData}
           onClose={onClose}
           isOpen={isOpen}
-          method={otpMethod}
+          
         />
       )}
     </>

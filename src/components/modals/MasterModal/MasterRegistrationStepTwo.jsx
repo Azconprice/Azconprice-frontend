@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
-const MasterRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext }) => {
-  const [specialty, setSpecialty] = useState([]);
-  const [experience, setExperience] = useState('');
-  const [price, setPrice] = useState('');
+const MasterRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initialData }) => {
+  const [specialty, setSpecialty] = useState(initialData?.specialty || []);
+  const [experience, setExperience] = useState(initialData?.experience || '');
+  const [price, setPrice] = useState(initialData?.price || '');
   const [error, setError] = useState('');
-const [voen, setVoen] = useState('');
+const [voen, setVoen] = useState(initialData?.voen || '');
   const [specialtyOptions, setSpecialtyOptions] = useState([]);
   const [isLoadingSpecialties, setIsLoadingSpecialties] = useState(false);
 

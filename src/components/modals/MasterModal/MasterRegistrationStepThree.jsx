@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
-const MasterRegistrationStepThree = ({ isOpen, onClose, onBack, onNext }) => {
-  const [email, setEmail] = useState('');
+const MasterRegistrationStepThree = ({ isOpen, onClose, onBack, onNext, initialData }) => {
+  const [email, setEmail] = useState(initialData?.email || '');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');

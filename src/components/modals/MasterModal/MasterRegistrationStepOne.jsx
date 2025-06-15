@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
-const MasterRegistrationStepOne = ({ isOpen, onClose, onBack, onNext }) => {
-  const [fullName, setFullName] = useState('');
-  const [address, setAddress] = useState('');
-  const [rawPhone, setRawPhone] = useState('');
+const MasterRegistrationStepOne = ({ isOpen, onClose, onBack, onNext,initialData }) => {
+  const [fullName, setFullName] = useState(initialData?.fullName || '');
+  const [address, setAddress] = useState(initialData?.address || '');
+  const [rawPhone, setRawPhone] = useState(initialData?.phoneNumber || '');
   const [error, setError] = useState('');
 
   const allowedOperators = ['77', '70', '50', '55', '51', '99', '12'];
