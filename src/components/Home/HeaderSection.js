@@ -7,7 +7,7 @@ const HeaderSection = () => {
     const t = useTranslations('HeaderSection');
   
   return (
-    <section className="flex flex-col items-start justify-between w-full pb-[40px] mt-[40px] pl-0 pr-0 overflow-hidden md:flex-row md:pl-12 md:pt-5 rounded-3xl">
+    <section className="flex flex-col items-start justify-between w-full pb-[60px] mt-[60px] pl-0 pr-0 overflow-hidden md:flex-row md:pl-12 md:pt-5 rounded-3xl">
       <div className="flex-1 flex flex-col items-center w-full md:w-[50%] md:items-start text-center md:text-left gap-6 md:gap-8 relative z-20">
         <h1 className="text-4xl font-bold leading-tight md:text-[48px] lg:text-[72px]  mt-[50px]">
           <span className="text-orange-500">{t('Your construction')}</span><br />
