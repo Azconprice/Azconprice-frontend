@@ -46,7 +46,7 @@ const NormalUserRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initia
       title="Qeydiyyat"
       subtitle="Adi İstifadəçi"
     >
-              <div className="mb-[10px] w-90">
+              <div className="mb-[10px] w-full">
               <div className="relative mb-4 ">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
             <img src="/assets/icons/email.svg" alt="icon" className="w-[16px] h-[16px]" />

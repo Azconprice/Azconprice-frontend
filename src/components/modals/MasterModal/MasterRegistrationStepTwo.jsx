@@ -133,7 +133,7 @@ const [voen, setVoen] = useState(initialData?.voen || '');
       title="Qeydiyyat"
       subtitle="Usta"
     >
-      <div className="mb-[20px] w-90">
+      <div className="mb-[20px] w-full">
          <div className="relative mb-4">
           <span className="absolute text-gray-400 -translate-y-1/2 left-4 top-1/2">
             <img src="/assets/icons/vöen.svg" alt="icon" className="w-[16px] h-[16px]" />

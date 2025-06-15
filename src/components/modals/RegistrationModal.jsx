@@ -6,7 +6,7 @@ const RegistrationModal = ({ isOpen, onClose, onNext }) => {
   const [error, setError] = useState('');
 
   const getButtonClass = (btnType) => {
-    const base = 'py-2 font-normal text-black bg-white cursor-pointer w-90 rounded-2xl text-start transition';
+    const base = 'py-2 font-normal text-black bg-white cursor-pointer w-full rounded-2xl text-start transition';
     const isSelected = type === btnType ? ' border-3 border-[#F37321]' : ' border-3 border-transparent';
     return `${base} ${isSelected}`;
   };
@@ -32,7 +32,7 @@ const RegistrationModal = ({ isOpen, onClose, onNext }) => {
       title="Qeydiyyat"
       subtitle=""
     >
-      <div className="w-full flex flex-col gap-[10px] mb-[25px] mt-[40px] justify-center items-center">
+      <div className=" flex flex-col gap-[10px]  mb-[25px] mt-[40px] justify-center items-center w-full">
         <button className={getButtonClass('normaluser')} onClick={() => handleTypeSelect('normaluser')}>
           <img src="/assets/icons/normaluser.svg" alt="NormalUser Icon" className='inline-block w-[15px] h-[15px] ml-[20px] mr-[7px]' />
           Adi İstifadəçi

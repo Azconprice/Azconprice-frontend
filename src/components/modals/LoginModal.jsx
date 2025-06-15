@@ -6,15 +6,48 @@ const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-    const handleLogin = () => {
-      if (email === 'test@example.com' && password === 'password123') {
-        setError('');
+  const handleLogin = async () => {
+    if (!email || !password) {
+      setError('Elektron poçt və şifrə tələb olunur.');
+      return;
+    }
+
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/login`, { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Login successful:', data);
+        console.log(email);
+        console.log(password);
+        
+        
+        
         onSuccess('Uğurla hesaba daxil olduz');
       } else {
-        setError('Elektron poçt və ya şifrə yanlışdır.');
+        const errorData = await response.json();
+        setError(errorData.message || 'Elektron poçt və ya şifrə yanlışdır.');
       }
-    };
+    } catch (error) {
+      setError('Bağlantı xətası. Yenidən cəhd edin.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <BaseModal
@@ -55,10 +88,11 @@ const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
       </div>
       {error && <div className={modalErrorStyles}>{error}</div>}
       <button
-        className={modalButtonStyles}
+        className={`${modalButtonStyles} ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
         onClick={handleLogin}
+        disabled={isLoading}
       >
-        Davam et
+        {isLoading ? 'Gözləyin...' : 'Davam et'}
       </button>
     </BaseModal>
   );
