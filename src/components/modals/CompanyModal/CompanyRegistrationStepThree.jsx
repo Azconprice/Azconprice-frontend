@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
-const CompanyRegistrationStepThree = ({ isOpen, onClose, onBack, onSuccess }) => {
-  const [email, setEmail] = useState('');
+const CompanyRegistrationStepThree = ({ isOpen, onClose, onBack, onNext, initialData }) => {
+  const [email, setEmail] = useState(initialData?.email || '');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -29,7 +29,11 @@ const CompanyRegistrationStepThree = ({ isOpen, onClose, onBack, onSuccess }) =>
     }
 
     setError('');
-    onSuccess();
+    onNext({
+      email,
+      password,
+      confirmPassword
+    });
   };
 
   return (

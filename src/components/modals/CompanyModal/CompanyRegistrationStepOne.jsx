@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
-const CompanyRegistrationStepOne = ({ isOpen, onClose, onBack, onNext }) => {
-  const [companyName, setCompanyName] = useState('');
-  const [address, setAddress] = useState('');
-  const [rawPhone, setRawPhone] = useState('');
+const CompanyRegistrationStepOne = ({ isOpen, onClose, onBack, onNext, initialData }) => {
+  const [companyName, setCompanyName] = useState(initialData?.companyName || '');
+  const [address, setAddress] = useState(initialData?.address || '');
+  const [rawPhone, setRawPhone] = useState(initialData?.rawPhone || '');
   const [error, setError] = useState('');
 
   const allowedOperators = ['77', '70', '50', '55', '51', '99', '12'];
@@ -47,7 +47,11 @@ const CompanyRegistrationStepOne = ({ isOpen, onClose, onBack, onNext }) => {
       return;
     }
     setError('');
-    onNext();
+    onNext({
+      companyName,
+      address,
+      phoneNumber: rawPhone
+    });
   };
 
   return (
