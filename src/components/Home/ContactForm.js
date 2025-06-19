@@ -99,7 +99,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="flex flex-col md:flex-row w-[90%] max-w-6xl mx-auto mt-[50px] rounded-3xl overflow-hidden shadow-2xl">
+    <section id="contact" className="flex flex-col md:flex-row w-[90%] max-w-6xl mx-auto mt-[50px] rounded-3xl overflow-hidden shadow-2xl">
       <div className="flex-1 bg-[#101827] text-white p-8 md:p-12 flex  items-center flex-col justify-center">
         <h2 className="text-[24px] md:text-4xl lg:text-[54px] font-bold leading-tight">
           Realize your<br />

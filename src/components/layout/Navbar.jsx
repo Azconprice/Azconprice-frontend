@@ -20,7 +20,8 @@ import ForgotPasswordNumberSentModal from '../modals/ForgotPasswordNumberSentMod
 import NormalUserModals from '../modals/NormalUserModal/NormalUserModals';
 import CompanyModals from '../modals/CompanyModal/CompanyModals';
 import MasterModals from '../modals/MasterModal/MasterModals';
-import Link from 'next/link'; 
+
+import { Link, Element } from 'react-scroll';
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -111,10 +112,10 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className='hidden lg:flex flex-row justify-center w-full items-center gap-[60px]'>
-              <h3 className="hover:text-orange-500 bg-[#101827] px-8 text-[16px] text-white rounded-3xl py-2 cursor-pointer">{t('Home page')}</h3>
-              <h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('About us')}</h3>
-              <h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Məhsullar')}</h3>
-              <h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Contact us')}</h3>
+              <Link href='/'><h3 className="hover:text-orange-500 bg-[#101827] px-8 text-[16px] text-white rounded-3xl py-2 cursor-pointer">{t('Home page')}</h3></Link>
+             <Link to="about"  smooth={true} duration={500} offset={-100}><h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('About us')}</h3></Link>
+             <Link href='/'> <h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Məhsullar')}</h3></Link>
+             <Link to='contact' smooth={true} duration={1000} offset={-100}><h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Contact us')}</h3></Link>
             </div>
           </div>
           <div className='hidden lg:flex flex-row justify-between gap-[10px] xl:gap-[20px] items-center mt-[-50px] mr-[10px] 2xl:mr-[60px]'>
@@ -181,10 +182,10 @@ const Navbar = () => {
               <button onClick={() => setActiveModal('register')} className="hover:bg-orange-500 bg-[#F37321] px-5 py-2 text-[16px] cursor-pointer text-white rounded-3xl">{t('Register')}</button>
             </div>
             <div className="flex flex-col w-full gap-4">
-              <h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Home page')}</h3>
-              <h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('About us')}</h3>
-              <h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Məhsullar')}</h3>
-              <h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Contact us')}</h3>
+              <Link href="/"><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Home page')}</h3></Link>
+              <Link to="about"  smooth={true} duration={500} offset={-50}><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('About us')}</h3></Link>
+              <Link href="/"><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Məhsullar')}</h3></Link>
+              <Link to="contact"  smooth={true} duration={500} offset={-50}><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Contact us')}</h3></Link>
             </div>
           </div>
         )}

@@ -9,7 +9,7 @@ const bottomBar2 = 'Güvən və etibar';
 
 const OurSollutions = () => {
     return (
-        <section className="container relative flex flex-col items-center w-full px-10 mx-auto max-w-7xl md:mb-[220px] mb-[30px] mt-[30px]">
+        <section id="products" className="container relative flex flex-col items-center w-full px-10 mx-auto max-w-7xl md:mb-[220px] mb-[30px] mt-[30px]">
             {/* Title */}
                   <h2 className="px-[20px] text-[32px] sm:text-[36px] md:text-[48px] mb-[30px] md:mb-0 text-center">Bizim <span className="font-bold">Həllərimiz</span></h2>
 
