@@ -69,7 +69,7 @@ const NormalUserRegistrationStepOne = ({ isOpen, onClose, onBack, onNext, initia
     >
       <div className="mb-[20px] w-full">
         <div className="relative mb-4 ">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+          <span className="absolute text-gray-400 -translate-y-1/2 left-4 top-1/2">
             <img src="/assets/icons/person.svg" alt="icon" className="w-[16px] h-[16px]" />
           </span>
           <input
@@ -81,7 +81,7 @@ const NormalUserRegistrationStepOne = ({ isOpen, onClose, onBack, onNext, initia
           />
         </div>
         <div className="relative mb-4 ">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+          <span className="absolute text-gray-400 -translate-y-1/2 left-4 top-1/2">
             <img src="/assets/icons/location.svg" alt="icon" className="w-[16px] h-[16px]" />
           </span>
           <input
@@ -99,7 +99,7 @@ const NormalUserRegistrationStepOne = ({ isOpen, onClose, onBack, onNext, initia
             placeholder="XX XXX XX XX"
             value={formatPhoneNumber(rawPhone)}
             onChange={handlePhoneChange}
-            className="flex-1 bg-transparent text-gray-500 placeholder-gray-400 focus:outline-none"
+            className="flex-1 text-gray-500 placeholder-gray-400 bg-transparent focus:outline-none"
           />
         </div>
       </div>

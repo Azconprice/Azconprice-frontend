@@ -1,10 +1,10 @@
 'use client'
 
-const ModalWrapper = ({children}) => {
+const ModalWrapper = ({ children }) => {
     return (
-     <div className="flex justify-center items-center h-screen w-full fixed inset-0 z-100 backdrop-blur-lg">
-        {children}
-     </div>
+        <div className="fixed inset-0 flex items-center justify-center w-full h-screen z-100 backdrop-blur-lg">
+            {children}
+        </div>
     )
 }
 

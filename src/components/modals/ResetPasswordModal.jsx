@@ -28,22 +28,22 @@ const ResetPasswordModal = ({ isOpen, onClose, onBack, onSuccess }) => {
       title="Yeni şifrə təyin et"
     >
       <div className='mt-[30px] mb-[8px]'>
-      <input
-        type="password"
-        placeholder="Yeni şifrə"
-        value={newPassword}
-        onChange={e => setNewPassword(e.target.value)}
-        className={modalInputStyles}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Şifrəni təkrarlayın"
-        value={confirmPassword}
-        onChange={e => setConfirmPassword(e.target.value)}
-        className={modalInputStyles}
-        required
-      /> </div>
+        <input
+          type="password"
+          placeholder="Yeni şifrə"
+          value={newPassword}
+          onChange={e => setNewPassword(e.target.value)}
+          className={modalInputStyles}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Şifrəni təkrarlayın"
+          value={confirmPassword}
+          onChange={e => setConfirmPassword(e.target.value)}
+          className={modalInputStyles}
+          required
+        /> </div>
       {error && <div className={modalErrorStyles}>{error}</div>}
       <button
         className={modalButtonStyles}

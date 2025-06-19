@@ -38,7 +38,7 @@ const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method }) 
         document.getElementById(`otp-input-${index + 1}`).focus();
       }
     } else if (value === '' && index > 0) {
-       document.getElementById(`otp-input-${index - 1}`).focus();
+      document.getElementById(`otp-input-${index - 1}`).focus();
     }
   };
 

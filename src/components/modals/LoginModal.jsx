@@ -23,7 +23,7 @@ const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
       setEmailError('Elektron poçt tələb olunur.');
       return;
     }
-    
+
     if (!password.trim()) {
       setPasswordError('Şifrə tələb olunur.');
       return;
@@ -38,7 +38,7 @@ const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/login`, { 
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,13 +54,13 @@ const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
         console.log('Login successful:', data);
         console.log(email);
         console.log(password);
-        
-        
-        
+
+
+
         onSuccess('Uğurla hesaba daxil olduz');
       } else {
         const errorData = await response.json().catch(() => ({}));
-        
+
         switch (response.status) {
           case 400:
             if (errorData.errors) {
@@ -79,8 +79,8 @@ const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
             break;
           case 401:
             setError('Elektron poçt və ya şifrə yanlışdır.');
-           
-        
+
+
         }
       }
     } catch (error) {
@@ -140,7 +140,7 @@ const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
           />
           Yadda saxla
         </label>
-        <button onClick={onForgotPassword}  className="text-orange-500 cursor-pointer hover:underline">
+        <button onClick={onForgotPassword} className="text-orange-500 cursor-pointer hover:underline">
           Şifrəni unutmusan?
         </button>
       </div>

@@ -32,7 +32,7 @@ const NormalUserModals = ({ isOpen, onClose, onSuccess }) => {
         ...finalData,
         phoneNumber: `+994${formData.phoneNumber}`
       }
-      setFormData({...formData, email: finalData.email})
+      setFormData({ ...formData, email: finalData.email })
       console.log('Submitting normal user data:', completeData)
 
       const nameParts = completeData.fullName.trim().split(' ')
@@ -96,7 +96,7 @@ const NormalUserModals = ({ isOpen, onClose, onSuccess }) => {
   return (
     <>
       {currentStep === 1 && (
-        <NormalUserRegistrationStepOne 
+        <NormalUserRegistrationStepOne
           onNext={handleNext}
           initialData={formData}
           onClose={onClose}
@@ -104,7 +104,7 @@ const NormalUserModals = ({ isOpen, onClose, onSuccess }) => {
         />
       )}
       {currentStep === 2 && (
-        <NormalUserRegistrationStepTwo 
+        <NormalUserRegistrationStepTwo
           onNext={handleSubmit}
           onBack={handleBack}
           initialData={formData}

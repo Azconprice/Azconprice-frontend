@@ -15,7 +15,7 @@ const BaseModal = ({
   bgColor = 'bg-[#101827]',
   textColor = 'text-white',
   iconColor = 'text-white',
-  
+
 }) => {
   useEffect(() => {
     if (isOpen) {
@@ -38,7 +38,7 @@ const BaseModal = ({
   };
 
   return (
-    <div 
+    <div
       className="fixed pl-[10px] pr-[10px]  inset-0 z-50 flex items-center justify-center overflow-y-auto backdrop-blur-lg bg-opacity-70"
       onClick={handleBackdropClick}
     >
@@ -48,14 +48,14 @@ const BaseModal = ({
             <FiArrowLeft />
           </button>
         )}
-      
+
         <button onClick={onClose} className={`absolute text-3xl ${iconColor} cursor-pointer top-4 right-4`}>
           <FiX />
         </button>
-   {title && (
+        {title && (
           <h2 className={`${textColor} text-[24px] font-bold  mt-[15px] text-center`}>{title}</h2>
         )}
-       
+
         {subtitle && (
           <p className={`text-[13px] text-[rgba(240,238,238,0.54)] mb-[20px] mt-[10px]`}>{subtitle}</p>
         )}

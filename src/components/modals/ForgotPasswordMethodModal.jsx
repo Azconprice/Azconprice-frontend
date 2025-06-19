@@ -37,7 +37,7 @@ const ForgotPasswordMethodModal = ({ isOpen, onClose, onBack, onSelectMethod }) 
           className={`flex items-center justify-between px-4 py-2 rounded-4xl border cursor-pointer ${selectedMethod === 'phone' ? 'border-orange-500 border-3 bg-orange-50' : 'border-gray-700 bg-white'}`}
           onClick={() => setSelectedMethod('phone')}
         >
-           <div className="flex items-center">
+          <div className="flex items-center">
             <input
               type="radio"
               value="phone"
@@ -45,7 +45,7 @@ const ForgotPasswordMethodModal = ({ isOpen, onClose, onBack, onSelectMethod }) 
               onChange={() => setSelectedMethod('phone')}
               className="mr-3 cursor-pointer accent-orange-500"
             />
-             <div className="text-black">
+            <div className="text-black">
               <p className="text-sm font-bold">Telefon nömrəniz ilə yeniləyin</p>
             </div>
           </div>
