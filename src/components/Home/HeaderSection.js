@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 import { useTranslations } from 'next-intl';
-
+import { Link } from 'react-scroll';
 const HeaderSection = () => {
 
     const t = useTranslations('HeaderSection');
@@ -13,12 +13,14 @@ const HeaderSection = () => {
           <span className="text-orange-500">{t('Your construction')}</span><br />
           <span className="text-[#101827]">{t('Strong with us')}</span>
         </h1>
-        <button className="flex items-center justify-between w-[90%] sm:w-full max-w-[350px] bg-[#101827] hover:bg-orange-500 cursor-pointer rounded-full md:mb-[30px] pr-2 pl-8 border-2 border-[#101827] hover:border-orange-500 transition-colors duration-300">
+        <Link to="calculate-products" smooth={true} duration={500} offset={-120} className="flex items-center justify-between w-[90%] sm:w-full max-w-[350px] bg-[#101827] hover:bg-orange-500 cursor-pointer rounded-full md:mb-[30px] pr-2 pl-8 border-2 border-[#101827] hover:border-orange-500 transition-colors duration-300">
+       
           <span className="flex-1 text-lg font-semibold text-center text-white ">{t('Add products')}</span>
           <span className="flex items-center justify-center w-12 h-12 -mr-2 bg-white rounded-full hover:border-orange-500">
             <FiArrowRight size={28} className="text-[#101827] group-hover:text-orange-500" />
           </span>
-        </button>
+       
+        </Link>
       </div>
      <div className="flex-1 flex items-center w-full md:w-[50%] justify-center md:mb-0 relative min-h-[250px] md:min-h-[350px] lg:min-h-[450px]">
   <img

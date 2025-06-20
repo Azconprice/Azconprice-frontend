@@ -185,7 +185,7 @@ const Navbar = () => {
               <Link href="/"><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Home page')}</h3></Link>
               <Link to="about"  smooth={true} duration={500} offset={-50}><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('About us')}</h3></Link>
               <Link href="/"><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Məhsullar')}</h3></Link>
-              <Link to="contact"  smooth={true} duration={500} offset={-50}><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Contact us')}</h3></Link>
+              <Link to="contact"  smooth={true} duration={500} offset={-150}><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Contact us')}</h3></Link>
             </div>
           </div>
         )}
