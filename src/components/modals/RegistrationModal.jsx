@@ -50,7 +50,7 @@ const RegistrationModal = ({ isOpen, onClose, onNext }) => {
       {error && <div className={`${modalErrorStyles} mt-3`}>{error}</div>}
 
       <button
-        className={modalButtonStyles}
+        className={`${modalButtonStyles} cursor-pointer`}
         onClick={handleContinue}
         disabled={!type}
       >

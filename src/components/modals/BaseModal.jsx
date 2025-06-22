@@ -67,7 +67,7 @@ const BaseModal = ({
 };
 
 export const modalInputStyles = "w-full mb-3 px-4 py-2 rounded-xl bg-white text-black focus:outline-none";
-export const modalButtonStyles = "w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-2xl transition";
+export const modalButtonStyles = "w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-2xl cursor-pointer transition";
 export const modalErrorStyles = "text-red-500 text-[16px]  text-center mb-[10px]";
 
 export default BaseModal; 

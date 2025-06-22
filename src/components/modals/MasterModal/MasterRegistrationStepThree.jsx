@@ -6,7 +6,6 @@ const MasterRegistrationStepThree = ({ isOpen, onClose, onBack, onNext, initialD
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-
   const handleSubmit = () => {
     if (!email || !password || !confirmPassword) {
       setError('Bütün xanaları doldurun');
@@ -92,7 +91,9 @@ const MasterRegistrationStepThree = ({ isOpen, onClose, onBack, onNext, initialD
         className={modalButtonStyles}
         onClick={handleSubmit}
       >
-        Davam et
+        {isLoading ? <div className="flex items-center justify-center">
+          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+        </div> : 'Davam et'}
       </button>
     </BaseModal>
   );

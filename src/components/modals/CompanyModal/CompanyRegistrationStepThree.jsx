@@ -88,11 +88,13 @@ const CompanyRegistrationStepThree = ({ isOpen, onClose, onBack, onNext, initial
         </div>
       </div>
       {error && <div className={modalErrorStyles}>{error}</div>}
-      <button
+      <button 
         className={modalButtonStyles}
         onClick={handleContinue}
       >
-        Davam et
+        {isLoading ? <div className="flex items-center justify-center">
+          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+        </div> : 'Davam et'}
       </button>
     </BaseModal>
   );

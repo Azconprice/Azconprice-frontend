@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiX } from 'react-icons/fi';
 
 const PlanPaymentModal = ({ 
@@ -13,6 +13,13 @@ const PlanPaymentModal = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const allowedOperators = ['77', '70', '50', '55', '51', '99', '12'];
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
 
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {

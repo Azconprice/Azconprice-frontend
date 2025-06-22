@@ -3,11 +3,13 @@ import NormalUserRegistrationStepOne from './NormalUserRegistrationStepOne'
 import NormalUserRegistrationStepTwo from './NormalUserRegistrationStepTwo'
 import OtpTypeModal from '../MasterModal/OtpTypeModal'
 import NormalUserOtpModal from './NormalUserOtpModal'
+import OtpVerifyModal from '../OtpVerifyModal'
 
 const NormalUserModals = ({ isOpen, onClose, onSuccess }) => {
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({})
   const [otpMethod, setOtpMethod] = useState('email')
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleStepData = (stepData) => {
     setFormData(prev => ({
@@ -26,6 +28,7 @@ const NormalUserModals = ({ isOpen, onClose, onSuccess }) => {
   }
 
   const handleSubmit = async (finalData) => {
+    setIsLoading(true)
     try {
       const completeData = {
         ...formData,
@@ -38,6 +41,7 @@ const NormalUserModals = ({ isOpen, onClose, onSuccess }) => {
       const nameParts = completeData.fullName.trim().split(' ')
       const firstName = nameParts[0] || ''
       const lastName = nameParts.slice(1).join(' ') || ''
+
 
       const formDataToSend = new FormData()
       formDataToSend.append('FirstName', firstName)
@@ -66,6 +70,10 @@ const NormalUserModals = ({ isOpen, onClose, onSuccess }) => {
     } catch (error) {
       console.error('Error submitting form:', error)
       throw error
+
+    }
+    finally {
+      setIsLoading(false)
     }
   }
 
@@ -83,7 +91,14 @@ const NormalUserModals = ({ isOpen, onClose, onSuccess }) => {
           }
         });
       } else {
-        // todo: phone OTP
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/otp-create`, {
+          method: 'POST',
+          body: JSON.stringify({ phoneNumber: `+994${formData.phoneNumber}` }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
       }
       setCurrentStep(prev => prev + 1)
     } catch (error) {
@@ -110,6 +125,7 @@ const NormalUserModals = ({ isOpen, onClose, onSuccess }) => {
           initialData={formData}
           onClose={onClose}
           isOpen={isOpen}
+          isLoading={isLoading}
         />
       )}
       {currentStep === 3 && (
@@ -121,8 +137,17 @@ const NormalUserModals = ({ isOpen, onClose, onSuccess }) => {
           isOpen={isOpen}
         />
       )}
-      {currentStep === 4 && (
+
+      {currentStep === 4 && otpMethod === 'email' && (
         <NormalUserOtpModal
+          onBack={handleBack}
+          initialData={formData}
+          onClose={onClose}
+          isOpen={isOpen}
+        />
+      )}
+      {currentStep === 4 && otpMethod === 'phone' && (
+        <OtpVerifyModal
           onBack={handleBack}
           initialData={formData}
           onClose={onClose}

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
-const NormalUserRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initialData }) => {
+const NormalUserRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initialData, isLoading }) => {
   const [email, setEmail] = useState(initialData?.email || '');
   const [password, setPassword] = useState(initialData?.password || '');
   const [confirmPassword, setConfirmPassword] = useState(initialData?.confirmPassword || '');
   const [error, setError] = useState('');
-
   const handleContinue = () => {
     if (!email || !password || !confirmPassword) {
       setError('Bütün xanaları doldurun');
@@ -92,7 +91,9 @@ const NormalUserRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initia
         className={modalButtonStyles}
         onClick={handleContinue}
       >
-        Davam et
+        {isLoading ? <div className="flex items-center justify-center">     
+          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+        </div> : 'Davam et'}
       </button>
     </BaseModal>
   );

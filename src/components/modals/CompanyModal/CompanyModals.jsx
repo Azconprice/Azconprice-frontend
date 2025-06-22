@@ -9,7 +9,7 @@ const CompanyModals = ({ isOpen, onClose, onSuccess }) => {
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({})
   const [otpMethod, setOtpMethod] = useState('email')
-
+  const [isLoading, setIsLoading] = useState(false)
   const handleStepData = (stepData) => {
     setFormData(prev => ({
       ...prev,
@@ -27,6 +27,7 @@ const CompanyModals = ({ isOpen, onClose, onSuccess }) => {
   }
 
   const handleSubmit = async (finalData) => {
+    setIsLoading(true)
     try {
       const completeData = {
         ...formData,
@@ -63,6 +64,9 @@ const CompanyModals = ({ isOpen, onClose, onSuccess }) => {
     } catch (error) {
       console.error('Error submitting form:', error)
       throw error
+    }
+    finally {
+      setIsLoading(false)
     }
   }
 
@@ -116,6 +120,7 @@ const CompanyModals = ({ isOpen, onClose, onSuccess }) => {
           initialData={formData}
           onClose={onClose}
           isOpen={isOpen}
+          isLoading={isLoading}
         />
       )}
       {currentStep === 4 && (
