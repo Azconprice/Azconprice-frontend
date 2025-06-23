@@ -4,14 +4,14 @@ import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from
 const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method }) => {
   const [otp, setOtp] = useState(['', '', '', '']);
   const [error, setError] = useState('');
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(600);
 
   useEffect(() => {
     let timer;
     if (isOpen) {
       setOtp(['', '', '', '']);
       setError('');
-      setTimeLeft(60);
+      setTimeLeft(600);
       timer = setInterval(() => {
         setTimeLeft((prevTime) => {
           if (prevTime <= 1) {
@@ -27,6 +27,12 @@ const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method }) 
       clearInterval(timer);
     };
   }, [isOpen]);
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
 
   const handleOtpChange = (index, value) => {
     const newOtp = [...otp];
@@ -85,7 +91,7 @@ const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method }) 
       </div>
 
       <div className="w-full mb-6 text-sm text-center text-gray-300">
-        Kodu yenidən göndər: {timeLeft} sn
+        Kodu yenidən göndər: {formatTime(timeLeft)}
       </div>
 
       {error && <div className={modalErrorStyles}>{error}</div>}

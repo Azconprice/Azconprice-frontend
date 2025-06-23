@@ -4,14 +4,14 @@ import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from
 const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, method }) => {
   const [otp, setOtp] = useState(['', '', '', '']);
   const [error, setError] = useState('');
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(600);
 
   useEffect(() => {
     let timer;
     if (isOpen) {
       setOtp(['', '', '', '']);
       setError('');
-      setTimeLeft(60);
+      setTimeLeft(600);
       timer = setInterval(() => {
         setTimeLeft((prevTime) => {
           if (prevTime <= 1) {
@@ -45,25 +45,25 @@ const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, method }) => {
   const handleVerifyOtp = async () => {
     const enteredOtp = otp.join('');
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/otp-verify`, {
-            method: 'POST',
-            body: JSON.stringify({
-              phoneNumber: initialData.phoneNumber,
-              code: enteredOtp
-            }),
-            headers: {
-              'Content-Type': 'application/json'
-            }
-            
-          });
-         onSuccess();
-      } 
-     catch (error) {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/otp-verify`, {
+        method: 'POST',
+        body: JSON.stringify({
+          phoneNumber: initialData.phoneNumber,
+          code: enteredOtp
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+
+      });
+      onSuccess();
+    }
+    catch (error) {
       console.error(error);
     }
   };
 
-  const subtitleText =  'Telefon nömrənizə gələn OTP kodunu daxil edin';
+  const subtitleText = 'Telefon nömrənizə gələn OTP kodunu daxil edin';
 
   return (
     <BaseModal
@@ -94,7 +94,7 @@ const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, method }) => {
       </div>
 
       <div className="w-full mb-6 text-sm text-center text-gray-300">
-        Kodu yenidən göndər: {timeLeft} sn
+        Kodu yenidən göndər: {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
       </div>
 
       {error && <div className={modalErrorStyles}>{error}</div>}

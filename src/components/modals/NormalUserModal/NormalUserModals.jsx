@@ -5,7 +5,7 @@ import OtpTypeModal from '../MasterModal/OtpTypeModal'
 import NormalUserOtpModal from './NormalUserOtpModal'
 import OtpVerifyModal from '../OtpVerifyModal'
 
-const NormalUserModals = ({ isOpen, onClose, onSuccess }) => {
+const NormalUserModals = ({ isOpen, onClose, onSuccess  }) => {
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({})
   const [otpMethod, setOtpMethod] = useState('email')

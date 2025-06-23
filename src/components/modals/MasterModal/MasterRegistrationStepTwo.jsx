@@ -2,41 +2,30 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
-const MasterRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initialData }) => {
+const MasterRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initialData, specializations }) => {
+  console.log(specializations);
+  console.log(initialData.specialty);
   const [specialty, setSpecialty] = useState(initialData?.specialty || []);
   const [experience, setExperience] = useState(initialData?.experience || '');
   const [price, setPrice] = useState(initialData?.price || '');
   const [error, setError] = useState('');
-const [voen, setVoen] = useState(initialData?.voen || '');
-  const [specialtyOptions, setSpecialtyOptions] = useState([]);
-  const [isLoadingSpecialties, setIsLoadingSpecialties] = useState(false);
+  const [voen, setVoen] = useState(initialData?.voen || '');
 
-  useEffect(() => {
-    const fetchSpecializations = async () => {
-      setIsLoadingSpecialties(true);
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Specialization/all`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch specializations');
-        }
-        const data = await response.json();
-        const options = data.map(specialization => ({
-          value: specialization.id,
-          label: specialization.name
-        }));
-        setSpecialtyOptions(options);
-      } catch (error) {
-        console.error('Error fetching specializations:', error);
-        setError('İxtisaslar yüklənərkən xəta baş verdi');
-      } finally {
-        setIsLoadingSpecialties(false);
-      }
-    };
-
-    if (isOpen) {
-      fetchSpecializations();
+  const defaultSpecialty = specializations?.map(spec => {
+    if(initialData?.specialty?.includes(spec.value)) {
+      return {value: spec.value, label: spec.label}
     }
-  }, [isOpen]);
+  }).filter(s => s !== undefined)
+  console.log(defaultSpecialty);
+
+  // useEffect(() => {
+
+  //   const selectedOptions = specializations?.filter(option =>
+  //     initialData?.specialty?.includes(option.value)
+  //   );
+  //   setSpecialty(selectedOptions);
+
+  // }, [isOpen, specializations, initialData?.specialty]);
 
   const customStyles = {
     control: (provided, state) => ({
@@ -134,7 +123,7 @@ const [voen, setVoen] = useState(initialData?.voen || '');
       subtitle="Usta"
     >
       <div className="mb-[20px] w-full">
-         <div className="relative mb-4">
+        <div className="relative mb-4">
           <span className="absolute text-gray-400 -translate-y-1/2 left-4 top-1/2">
             <img src="/assets/icons/vöen.svg" alt="icon" className="w-[16px] h-[16px]" />
           </span>
@@ -152,44 +141,45 @@ const [voen, setVoen] = useState(initialData?.voen || '');
           </span>
           <Select
             isMulti
-            value={specialty}
+            // value={defaultSpecialty}
+            defaultValue={defaultSpecialty}
             onChange={setSpecialty}
-            options={specialtyOptions}
-            placeholder={isLoadingSpecialties ? "İxtisaslar yüklənir..." : "İxtisas seçin"}
+            options={specializations}
+            placeholder="İxtisas seçin"
             styles={customStyles}
             closeMenuOnSelect={false}
             hideSelectedOptions={false}
             className="w-full"
             menuPortalTarget={document.body}
             menuPosition="fixed"
-            isLoading={isLoadingSpecialties}
-            isDisabled={isLoadingSpecialties}
             noOptionsMessage={() => "İxtisas tapılmadı"}
+            getOptionValue={(option) => option.value}
+            getOptionLabel={(option) => option.label}
           />
         </div>
         <div className="flex flex-row  gap-[10px]">
-           <div className="relative mb-4">
-          <input
-            type="number"
+          <div className="relative mb-4">
+            <input
+              type="number"
               min="0"
-            placeholder="Təcrübə (il)"
-            value={experience}
-            onChange={e => setExperience(e.target.value)}
-            className="w-full pl-5 pr-4 py-2 rounded-full bg-[#F3F3F3] text-gray-500 placeholder-gray-400 focus:outline-none"
-          />
+              placeholder="Təcrübə (il)"
+              value={experience}
+              onChange={e => setExperience(e.target.value)}
+              className="w-full pl-5 pr-4 py-2 rounded-full bg-[#F3F3F3] text-gray-500 placeholder-gray-400 focus:outline-none"
+            />
+          </div>
+          <div className="relative mb-4">
+
+            <input
+              type="text"
+              placeholder="Qiymət"
+              value={price}
+              onChange={e => setPrice(e.target.value)}
+              className="w-full pl-5 pr-4 py-2 rounded-full bg-[#F3F3F3] text-gray-500 placeholder-gray-400 focus:outline-none"
+            />
+          </div>
         </div>
-        <div className="relative mb-4">
-        
-          <input
-            type="text"
-            placeholder="Qiymət"
-            value={price}
-            onChange={e => setPrice(e.target.value)}
-            className="w-full pl-5 pr-4 py-2 rounded-full bg-[#F3F3F3] text-gray-500 placeholder-gray-400 focus:outline-none"
-          />
-        </div>
-        </div>
-       
+
       </div>
       {error && <div className={`${modalErrorStyles} mt-[-10px]`}>{error}</div>}
       <button

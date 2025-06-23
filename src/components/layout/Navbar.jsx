@@ -22,7 +22,7 @@ import CompanyModals from '../modals/CompanyModal/CompanyModals';
 import MasterModals from '../modals/MasterModal/MasterModals';
 
 import { Link, Element } from 'react-scroll';
-const Navbar = () => {
+const Navbar = ({ specializations }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false)
@@ -254,6 +254,7 @@ const Navbar = () => {
         isOpen={activeModal === 'masterRegistration'}
         onClose={() => setActiveModal(null)}
         onSuccess={handleRegistrationSuccess}
+        specializations={specializations}
       />
     </>
   )

@@ -4,8 +4,7 @@ import MasterRegistrationStepTwo from './MasterRegistrationStepTwo'
 import MasterRegistrationStepThree from './MasterRegistrationStepThree'
 import OtpTypeModal from './OtpTypeModal'
 import MasterOtpModal from './MasterOtpModal'
-
-const MasterModals = ({ isOpen, onClose, onSuccess }) => {
+const MasterModals = ({ isOpen, onClose, onSuccess, specializations }) => {
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({})
   const [otpMethod, setOtpMethod] = useState('email')
@@ -34,7 +33,7 @@ const MasterModals = ({ isOpen, onClose, onSuccess }) => {
         ...finalData,
         phoneNumber: `+994${formData.phoneNumber}`
       }
-      setFormData({...formData, email: finalData.email})
+      setFormData({ ...formData, email: finalData.email })
       console.log(completeData)
 
       const nameParts = completeData.fullName.trim().split(' ')
@@ -77,7 +76,7 @@ const MasterModals = ({ isOpen, onClose, onSuccess }) => {
   }
 
   const handleSelectMethod = async (method) => {
-    
+
 
     try {
       setOtpMethod(method)
@@ -121,6 +120,7 @@ const MasterModals = ({ isOpen, onClose, onSuccess }) => {
           initialData={formData}
           onClose={onClose}
           isOpen={isOpen}
+          specializations={specializations}
         />
       )}
       {currentStep === 3 && (
@@ -148,7 +148,7 @@ const MasterModals = ({ isOpen, onClose, onSuccess }) => {
           initialData={formData}
           onClose={onClose}
           isOpen={isOpen}
-          
+
         />
       )}
     </>
