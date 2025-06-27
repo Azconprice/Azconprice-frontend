@@ -21,5 +21,14 @@
         "Your construction": "Your Construction",
         "Strong with us": "Strong with Us",
         "Add products": "Add Products"
-    }
+    },
+    "AboutUs": {
+    "About us": "About Us",
+    "Master": "Master",
+    "Company": "Company",
+    "CompanyName": "AzConPrice",
+    "companydescription1": "It is the first professional platform where materials and work volumes in repair, construction, design, and supply fields are presented based on real market prices.",
+    "companydescription2": "Our goal is to make real market prices easily accessible to everyone and thereby ensure transparency and accuracy in the fields of repair, construction, design, and supply."
+}
+
 }

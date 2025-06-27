@@ -21,5 +21,13 @@
         "Your construction": "Inşaatınızın",
         "Strong with us": "Bizimlə güclü",
         "Add products": "Məhsul əlavə et"
+    },
+    "AboutUs": {
+        "About us": "Haqqımızda",
+        "Master":"Usta",
+        "Company":"Şirkət",
+        "CompanyName":"AzConPrice",
+        "companydescription1":"Təmir-tikinti, layihələndirmə və təchizat sahələrində mal-materialların və iş həcmlərinin real bazar qiymətləri əsasında təqdim olunduğu ilk peşəkar platformadır.",
+        "companydescription2":"Məqsədimiz hər kəs üçün real bazar qiymətlərinə çıxışı asanlaşdırmaq və bu yolla Təmir-tikinti, layihələndirmə və təchizat sahələrində  şəffaflığı və dəqiqliyi təmin etməkdir."
     }
 }
