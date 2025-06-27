@@ -1,8 +1,11 @@
-import { Info, Star } from "lucide-react";
+import { Check, Info, Star, X } from "lucide-react";
+import Image from "next/image";
+import profilePhoto from '@/assets/images/testuser.png'
+import questionCircle from '@/assets/images/question_circle.svg';
 
 const ProfileDetails = () => {
   return (
-    <div className="p-[32px] mt-[80px]">
+    <div className="p-[32px] mt-[80px] overflow-y-auto h-[calc(100vh-80px)]">
       <div className="flex items-center justify-between">
         <h3 className="text-[20px] font-[700] text-[#1E293B]">Profil</h3>
         <div className="flex items-center gap-[8px]">
@@ -32,7 +35,7 @@ const ProfileDetails = () => {
       <div className="w-full h-[1px] bg-[#E2E8F0] my-[24px]"></div>
 
       <div className="max-w-[800px]">
-        <div className="w-full flex justify-between mb-[24px]">
+        <div className="w-full flex justify-between mb-[24px] items-center">
           <label htmlFor="name" className="font-[700] text-[16px] text-[#1E293B]">Ad</label>
           <input
             type="text"
@@ -42,7 +45,7 @@ const ProfileDetails = () => {
           />
         </div>
 
-        <div className="w-full flex justify-between mb-[24px]">
+        <div className="w-full flex justify-between mb-[24px] items-center">
           <label htmlFor="surname" className="font-[700] text-[16px] text-[#1E293B]">Soyad</label>
           <input
             type="text"
@@ -52,7 +55,7 @@ const ProfileDetails = () => {
           />
         </div>
 
-        <div className="w-full flex justify-between mb-[24px]">
+        <div className="w-full flex justify-between mb-[24px] items-center">
           <label htmlFor="email" className="font-[700] text-[16px] text-[#1E293B]">Elektron poçt</label>
           <input
             type="text"
@@ -62,7 +65,7 @@ const ProfileDetails = () => {
           />
         </div>
 
-        <div className="w-full flex justify-between mb-[24px]">
+        <div className="w-full flex justify-between mb-[24px] items-center">
           <label htmlFor="address" className="font-[700] text-[16px] text-[#1E293B]">Yaşayış ünvanı</label>
           <input
             type="text"
@@ -74,7 +77,7 @@ const ProfileDetails = () => {
 
         <div className="w-full h-[1px] bg-[#E2E8F0] my-[24px]"></div>
 
-        <div className="flex justify-between w-full">
+        <div className="w-full flex justify-between items-center">
           <label htmlFor="phone" className="font-[700] text-[16px] text-[#1E293B]">Mobil nömrə</label>
           <input
             type="text"
@@ -85,6 +88,71 @@ const ProfileDetails = () => {
         </div>
 
         <div className="w-full h-[1px] bg-[#E2E8F0] my-[24px]"></div>
+
+        <div className="w-full flex justify-between items-center">
+          <p className="font-[700] text-[16px] text-[#1E293B]">
+            Profil
+          </p>
+
+          <div className="md:w-[520px] w-full flex items-center gap-[16px]">
+            <Image
+              src={profilePhoto}
+              width={64}
+              height={64}
+              alt="photo"
+              className="rounded-full"
+            />
+
+            <button className="bg-[#101827] px-[16px] py-[10px] border-1 border-[#101827] text-[#F0EEEE] text-[14px] font-[700] rounded-full transition hover:text-[#101827] hover:bg-transparent cursor-pointer">Edit</button>
+            <button className="bg-[#F37321] px-[16px] py-[10px] border-1 border-[#F37321] text-[#F0EEEE] text-[14px] font-[700] rounded-full transition hover:text-[#F37321] hover:bg-transparent cursor-pointer">Delete</button>
+          </div>
+        </div>
+
+        <div className="w-full h-[1px] bg-[#E2E8F0] my-[24px]"></div>
+
+        <div className="w-full flex justify-between items-center">
+          <p className="font-[700] text-[16px] text-[#1E293B]">
+            Plan
+          </p>
+
+          <div className="md:w-[520px] w-full bg-[#101827] rounded-full p-[12px] text-[#F0EEEE] text-[16px] font-[500]">
+            Aylıq plan 99$
+          </div>
+        </div>
+
+        <div className="w-full h-[1px] bg-[#E2E8F0] my-[24px]"></div>
+
+        <div className="w-full flex justify-between items-start">
+          <p className="font-[700] text-[16px] text-[#1E293B] flex items-center gap-[8px]">
+            Haqqımda
+
+            <Image
+              src={questionCircle}
+              height={16}
+              width={16}
+              alt="info"
+            />
+          </p>
+
+          <div className="md:w-[520px] w-full border-1 border-[#CBD5E1] rounded-[24px] relative overflow-hidden">
+            <textarea name="info" id="info" className="p-[12px] pb-[50px] w-full outline-none min-h-[200px] text-[16px] text-[#475569]"></textarea>
+            <p className="absolute p-[10px] bg-white bottom-0 left-0 text-[#94A3B8] text-[12px] font-[500] z-[100]">325 characters remaining</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div className="w-full h-[1px] bg-[#E2E8F0] my-[24px]"></div>
+
+      <div className="flex justify-end gap-[8px]">
+        <button className="px-[16px] py-[10px] border-1 border-[#CBD5E1] rounded-full flex justify-center items-center gap-[8px] text-[#475569] text-[14px] font-bold cursor-pointer">
+          Cancel
+          <X size={20} color="#475569" />
+        </button>
+        <button className="px-[16px] py-[10px] bg-[#F37321] border-1 border-[#F37321] transition hover:bg-transparent hover:text-[#F37321] rounded-full flex justify-center items-center gap-[8px] text-white text-[14px] font-bold cursor-pointer group">
+          Save
+          <Check size={20} color="#ffffff" className="group-hover:stroke-[#F37321] transition" />
+        </button>
       </div>
     </div>
   );
