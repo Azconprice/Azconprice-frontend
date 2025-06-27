@@ -1,16 +1,15 @@
+import ChangePassword from '@/components/profile/ChangePassword'
 import Header from '@/components/profile/Header'
-import ProfileDetails from '@/components/profile/ProfileDetails'
 import React from 'react'
 
-const UserProfile = () => {
+const Security = () => {
   return (
     <div className='w-full'>
         <Header title="Ayarlar" />
-        <ProfileDetails />
-        
+        <ChangePassword />
         
     </div>
   )
 }
 
-export default UserProfile
+export default Security
