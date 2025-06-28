@@ -1,15 +1,13 @@
 import ChangePassword from '@/components/profile/ChangePassword'
 import Header from '@/components/profile/Header'
-import React from 'react'
 
-const Security = () => {
+const ChangePasswordPage = () => {
   return (
-    <div className='w-full'>
+    <div>
         <Header title="Ayarlar" />
         <ChangePassword />
-        
     </div>
   )
 }
 
-export default Security
+export default ChangePasswordPage

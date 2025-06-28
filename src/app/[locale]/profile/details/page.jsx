@@ -7,8 +7,6 @@ const UserProfile = () => {
     <div className='w-full'>
         <Header title="Ayarlar" />
         <ProfileDetails />
-        
-        
     </div>
   )
 }

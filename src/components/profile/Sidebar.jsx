@@ -1,12 +1,17 @@
+"use client";
 import logo from "@/assets/images/logo.svg";
-import { Home, Key, List, LogOut, MessageCircleMore, Search } from "lucide-react";
+import { Home, Key, List, LogOut, MessageCircleMore, Package, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import profilePhoto from "@/assets/images/testuser.png";
+import { usePathname } from "next/navigation";
 
 const Sidebar = () => {
+
+  const pathname = usePathname();
+
   return (
-    <div className="py-[32px] px-[16px] w-[312px] border-r-1 border-[#E2E8F0]">
+    <div className="py-[32px] px-[16px] w-[312px] border-r-1 border-[#E2E8F0] shrink-0">
       <div className="mb-[50px]">
         <Image src={logo} width={71} height={71} alt="logo" />
       </div>
@@ -22,22 +27,22 @@ const Sidebar = () => {
 
         <div className="flex flex-col gap-[8px]">
           <Link
-            href="#"
-            className="w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] bg-[#101827] text-[#F0EEEE]"
+            href="./details"
+            className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('details') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}
           >
             <Home className="w-[24px] h-[24px] shrink-0" color="#94A3B8" />
             Şəxsi kabinet
           </Link>
           <Link
-            href="#"
-            className="w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px]  text-[#1E293B]"
+            href="./files"
+            className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('files') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}
           >
             <List className="w-[24px] h-[24px] shrink-0" color="#94A3B8" />
             Fayllar
           </Link>
           <Link
-            href="#"
-            className="w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px]  text-[#1E293B]"
+            href="./applications"
+            className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('applications') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}
           >
             <MessageCircleMore
               className="w-[24px] h-[24px] shrink-0"
@@ -45,13 +50,25 @@ const Sidebar = () => {
             />
             Müraciətlər
           </Link>
-            <Link
-            href="#"
-            className="w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px]  text-[#1E293B]"
+          <Link
+            href="./products"
+            className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('products') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}
           >
-            <Key className="w-[24px] h-[24px] shrink-0  rotate-45" color="#94A3B8"
-           />
-          Təhlükəsizlik
+            <Package
+              className="w-[24px] h-[24px] shrink-0"
+              color="#94A3B8"
+            />
+            Şirkət məhsulları
+          </Link>
+          <Link
+            href="./change-password"
+            className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('change-password') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}
+          >
+            <Key
+              className="w-[24px] h-[24px] shrink-0 rotate-45"
+              color="#94A3B8"
+            />
+            Təhlükəsizlik
           </Link>
         </div>
       </div>

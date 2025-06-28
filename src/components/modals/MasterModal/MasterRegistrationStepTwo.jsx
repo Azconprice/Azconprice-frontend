@@ -136,7 +136,7 @@ const MasterRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initialDat
           />
         </div>
         <div className="relative mb-4">
-          <span className="absolute z-20 text-gray-400 -translate-y-1/2 left-4 top-1/2">
+          <span className="absolute text-gray-400 left-4 top-1/2 -translate-y-1/2 z-20">
             <img src="/assets/icons/ixtisas.svg" alt="icon" className="w-[16px] h-[16px]" />
           </span>
           <Select

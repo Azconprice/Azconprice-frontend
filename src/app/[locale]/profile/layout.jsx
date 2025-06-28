@@ -6,7 +6,7 @@ const layout = ({ children }) => {
   return (
     <div className="flex w-full">
       <Sidebar />
-      <main className="relative flex-grow">
+      <main className="flex-grow relative">
         {children}
       </main>
     </div>
