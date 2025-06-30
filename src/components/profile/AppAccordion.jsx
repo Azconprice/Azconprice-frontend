@@ -10,11 +10,18 @@ const AppAccordion = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState(isExpandedByDefault);
 
+  const toggleAccordion = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <div className="bg-white rounded-[12px] shadow-sm border border-[#E5E7EB] mb-[12px] overflow-hidden">
+    <div
+      className="bg-white rounded-[12px] shadow-sm border border-[#E5E7EB] mb-[12px] overflow-hidden"
+      onClick={toggleAccordion} // Bu əlavə etməklə, bütün section-a tıklananda açılır
+    >
       <div className="p-[16px]">
-        <div className="flex items-center justify-between">
-          <div className="flex-1">
+        <div className="flex items-center justify-between cursor-pointer">
+          <div className="flex-1 ">
             <div className="grid grid-cols-3 gap-[20px] items-center">
               <div>
                 <p className="text-[#6B7280] text-[12px] font-[500] mb-[4px]">
@@ -40,7 +47,7 @@ const AppAccordion = ({
           </div>
 
           <button
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={(e) => { e.stopPropagation(); setIsExpanded(!isExpanded); }} // İkon tıklaması ilə də açılma
             className="ml-[20px] p-[8px] hover:bg-[#F3F4F6] rounded-full transition-colors cursor-pointer"
           >
             <ChevronDown size={20} color="#6B7280" className={`${isExpanded ? 'rotate-180' : ''} transition`} />

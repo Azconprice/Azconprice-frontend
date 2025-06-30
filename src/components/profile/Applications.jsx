@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import AppAccordion from './AppAccordion';
 
@@ -64,20 +64,20 @@ const Applications = () => {
 
   return (
     <div className="p-[32px] mt-[80px] overflow-y-auto h-[calc(100vh-80px)]">
-        <div className="rounded-[20px] p-[20px]">
-          {applicationsData.map((application) => (
-            <AppAccordion
-              key={application.id}
-              type={application.type}
-              date={application.date}
-              status={application.status}
-              content={application.content}
-              isExpandedByDefault={application.isExpandedByDefault}
-            />
-          ))}
-        </div>
+      <div className="rounded-[20px] p-[20px]">
+        {applicationsData.map((application) => (
+          <AppAccordion
+            key={application.id}
+            type={application.type}
+            date={application.date}
+            status={application.status}
+            content={application.content}
+            isExpandedByDefault={application.isExpandedByDefault}
+          />
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Applications
+export default Applications;
