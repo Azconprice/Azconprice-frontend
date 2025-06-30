@@ -20,18 +20,26 @@ import ForgotPasswordNumberSentModal from '../modals/ForgotPasswordNumberSentMod
 import NormalUserModals from '../modals/NormalUserModal/NormalUserModals';
 import CompanyModals from '../modals/CompanyModal/CompanyModals';
 import MasterModals from '../modals/MasterModal/MasterModals';
+import { getCurrentUser } from '@/utils/auth';
+import { logoutUser } from '@/utils/logout';
+import { Settings, LogOut, ChevronDown } from 'lucide-react';
+import profilePhoto from '@/assets/images/testuser.png';
 
 import { Link, Element } from 'react-scroll';
 const Navbar = ({ specializations }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false)
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false)
   const dropdownRef = useRef(null)
+  const userDropdownRef = useRef(null)
   const locale = useLocale()
   const router = useRouter()
   const t = useTranslations('navbar')
   const [activeModal, setActiveModal] = useState(null)
   const [successMessage, setSuccessMessage] = useState('')
+
+  const user = getCurrentUser()
 
   const languages = [
     { code: 'az', name: 'AZ' },
@@ -66,10 +74,42 @@ const Navbar = ({ specializations }) => {
     setActiveModal('success');
   }
 
+  const handleLogout = () => {
+    logoutUser();
+    setUserDropdownOpen(false);
+  }
+
+  const getUserDisplayName = () => {
+    if (!user) return "İstifadəçi";
+    const firstName = user.firstName || "";
+    const lastName = user.lastName || "";
+    if (firstName && lastName) {
+      return `${firstName} ${lastName.charAt(0)}.`;
+    }
+    return firstName || lastName || "İstifadəçi";
+  };
+
+  const getUserRole = () => {
+    if (!user) return "İstifadəçi";
+    switch (user.role) {
+      case 'User':
+        return 'İstifadəçi';
+      case 'Company':
+        return 'Şirkət';
+      case 'Master':
+        return 'İşçi';
+      default:
+        return 'İstifadəçi';
+    }
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setLanguageDropdownOpen(false)
+      }
+      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target)) {
+        setUserDropdownOpen(false)
       }
     }
 
@@ -119,43 +159,92 @@ const Navbar = ({ specializations }) => {
             </div>
           </div>
           <div className='hidden lg:flex flex-row justify-between gap-[10px] xl:gap-[20px] items-center mt-[-50px] mr-[10px] 2xl:mr-[60px]'>
-            <div>
-              <button onClick={() => setActiveModal('login')} className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Login')}</button>
-            </div>
-            <div>
-              <button onClick={() => setActiveModal('register')} className="hover:bg-orange-500 bg-[#F37321] px-5 xl:px-8 py-2 text-[16px] cursor-pointer text-white rounded-3xl">{t('Register')}</button>
-          
-            </div>
-          
-              
-          
-           
-              <div className="relative " ref={dropdownRef}>
-                <button
-                  className="hover:text-orange-500 cursor-pointer text-[16px] flex flex-row items-center gap-[3px]"
-                  onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
+            {!user ? (
+              <>
+                <div>
+                  <button onClick={() => setActiveModal('login')} className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Login')}</button>
+                </div>
+                <div>
+                  <button onClick={() => setActiveModal('register')} className="hover:bg-orange-500 bg-[#F37321] px-5 xl:px-8 py-2 text-[16px] cursor-pointer text-white rounded-3xl">{t('Register')}</button>
+                </div>
+              </>
+            ) : (
+              <div className="relative" ref={userDropdownRef}>
+                <div 
+                  className="flex items-center justify-between gap-[12px] cursor-pointer"
+                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
                 >
-                  {languages.find(lang => lang.code === locale)?.name || 'AZ'}
-                  <span><FaChevronDown /></span>
-                </button>
-                {languageDropdownOpen && (
-                  <div className="absolute right-0 z-50 w-20 py-2 mt-2 bg-white rounded-lg shadow-xl">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        className={`block w-full text-left px-4 py-2 text-[16px] hover:bg-gray-100 ${locale === lang.code ? 'text-orange-500' : ''
-                          }`}
-                        onClick={() => handleLanguageChange(lang.code)}
+                  <div className="flex items-center gap-[8px]">
+                    <Image
+                      width={32}
+                      height={32}
+                      src={profilePhoto}
+                      alt="user"
+                      className="rounded-full"
+                    />
+                    <div>
+                      <p className="text-[12px] font-[700] text-[#1E293B]">{getUserDisplayName()}</p>
+                      <p className="text-[10px] font-[500] text-[#1018278F]">{getUserRole()}</p>
+                    </div>
+                  </div>
+                  <ChevronDown 
+                    className={`w-[16px] h-[16px] shrink-0 transition-transform duration-200 ${
+                      userDropdownOpen ? 'rotate-180' : ''
+                    }`} 
+                    color="#101827" 
+                  />
+                </div>
+
+                {userDropdownOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-[180px] bg-white border border-[#E2E8F0] rounded-lg shadow-lg z-[1001]">
+                    <div className="py-2">
+                      <button 
+                        onClick={() => router.push(`/${locale}/profile/details`)}
+                        className="w-full px-4 py-2 text-left hover:bg-[#F8FAFC] flex items-center gap-3 text-[14px] text-[#475569] cursor-pointer"
                       >
-                        {lang.name}
+                        <Settings size={16} />
+                        Profil ayarları
                       </button>
-                    ))}
+                      
+                      <div className="border-t border-[#E2E8F0] mt-1 pt-1">
+                        <button 
+                          onClick={handleLogout}
+                          className="w-full px-4 py-2 text-left hover:bg-[#FEF2F2] flex items-center gap-3 text-[14px] text-[#DC2626] cursor-pointer"
+                        >
+                          <LogOut size={16} />
+                          Çıxış
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
+            )}
               
-                 <div>
+            <div className="relative " ref={dropdownRef}>
+              <button
+                className="hover:text-orange-500 cursor-pointer text-[16px] flex flex-row items-center gap-[3px]"
+                onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
+              >
+                {languages.find(lang => lang.code === locale)?.name || 'AZ'}
+                <span><FaChevronDown /></span>
+              </button>
+              {languageDropdownOpen && (
+                <div className="absolute right-0 z-50 w-20 py-2 mt-2 bg-white rounded-lg shadow-xl">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      className={`block w-full text-left px-4 py-2 text-[16px] hover:bg-gray-100 ${locale === lang.code ? 'text-orange-500' : ''
+                        }`}
+                      onClick={() => handleLanguageChange(lang.code)}
+                    >
+                      {lang.name}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
+              
           </div>
           <div className="flex lg:hidden w-[25%] justify-end self-start">
             <button className='cursor-pointer pr-[30px]' onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -177,9 +266,42 @@ const Navbar = ({ specializations }) => {
               ))}
             </div>
             <div className="flex flex-row w-full gap-4 mb-8">
-            
-              <button onClick={() => setActiveModal('login')} className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Login')}</button>
-              <button onClick={() => setActiveModal('register')} className="hover:bg-orange-500 bg-[#F37321] px-5 py-2 text-[16px] cursor-pointer text-white rounded-3xl">{t('Register')}</button>
+              {!user ? (
+                <>
+                  <button onClick={() => setActiveModal('login')} className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Login')}</button>
+                  <button onClick={() => setActiveModal('register')} className="hover:bg-orange-500 bg-[#F37321] px-5 py-2 text-[16px] cursor-pointer text-white rounded-3xl">{t('Register')}</button>
+                </>
+              ) : (
+                <div className="flex flex-col w-full gap-4">
+                  <div className="flex items-center gap-[12px] pb-4 border-b border-[#E2E8F0]">
+                    <Image
+                      width={40}
+                      height={40}
+                      src={profilePhoto}
+                      alt="user"
+                      className="rounded-full"
+                    />
+                    <div>
+                      <p className="text-[14px] font-[700] text-[#1E293B]">{getUserDisplayName()}</p>
+                      <p className="text-[12px] font-[500] text-[#1018278F]">{getUserRole()}</p>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={() => router.push(`/${locale}/profile/details`)}
+                    className="flex items-center gap-3 text-[16px] text-[#475569] hover:text-orange-500"
+                  >
+                    <Settings size={18} />
+                    Profil ayarları
+                  </button>
+                  <button 
+                    onClick={handleLogout}
+                    className="flex items-center gap-3 text-[16px] text-[#DC2626] hover:text-red-700"
+                  >
+                    <LogOut size={18} />
+                    Çıxış
+                  </button>
+                </div>
+              )}
             </div>
             <div className="flex flex-col w-full gap-4">
               <Link href="/"><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Home page')}</h3></Link>

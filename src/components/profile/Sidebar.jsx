@@ -5,10 +5,40 @@ import Image from "next/image";
 import Link from "next/link";
 import profilePhoto from "@/assets/images/testuser.png";
 import { usePathname } from "next/navigation";
+import { getCurrentUser } from "@/utils/auth";
+import { logoutUser } from "@/utils/logout";
 
 const Sidebar = () => {
-
   const pathname = usePathname();
+  const user = getCurrentUser();
+
+  const getUserDisplayName = () => {
+    if (!user) return "İstifadəçi";
+    const firstName = user.firstName || "";
+    const lastName = user.lastName || "";
+    if (firstName && lastName) {
+      return `${firstName} ${lastName}`;
+    }
+    return firstName || lastName || "İstifadəçi";
+  };
+
+  const getUserRole = () => {
+    if (!user) return "İstifadəçi";
+    switch (user.role) {
+      case 'User':
+        return 'İstifadəçi';
+      case 'Company':
+        return 'Şirkət';
+      case 'Master':
+        return 'İşçi';
+      default:
+        return 'İstifadəçi';
+    }
+  };
+
+  const handleLogout = () => {
+    logoutUser();
+  };
 
   return (
     <div className="py-[32px] px-[16px] w-[312px] border-r-1 border-[#E2E8F0] shrink-0">
@@ -83,11 +113,11 @@ const Sidebar = () => {
             className="rounded-full"
           />
           <div>
-            <p className="text-[16px] font-[700] text-[#1E293B]">Azunyan U. Wu</p>
-            <p className="text-[14px] font-[500] text-[#475569]">Basic Member</p>
+            <p className="text-[16px] font-[700] text-[#1E293B]">{getUserDisplayName()}</p>
+            <p className="text-[14px] font-[500] text-[#475569]">{getUserRole()}</p>
           </div>
         </div>
-        <button className="shrink-0 p-[8px] cursor-pointer">
+        <button onClick={handleLogout} className="shrink-0 p-[8px] cursor-pointer hover:bg-[#F1F5F9] rounded-full transition-colors">
           <LogOut className="w-[20px] h-[20px] shrink-0" color="#475569" />
         </button>
       </div>
