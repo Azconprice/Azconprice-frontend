@@ -38,6 +38,7 @@ const Navbar = ({ specializations }) => {
   const t = useTranslations('navbar')
   const [activeModal, setActiveModal] = useState(null)
   const [successMessage, setSuccessMessage] = useState('')
+  const [resetPasswordData, setResetPasswordData] = useState(null)
 
   const user = getCurrentUser()
 
@@ -336,26 +337,43 @@ const Navbar = ({ specializations }) => {
         isOpen={activeModal === 'forgotPasswordEmailSent'} 
         onClose={() => setActiveModal(null)} 
         onBack={() => setActiveModal('forgotPassword')} 
-        onSuccess={() => setActiveModal('resetPasswordEmailOtp')} 
+        onSuccess={(data) => {
+          setResetPasswordData(data);
+          setActiveModal('resetPasswordEmailOtp');
+        }} 
       />
       <ForgotPasswordNumberSentModal 
         isOpen={activeModal === 'forgotPasswordNumberSent'} 
         onClose={() => setActiveModal(null)} 
         onBack={() => setActiveModal('forgotPassword')} 
-        onSubmit={() => setActiveModal('resetPasswordPhoneOtp')} 
+        onSubmit={(data) => {
+          setResetPasswordData(data);
+          setActiveModal('resetPasswordPhoneOtp');
+        }} 
       />
       <ForgotPasswordOtpModal 
         isOpen={activeModal === 'resetPasswordPhoneOtp' || activeModal === 'resetPasswordEmailOtp'} 
         onClose={() => setActiveModal(null)} 
         onBack={() => setActiveModal(activeModal === 'resetPasswordPhoneOtp' ? 'forgotPasswordNumberSent' : 'forgotPasswordEmailSent')} 
-        onSuccess={() => setActiveModal('resetPassword')} 
+        onSuccess={(data) => {
+          setResetPasswordData(data);
+          setActiveModal('resetPassword');
+        }} 
         method={activeModal === 'resetPasswordPhoneOtp' ? 'phone' : 'email'}
+        contact={resetPasswordData?.contact}
+        contactType={resetPasswordData?.contactType}
       />
       <ResetPasswordModal 
         isOpen={activeModal === 'resetPassword'} 
         onClose={() => setActiveModal(null)} 
         onBack={() => setActiveModal('forgotPassword')} 
-        onSuccess={() => setActiveModal('success')} 
+        onSuccess={(message) => {
+          setSuccessMessage(message);
+          setActiveModal('success');
+          setResetPasswordData(null);
+        }} 
+        contact={resetPasswordData?.contact}
+        contactType={resetPasswordData?.contactType}
       />
       <SuccessModal 
         isOpen={activeModal === 'success'} 

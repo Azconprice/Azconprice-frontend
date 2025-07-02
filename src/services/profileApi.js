@@ -88,6 +88,38 @@ export const updateProfile = async (profileData) => {
   }
 };
 
+export const updatePassword = async (passwordData) => {
+  try {
+    const endpoint = getProfileEndpoint();
+    const headers = getAuthHeader();
+
+    const formData = new FormData();
+    formData.append('Password', passwordData.password);
+    formData.append('ConfirmPassword', passwordData.confirmPassword);
+
+    const response = await axios.patch(endpoint, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        ...headers
+      }
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('Error updating password:', error);
+
+    if (error.response?.status === 401) {
+      throw new Error('Authentication required. Please login again.');
+    } else if (error.response?.status === 400) {
+      throw new Error(error.response.data?.message || 'Invalid password data.');
+    } else if (error.response?.data?.message) {
+      throw new Error(error.response.data.message);
+    } else {
+      throw new Error('Failed to update password.');
+    }
+  }
+};
+
 export const deleteProfile = async () => {
   try {
     const endpoint = getProfileEndpoint();

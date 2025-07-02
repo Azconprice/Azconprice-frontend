@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from './BaseModal';
 
-const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method }) => {
+const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method, contact, contactType }) => {
   const [otp, setOtp] = useState(['', '', '', '']);
   const [error, setError] = useState('');
   const [timeLeft, setTimeLeft] = useState(600);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     let timer;
@@ -48,15 +49,42 @@ const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method }) 
     }
   };
 
-  const handleVerifyOtp = () => {
+  const handleVerifyOtp = async () => {
     const enteredOtp = otp.join('');
-    const correctOtp = method === 'email' ? '0000' : '1111';
+    
+    if (enteredOtp.length !== 4) {
+      setError('OTP kodu 4 rəqəm olmalıdır.');
+      return;
+    }
 
-    if (enteredOtp === correctOtp) {
-      setError('');
-      onSuccess();
-    } else {
-      setError('Yanlış OTP kodu.');
+    setError('');
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/reset-password/verify-otp`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contact: contact,
+          contactType: contactType,
+          otp: enteredOtp
+        }),
+      });
+
+      if (response.ok) {
+        onSuccess({ contact, contactType });
+      } else {
+        const errorData = await response.text();
+        setError('Yanlış OTP kodu.');
+        console.error('OTP verification failed:', errorData);
+      }
+    } catch (error) {
+      console.error('Error verifying OTP:', error);
+      setError('Şəbəkə xətası. Yenidən cəhd edin.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -99,9 +127,9 @@ const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method }) 
       <button
         className={modalButtonStyles}
         onClick={handleVerifyOtp}
-        disabled={timeLeft === 0}
+        disabled={timeLeft === 0 || isLoading}
       >
-        Davam et
+        {isLoading ? 'Yoxlanılır...' : 'Davam et'}
       </button>
     </BaseModal>
   );
