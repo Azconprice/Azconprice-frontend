@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react'
 import HeaderSection from '../Home/HeaderSection'
-import { FiMenu, FiX, FiSearch } from 'react-icons/fi'
+import { FiMenu } from 'react-icons/fi'
 import { FaChevronDown } from "react-icons/fa";
 import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
@@ -39,8 +39,8 @@ const Navbar = ({ specializations }) => {
   const [activeModal, setActiveModal] = useState(null)
   const [successMessage, setSuccessMessage] = useState('')
   const [resetPasswordData, setResetPasswordData] = useState(null)
-
   const user = getCurrentUser()
+  
 
   const languages = [
     { code: 'az', name: 'AZ' },
@@ -91,13 +91,14 @@ const Navbar = ({ specializations }) => {
   };
 
   const getUserRole = () => {
+    
     if (!user) return "İstifadəçi";
     switch (user.role) {
       case 'User':
         return 'İstifadəçi';
       case 'Company':
         return 'Şirkət';
-      case 'Master':
+      case 'Worker':
         return 'İşçi';
       default:
         return 'İstifadəçi';
@@ -126,7 +127,7 @@ const Navbar = ({ specializations }) => {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024) // 1024px is the lg breakpoint in Tailwind
+      setIsMobile(window.innerWidth < 1024) 
     }
 
     checkMobile()

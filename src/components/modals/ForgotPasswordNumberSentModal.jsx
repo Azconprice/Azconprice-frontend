@@ -67,10 +67,8 @@ const ForgotPasswordNumberSentModal = ({ isOpen, onClose, onBack, onSubmit }) =>
       } else {
         const errorData = await response.text();
         setError('Xəta baş verdi. Yenidən cəhd edin.');
-        console.error('Request OTP failed:', errorData);
       }
     } catch (error) {
-      console.error('Error requesting OTP:', error);
       setError('Şəbəkə xətası. Yenidən cəhd edin.');
     } finally {
       setIsLoading(false);

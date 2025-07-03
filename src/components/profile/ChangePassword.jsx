@@ -80,8 +80,9 @@ const ChangePassword = () => {
       }
 
       await updatePassword({
-        password: passwordData.newPassword,
-        confirmPassword: passwordData.confirmPassword
+        oldPassword: passwordData.currentPassword,
+        newPassword: passwordData.newPassword,
+        confirmNewPassword: passwordData.confirmPassword
       });
 
       setSuccessMessage('Şifrə uğurla yeniləndi!');
@@ -97,7 +98,6 @@ const ChangePassword = () => {
     } catch (err) {
       setError(err.message);
       scrollContainerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
-      console.error('Failed to update password:', err);
     } finally {
       setSaving(false);
     }

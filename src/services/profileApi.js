@@ -90,16 +90,24 @@ export const updateProfile = async (profileData) => {
 
 export const updatePassword = async (passwordData) => {
   try {
-    const endpoint = getProfileEndpoint();
+    const user = getCurrentUser();
+    if (!user || !user.role) {
+      throw new Error('User not authenticated or role not found');
+    }
+
+    const role = user.role.toLowerCase();
+    const endpoint = `${API_BASE_URL}/api/${role}/profile/change-password`;
     const headers = getAuthHeader();
 
-    const formData = new FormData();
-    formData.append('Password', passwordData.password);
-    formData.append('ConfirmPassword', passwordData.confirmPassword);
+    const requestBody = {
+      oldPassword: passwordData.oldPassword,
+      newPassword: passwordData.newPassword,
+      confirmNewPassword: passwordData.confirmNewPassword
+    };
 
-    const response = await axios.patch(endpoint, formData, {
+    const response = await axios.put(endpoint, requestBody, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
         ...headers
       }
     });

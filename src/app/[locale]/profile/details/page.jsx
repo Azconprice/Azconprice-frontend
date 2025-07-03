@@ -41,8 +41,6 @@ async function getProfileData() {
       }
     };
   } catch (error) {
-    console.error('Error fetching profile:', error);
-    
     if (error.response?.status === 401) {
       redirect('/');
     }

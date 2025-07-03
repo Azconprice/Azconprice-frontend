@@ -56,7 +56,7 @@ const Header = ({ title }) => {
         return 'İstifadəçi';
       case 'Company':
         return 'Şirkət';
-      case 'Master':
+      case 'Worker':
         return 'İşçi';
       default:
         return 'İstifadəçi';

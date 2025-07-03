@@ -29,7 +29,7 @@ const Sidebar = () => {
         return 'İstifadəçi';
       case 'Company':
         return 'Şirkət';
-      case 'Master':
+      case 'Worker':
         return 'İşçi';
       default:
         return 'İstifadəçi';
@@ -80,16 +80,18 @@ const Sidebar = () => {
             />
             Müraciətlər
           </Link>
-          <Link
-            href="./products"
-            className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('products') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}
-          >
-            <Package
-              className="w-[24px] h-[24px] shrink-0"
-              color="#94A3B8"
-            />
-            Şirkət məhsulları
-          </Link>
+          {user?.role === 'Company' && (
+            <Link
+              href="./products"
+              className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('products') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}
+            >
+              <Package
+                className="w-[24px] h-[24px] shrink-0"
+                color="#94A3B8"
+              />
+              Şirkət məhsulları
+            </Link>
+          )}
           <Link
             href="./change-password"
             className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('change-password') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}

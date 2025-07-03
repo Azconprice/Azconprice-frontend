@@ -29,13 +29,13 @@ const ProfileDetails = ({ initialData, user }) => {
   useEffect(() => {
     if (initialData) {
       setProfileData({
-        firstName: initialData.firstName || '',
-        lastName: initialData.lastName || '',
-        email: initialData.email || '',
-        address: initialData.address || '',
-        phoneNumber: initialData.phoneNumber || '',
+        firstName: initialData.firstName || initialData.user.firstName || '',
+        lastName: initialData.lastName || initialData.user.lastName || '',
+        email: initialData.email || initialData.user.email || '',
+        address: initialData.address || initialData.user.address || '',
+        phoneNumber: initialData.phoneNumber || initialData.user.phoneNumber || '',
         experience: initialData.experience?.toString() || '',
-        profilePicture: initialData.profilePicture || null
+        profilePicture: initialData.profilePicture || initialData.user.profilePicture || null
       });
       
       if (initialData?.profilePicture) {
@@ -119,7 +119,6 @@ const ProfileDetails = ({ initialData, user }) => {
     } catch (err) {
       setError(err.message);
       scrollContainerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
-      console.error('Failed to update profile:', err);
     } finally {
       setSaving(false);
     }
