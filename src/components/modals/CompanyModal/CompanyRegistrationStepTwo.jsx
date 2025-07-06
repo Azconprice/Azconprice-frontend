@@ -3,7 +3,7 @@ import Select from 'react-select';
 import BaseModal, { modalButtonStyles, modalErrorStyles } from '../BaseModal';
 
 const CompanyRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initialData }) => {
-  const [voen, setVoen] = useState(initialData?.voen || '');
+  const [voenFile, setVoenFile] = useState(initialData?.voenFile || null);
   const [salesCategory, setSalesCategory] = useState(initialData?.salesCategory || null);
   const [error, setError] = useState('');
   const [salesCategoryOptions, setSalesCategoryOptions] = useState([]);
@@ -80,14 +80,19 @@ const CompanyRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initialDa
     })
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setVoenFile(file);
+  };
+
   const handleContinue = () => {
-    if (!voen || !salesCategory) {
+    if (!voenFile || !salesCategory) {
       setError('Bütün xanaları doldurun');
       return;
     }
     setError('');
     onNext({
-      voen,
+      voenFile,
       salesCategory: salesCategory.value
     });
   };
@@ -103,16 +108,22 @@ const CompanyRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initialDa
     >
       <div className="mb-[20px] w-90">
         <div className="relative mb-4">
-        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 z-10">
             <img src="/assets/icons/vöen.svg" alt="icon" className="w-[16px] h-[16px]" />
           </span>
-           <input
-            type="text"
-            placeholder="Vöeninizi əlavə edin"
-            value={voen}
-            onChange={e => setVoen(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 rounded-full bg-[#F3F3F3] text-gray-500 placeholder-gray-400 focus:outline-none"
+          <input
+            type="file"
+            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+            onChange={handleFileChange}
+            className="hidden"
+            id="voen-file-input"
           />
+          <div
+            onClick={() => document.getElementById('voen-file-input').click()}
+            className="w-full pl-10 pr-4 py-2 rounded-full bg-[#F3F3F3] text-gray-500 placeholder-gray-400 focus:outline-none cursor-pointer flex items-center"
+          >
+            {voenFile ? voenFile.name : "Vöeninizi əlavə edin"}
+          </div>
         </div>
         <div className="relative mb-4">
           <span className="absolute text-gray-400 left-4 top-1/2 -translate-y-1/2 z-20">

@@ -43,10 +43,9 @@ const CompanyModals = ({ isOpen, onClose, onSuccess }) => {
       formDataToSend.append('Password', completeData.password)
       formDataToSend.append('ConfirmPassword', completeData.confirmPassword)
       formDataToSend.append('PhoneNumber', completeData.phoneNumber)
-      formDataToSend.append('TaxId', completeData.voen)
+      formDataToSend.append('TaxId', completeData.voenFile)
       formDataToSend.append('Address', completeData.address)
       formDataToSend.append('SalesCategoryId', completeData.salesCategory)
-      // Logo is optional for now, can be added later
       formDataToSend.append('Logo', '')
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/register/company`, {
