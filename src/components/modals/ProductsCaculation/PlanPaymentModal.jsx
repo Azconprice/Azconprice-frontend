@@ -328,55 +328,7 @@ const PlanPaymentModal = ({
             </div>
 
             {/* Ödəniş metodu */}
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">Ödəniş metodu</h3>
-              <div className="flex items-center gap-4 w-full flex-shrink-0">
-                <div className="flex-1 min-w-0">
-                  <input 
-                    type="text" 
-                    placeholder="Kartın 16 rəqəmli kodu" 
-                    value={formData.cardNumber}
-                    onChange={handleCardNumberChange}
-                    className={`w-full text-[14px] px-4 py-2 border rounded-full bg-[#EDE6E6] focus:outline-none focus:ring-2 box-border ${
-                      errors.cardNumber ? 'border-red-500 focus:ring-red-500' : 'focus:ring-orange-500'
-                    }`}
-                  />
-                  {errors.cardNumber && <p className="text-red-500 text-xs mt-1">{errors.cardNumber}</p>}
-                </div>
-                {/* Card icons placeholder - assuming these are in /public */}
-                <div className="flex gap-1">
-                  <img src="/assets/images/Visa.svg" alt="Visa" className="h-[25px]"/>
-                  <img src="/assets/images/Mastercard.svg" alt="Mastercard" className="h-[25px]"/>
-                  <img src="/assets/images/Maestro.svg" alt="Maestro" className="h-[25px]"/>
-                </div>
-              </div>
-              <div className="flex flex-row gap-4 mt-4 w-full flex-shrink-0">
-                <div className="w-full md:w-1/2">
-                  <input 
-                    type="text" 
-                    placeholder="MM/YY" 
-                    value={formData.expiryDate}
-                    onChange={handleExpiryChange}
-                    className={`w-full text-[14px] px-4 py-2 border rounded-full bg-[#EDE6E6] focus:outline-none focus:ring-2 box-border ${
-                      errors.expiryDate ? 'border-red-500 focus:ring-red-500' : 'focus:ring-orange-500'
-                    }`}
-                  />
-                  {errors.expiryDate && <p className="text-red-500 text-xs mt-1">{errors.expiryDate}</p>}
-                </div>
-                <div className="w-full md:w-1/2">
-                  <input 
-                    type="text" 
-                    placeholder="CVC" 
-                    value={formData.cvc}
-                    onChange={handleCvcChange}
-                    className={`w-full text-[14px] px-4 py-2 border rounded-full bg-[#EDE6E6] focus:outline-none focus:ring-2 box-border ${
-                      errors.cvc ? 'border-red-500 focus:ring-red-500' : 'focus:ring-orange-500'
-                    }`}
-                  />
-                  {errors.cvc && <p className="text-red-500 text-xs mt-1">{errors.cvc}</p>}
-                </div>
-              </div>
-            </div>
+          
 
             {/* Checkbox */}
             <div className="flex items-center mb-6">

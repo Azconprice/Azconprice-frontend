@@ -5,12 +5,15 @@ import { FiArrowRight } from 'react-icons/fi'
 import VideoModal from './VideoModal'
 import SendFileModal from '../modals/ProductsCaculation/SendFileModal'
 import PlanPaymentModal from '../modals/ProductsCaculation/PlanPaymentModal'
+import ProductReviewModal from '../modals/ProductsCaculation/ProductReviewModal'
 
 const Guide = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSendFileModalOpen, setIsSendFileModalOpen] = useState(false);
   const [isPlanPaymentModalOpen, setIsPlanPaymentModalOpen] = useState(false);
+  const [isProductReviewModalOpen, setIsProductReviewModalOpen] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [productData, setProductData] = useState([]);
   
   const [selectedPlan, setSelectedPlan] = useState('');
   const [formData, setFormData] = useState({
@@ -29,6 +32,15 @@ const Guide = () => {
   const closeSendFileModal = () => setIsSendFileModalOpen(false);
   const openPlanPaymentModal = () => setIsPlanPaymentModalOpen(true);
   const closePlanPaymentModal = () => setIsPlanPaymentModalOpen(false);
+  const openProductReviewModal = (data) => {
+    setProductData(data);
+    setIsProductReviewModalOpen(true);
+  };
+  const closeProductReviewModal = () => setIsProductReviewModalOpen(false);
+  const handleProductReviewContinue = () => {
+    setIsProductReviewModalOpen(false);
+    setIsPlanPaymentModalOpen(true);
+  };
 
   return (
     <section id='calculate-products' className="relative flex flex-col justify-center py-16">
@@ -57,6 +69,7 @@ const Guide = () => {
             uploadedFiles={uploadedFiles}
             setUploadedFiles={setUploadedFiles}
             onOpenPlanPayment={openPlanPaymentModal}
+            onOpenProductReview={openProductReviewModal}
           />
         )}
         {isPlanPaymentModalOpen && (
@@ -66,6 +79,13 @@ const Guide = () => {
             setSelectedPlan={setSelectedPlan}
             formData={formData}
             setFormData={setFormData}
+          />
+        )}
+        {isProductReviewModalOpen && (
+          <ProductReviewModal 
+            onClose={closeProductReviewModal}
+            onContinue={handleProductReviewContinue}
+            productData={productData}
           />
         )}
         <div className='flex items-center justify-center' >
