@@ -69,7 +69,7 @@ const Header = ({ title }) => {
       <div className="flex items-center gap-[16px]">
         <div className="relative" ref={dropdownRef}>
           <div 
-            className="flex items-center justify-between w-[177px] cursor-pointer"
+            className="flex items-center justify-between cursor-pointer"
             onClick={handleDropdownToggle}
           >
             <div className="flex items-center gap-[12px]">
@@ -81,7 +81,7 @@ const Header = ({ title }) => {
                 className="rounded-full"
               />
               <div>
-                <p className="text-[12px] font-[700] text-[#1E293B]">{getUserDisplayName()}</p>
+                <p className="text-[14px] font-[700] text-[#1E293B] uppercase">{getUserDisplayName()}</p>
                 <p className="text-[10px] font-[500] text-[#1018278F]">{getUserRole()}</p>
               </div>
             </div>

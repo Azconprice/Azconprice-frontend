@@ -185,7 +185,7 @@ const Navbar = ({ specializations }) => {
                       className="rounded-full"
                     />
                     <div>
-                      <p className="text-[12px] font-[700] text-[#1E293B]">{getUserDisplayName()}</p>
+                      <p className="text-[14px] font-[700] text-[#1E293B] uppercase">{getUserDisplayName()}</p>
                       <p className="text-[10px] font-[500] text-[#1018278F]">{getUserRole()}</p>
                     </div>
                   </div>

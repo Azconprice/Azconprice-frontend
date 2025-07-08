@@ -97,8 +97,8 @@ const SendFileModal = ({ onClose, uploadedFiles, setUploadedFiles, onOpenPlanPay
 
   const handleDownloadTemplate = () => {
     const link = document.createElement('a');
-    link.href = '/shablon (1).xlsx';
-    link.download = 'shablon (1).xlsx';
+    link.href = '/shablon.xlsx';
+    link.download = 'shablon.xlsx';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -122,7 +122,7 @@ const SendFileModal = ({ onClose, uploadedFiles, setUploadedFiles, onOpenPlanPay
         }
       });
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Excel/upload`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Excel/upload?IsSimple=true`, {
         method: 'POST',
         body: formData,
       });
