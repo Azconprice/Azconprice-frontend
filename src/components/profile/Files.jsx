@@ -100,10 +100,9 @@ const Files = () => {
                                     <thead>
                                         <tr className="border-b border-[#E5E7EB]">
                                             <th className="text-left py-[12px] px-[8px] text-[#6B7280] font-[500] text-[12px]">ID</th>
-                                            <th className="text-left py-[12px] px-[8px] text-[#6B7280] font-[500] text-[12px]">Fayl adı</th>
+                                            <th className="text-left py-[12px] px-[8px] text-[#6B7280] font-[500] text-[12px]">Fayllar</th>
                                             <th className="text-left py-[12px] px-[8px] text-[#6B7280] font-[500] text-[12px]">Ölçüsü</th>
                                             <th className="text-left py-[12px] px-[8px] text-[#6B7280] font-[500] text-[12px]">Tarix</th>
-                                            <th className="text-left py-[12px] px-[8px] text-[#6B7280] font-[500] text-[12px]">Status</th>
                                             <th className="text-left py-[12px] px-[8px] text-[#6B7280] font-[500] text-[12px]"></th>
                                         </tr>
                                     </thead>
@@ -114,11 +113,7 @@ const Files = () => {
                                                 <td className="py-[12px] px-[8px] text-[#374151] font-[500] text-[12px]">Lahıya.xls</td>
                                                 <td className="py-[12px] px-[8px] text-[#374151] font-[500] text-[12px]">216 Kb</td>
                                                 <td className="py-[12px] px-[8px] text-[#374151] font-[500] text-[12px]">01.02.2024</td>
-                                                <td className="py-[12px] px-[8px]">
-                                                    <span className="bg-[#101827] text-white px-[12px] py-[4px] rounded-full text-[10px] font-[500]">
-                                                        Hazırdır
-                                                    </span>
-                                                </td>
+                                                
                                                 <td className="py-[12px] px-[8px]">
                                                     <button className="text-[#374151] font-[500] text-[12px] hover:text-[#F37321] bg-[#F0EEEE] transition cursor-pointer rounded-full px-[12px] py-[4px]">
                                                         Yüklə

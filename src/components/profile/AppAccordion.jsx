@@ -4,7 +4,6 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 const AppAccordion = ({
   type,
   date,
-  status,
   content,
   isExpandedByDefault = false,
 }) => {
@@ -17,12 +16,12 @@ const AppAccordion = ({
   return (
     <div
       className="bg-white rounded-[12px] shadow-sm border border-[#E5E7EB] mb-[12px] overflow-hidden"
-      onClick={toggleAccordion} // Bu əlavə etməklə, bütün section-a tıklananda açılır
+      onClick={toggleAccordion}
     >
       <div className="p-[16px]">
         <div className="flex items-center justify-between cursor-pointer">
           <div className="flex-1 ">
-            <div className="grid grid-cols-3 gap-[20px] items-center">
+            <div className="grid grid-cols-2 gap-[20px] items-center">
               <div>
                 <p className="text-[#6B7280] text-[12px] font-[500] mb-[4px]">
                   Müraciət tipi
@@ -35,19 +34,11 @@ const AppAccordion = ({
                 </p>
                 <p className="text-[#374151] text-[14px] font-[600]">{date}</p>
               </div>
-              <div>
-                <p className="text-[#6B7280] text-[12px] font-[500] mb-[4px]">
-                  Status
-                </p>
-                <span className="bg-[#374151] text-white px-[16px] py-[6px] rounded-full text-[12px] font-[500]">
-                  {status}
-                </span>
-              </div>
             </div>
           </div>
 
           <button
-            onClick={(e) => { e.stopPropagation(); setIsExpanded(!isExpanded); }} // İkon tıklaması ilə də açılma
+            onClick={(e) => { e.stopPropagation(); setIsExpanded(!isExpanded); }}
             className="ml-[20px] p-[8px] hover:bg-[#F3F4F6] rounded-full transition-colors cursor-pointer"
           >
             <ChevronDown size={20} color="#6B7280" className={`${isExpanded ? 'rotate-180' : ''} transition`} />

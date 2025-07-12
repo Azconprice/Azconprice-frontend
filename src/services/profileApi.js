@@ -152,4 +152,5 @@ export const deleteProfile = async () => {
       throw new Error('Failed to delete profile.');
     }
   }
-}; 
+};
+
