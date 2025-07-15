@@ -140,14 +140,14 @@ const Navbar = ({ specializations }) => {
     <div className='pl-[15px] pr-[15px] md:pr-[10px] md:pl-[10px]'>
       
   
-      <section className="relative  w-full mt-[40px] mb-[120px] mx-auto flex flex-col ">
+      <section className="relative  w-full mt-[20px] mb-[120px] mx-auto flex flex-col ">
         <Image
           src={isMobile ? HeaderBackgroundMobile : HeaderBackground}
           alt="Background Shape"
           className="absolute z-0 w-full h-full"
         />
-        <div className='relative z-10 p-[20px] justify-between pr-0 w-full flex flex-row gap-[30px]'>
-          <div className='flex flex-row items-center w-[70%] gap-[30px]'>
+        <div className='relative z-10 pt-[10px] pb-[20px] pl-[20px]  justify-between pr-0 w-full flex flex-row gap-[30px]'>
+          <div className='flex flex-row items-center w-[70%] gap-[30px] md:pl-12 pl-0'>
             <div className='cursor-pointer'>
               <Link href="/"> 
               <img src="/assets/images/logo.svg" alt="logo" className='w-[91px] h-[91px]'/>
@@ -160,7 +160,7 @@ const Navbar = ({ specializations }) => {
              <Link to='contact' smooth={true} duration={1000} offset={-100}><h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Contact us')}</h3></Link>
             </div>
           </div>
-          <div className='hidden lg:flex flex-row justify-between gap-[10px] xl:gap-[20px] items-center mt-[-50px] mr-[10px] 2xl:mr-[60px]'>
+          <div className='hidden lg:flex flex-row justify-between gap-[10px] xl:gap-[20px] items-center mt-[-10px] mr-[10px] 2xl:mr-[60px]'>
             {!user ? (
               <>
                 <div>

@@ -63,7 +63,7 @@ const Faq = () => {
   <img
     src="./assets/images/Vector (4).svg"
     alt="arrow icon"
-    className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`}
+    className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-60' : ''}`}
   />
 </span>
 
