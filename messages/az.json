@@ -29,5 +29,15 @@
         "CompanyName":"AzConPrice",
         "companydescription1":"Təmir-tikinti, layihələndirmə və təchizat sahələrində mal-materialların və iş həcmlərinin real bazar qiymətləri əsasında təqdim olunduğu ilk peşəkar platformadır.",
         "companydescription2":"Məqsədimiz hər kəs üçün real bazar qiymətlərinə çıxışı asanlaşdırmaq və bu yolla Təmir-tikinti, layihələndirmə və təchizat sahələrində  şəffaflığı və dəqiqliyi təmin etməkdir."
+    },
+    "OurSollution": {
+        "Title": "Həllərimiz",
+        "leftTopText": "Alıcılar arasında qazandığımız rəğbət sayəsində şirkətimiz bazarda qabaqcıl mövqe tutmağa müvəffəq olmuşdur.",
+        "leftBottomText": "1 addımla işinizi bizim proqrama həvalə edin.",
+        "rightTopText": "Real bazar qiymətləri\nTemir-tikinti, layihələndirmə və təchizat sahələrində işlərin, mal-materialların və xidmətlərin cari qiymət məlumatları.",
+        "rightBottomText": "Alıcılar arasında qazandığımız rəğbət.🏆" ,
+        "bottomBar1": "İşlərinizi bizimlə qiymətləndirin",
+        "bottomBar2": "Güvən və etibar"
+
     }
 }

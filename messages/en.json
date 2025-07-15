@@ -29,6 +29,16 @@
     "CompanyName": "AzConPrice",
     "companydescription1": "It is the first professional platform where materials and work volumes in repair, construction, design, and supply fields are presented based on real market prices.",
     "companydescription2": "Our goal is to make real market prices easily accessible to everyone and thereby ensure transparency and accuracy in the fields of repair, construction, design, and supply."
+},
+"OurSollution": {
+    "Title": "Our Solutions",
+    "leftTopText": "Thanks to the trust we’ve earned from buyers, our company has succeeded in taking a leading position in the market.",
+    "leftBottomText": "Delegate your work to our program in just one step.",
+    "rightTopText": "Real market prices\nCurrent pricing information for works, materials, and services in construction, design, and supply sectors.",
+    "rightBottomText": "The trust we’ve earned from buyers. 🏆",
+    "bottomBar1": "Evaluate your work with us",
+    "bottomBar2": "Trust and reliability"
 }
+
 
 }
