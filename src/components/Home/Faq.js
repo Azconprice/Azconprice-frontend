@@ -59,13 +59,14 @@ const Faq = () => {
                     <div className={`font-semibold text-[ 12px] md:text-[20px] w-[80%] ${isOpen ? 'text-white' : 'text-[#181D24]'}`}>
                         {faq.question}
                     </div>
-                    <span className="flex items-center justify-center w-10 h-10 bg-white rounded-full">
-                        <img
-                            src={isOpen ? './assets/images/Vector (5).svg' : './assets/images/Vector (4).svg'}
-                            alt="arrow icon"
-                            className="w-4 h-4"
-                        />
-                    </span>
+                   <span className="flex items-center justify-center w-10 h-10 bg-white rounded-full">
+  <img
+    src="./assets/images/Vector (4).svg"
+    alt="arrow icon"
+    className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`}
+  />
+</span>
+
                 </button>
                 {/* Animated answer section (if open) */}
                 <div
