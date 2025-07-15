@@ -3,6 +3,8 @@
 import { Check, Info, Star, X } from "lucide-react";
 import React, { useState, useRef } from "react";
 import { updatePassword } from '@/services/profileApi';
+import viewIcon from '@/assets/icons/view.png';
+import hideIcon from '@/assets/icons/hide.png';
 
 const ChangePassword = () => {
   const [passwordData, setPasswordData] = useState({
@@ -15,6 +17,9 @@ const ChangePassword = () => {
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const scrollContainerRef = useRef(null);
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const validatePassword = (password) => {
     if (password.length < 8) {
@@ -157,55 +162,91 @@ const ChangePassword = () => {
         )}
 
         <div className="max-w-[800px]">
-          <div className="w-full flex justify-between mb-[24px] items-center">
+          <div className="w-full flex justify-between mb-[24px] items-center relative">
             <label
               htmlFor="password"
               className="font-[700] text-[16px] text-[#1E293B]"
             >
               Cari şifrə
             </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={passwordData.currentPassword}
-              onChange={(e) => handleInputChange('currentPassword', e.target.value)}
-              className="md:w-[520px] w-full border-1 border-[#CBD5E1] rounded-full p-[12px] text-[16px] font-[500] text-[#475569]"
-            />
+            <div className="relative w-full md:w-[520px]">
+              <input
+                type={showCurrentPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                value={passwordData.currentPassword}
+                onChange={(e) => handleInputChange('currentPassword', e.target.value)}
+                className="w-full border-1 border-[#CBD5E1] rounded-full p-[12px] text-[16px] font-[500] text-[#475569] pr-12"
+              />
+              <span
+                className="absolute right-4 top-[20px] -translate-y-1/2 cursor-pointer"
+                onClick={() => setShowCurrentPassword((prev) => !prev)}
+              >
+                <img
+                  src={showCurrentPassword ? viewIcon.src : hideIcon.src}
+                  alt={showCurrentPassword ? "Şifrəni gizlət" : "Şifrəni göstər"}
+                  className="w-5 h-5"
+                />
+              </span>
+            </div>
           </div>
 
-          <div className="w-full flex justify-between mb-[24px] items-center">
+          <div className="w-full flex justify-between mb-[24px] items-center relative">
             <label
               htmlFor="newpassword"
               className="font-[700] text-[16px] text-[#1E293B]"
             >
               Yeni şifrə
             </label>
-            <input
-              type="password"
-              name="newpassword"
-              id="newpassword"
-              value={passwordData.newPassword}
-              onChange={(e) => handleInputChange('newPassword', e.target.value)}
-              className="md:w-[520px] w-full border-1 border-[#CBD5E1] rounded-full p-[12px] text-[16px] font-[500] text-[#475569]"
-            />
+            <div className="relative w-full md:w-[520px]">
+              <input
+                type={showNewPassword ? "text" : "password"}
+                name="newpassword"
+                id="newpassword"
+                value={passwordData.newPassword}
+                onChange={(e) => handleInputChange('newPassword', e.target.value)}
+                className="w-full border-1 border-[#CBD5E1] rounded-full p-[12px] text-[16px] font-[500] text-[#475569] pr-12"
+              />
+              <span
+                className="absolute right-4 top-[20px] -translate-y-1/2 cursor-pointer"
+                onClick={() => setShowNewPassword((prev) => !prev)}
+              >
+                <img
+                  src={showNewPassword ? viewIcon.src : hideIcon.src}
+                  alt={showNewPassword ? "Şifrəni gizlət" : "Şifrəni göstər"}
+                  className="w-5 h-5"
+                />
+              </span>
+            </div>
           </div>
 
-          <div className="w-full flex justify-between mb-[24px] items-center">
+          <div className="w-full flex justify-between mb-[24px] items-center relative">
             <label
               htmlFor="newpasswordagain"
               className="font-[700] text-[16px] text-[#1E293B]"
             >
               Yeni şifrə təkrarı
             </label>
-            <input
-              type="password"
-              name="newpasswordagain"
-              id="newpasswordagain"
-              value={passwordData.confirmPassword}
-              onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-              className="md:w-[520px] w-full border-1 border-[#CBD5E1] rounded-full p-[12px] text-[16px] font-[500] text-[#475569]"
-            />
+            <div className="relative w-full md:w-[520px]">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                name="newpasswordagain"
+                id="newpasswordagain"
+                value={passwordData.confirmPassword}
+                onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
+                className="w-full border-1 border-[#CBD5E1] rounded-full p-[12px] text-[16px] font-[500] text-[#475569] pr-12"
+              />
+              <span
+                className="absolute right-4 top-[20px] -translate-y-1/2 cursor-pointer"
+                onClick={() => setShowConfirmPassword((prev) => !prev)}
+              >
+                <img
+                  src={showConfirmPassword ? viewIcon.src : hideIcon.src}
+                  alt={showConfirmPassword ? "Şifrəni gizlət" : "Şifrəni göstər"}
+                  className="w-5 h-5"
+                />
+              </span>
+            </div>
           </div>
         </div>
 

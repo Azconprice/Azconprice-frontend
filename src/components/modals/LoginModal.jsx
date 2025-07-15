@@ -6,6 +6,8 @@ import BaseModal, {
   modalErrorStyles,
 } from "./BaseModal";
 import { useRouter } from "next/navigation";
+import viewIcon from "@/assets/icons/view.png";
+import hideIcon from "@/assets/icons/hide.png";
 
 const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
   const [email, setEmail] = useState("");
@@ -16,6 +18,7 @@ const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
   const [passwordError, setPasswordError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
   const clearErrors = () => {
     setError("");
     setEmailError("");
@@ -135,9 +138,9 @@ const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
           <div className="text-red-500 text-sm mt-1 mb-2">{emailError}</div>
         )}
       </div>
-      <div className="w-full">
+      <div className="w-full relative">
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Şifrə"
           value={password}
           onChange={(e) => {
@@ -149,6 +152,16 @@ const LoginModal = ({ isOpen, onClose, onForgotPassword, onSuccess }) => {
           }`}
           required
         />
+        <span
+          className="absolute right-4  top-[20px]  -translate-y-1/2 cursor-pointer"
+          onClick={() => setShowPassword((prev) => !prev)}
+        >
+          <img
+            src={showPassword ? viewIcon.src : hideIcon.src}
+            alt={showPassword ? "Şifrəni gizlət" : "Şifrəni göstər"}
+            className="w-5 h-5"
+          />
+        </span>
         {passwordError && (
           <div className="text-red-500 text-sm mt-1 mb-2">{passwordError}</div>
         )}

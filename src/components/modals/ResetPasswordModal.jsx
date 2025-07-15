@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from './BaseModal';
+import viewIcon from "@/assets/icons/view.png";
+import hideIcon from "@/assets/icons/hide.png";
 
 const ResetPasswordModal = ({ isOpen, onClose, onBack, onSuccess, contact, contactType }) => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleResetPassword = async () => {
     if (newPassword !== confirmPassword) {
@@ -59,22 +63,46 @@ const ResetPasswordModal = ({ isOpen, onClose, onBack, onSuccess, contact, conta
       title="Yeni şifrə təyin et"
     >
       <div className='mt-[30px] mb-[8px]'>
-        <input
-          type="password"
-          placeholder="Yeni şifrə"
-          value={newPassword}
-          onChange={e => setNewPassword(e.target.value)}
-          className={modalInputStyles}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Şifrəni təkrarlayın"
-          value={confirmPassword}
-          onChange={e => setConfirmPassword(e.target.value)}
-          className={modalInputStyles}
-          required
-        />
+        <div className="relative mb-3">
+          <input
+            type={showNewPassword ? "text" : "password"}
+            placeholder="Yeni şifrə"
+            value={newPassword}
+            onChange={e => setNewPassword(e.target.value)}
+            className={modalInputStyles}
+            required
+          />
+          <span
+            className="absolute right-4  top-[20px]  -translate-y-1/2 cursor-pointer"
+            onClick={() => setShowNewPassword((prev) => !prev)}
+          >
+            <img
+              src={showNewPassword ? viewIcon.src : hideIcon.src}
+              alt={showNewPassword ? "Şifrəni gizlət" : "Şifrəni göstər"}
+              className="w-5 h-5"
+            />
+          </span>
+        </div>
+        <div className="relative">
+          <input
+            type={showConfirmPassword ? "text" : "password"}
+            placeholder="Şifrəni təkrarlayın"
+            value={confirmPassword}
+            onChange={e => setConfirmPassword(e.target.value)}
+            className={modalInputStyles}
+            required
+          />
+          <span
+            className="absolute right-4  top-[20px] -translate-y-1/2 cursor-pointer"
+            onClick={() => setShowConfirmPassword((prev) => !prev)}
+          >
+            <img
+              src={showConfirmPassword ? viewIcon.src : hideIcon.src}
+              alt={showConfirmPassword ? "Şifrəni gizlət" : "Şifrəni göstər"}
+              className="w-5 h-5"
+            />
+          </span>
+        </div>
       </div>
       {error && <div className={modalErrorStyles}>{error}</div>}
       <button
