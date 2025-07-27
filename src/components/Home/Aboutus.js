@@ -5,7 +5,6 @@ const Aboutus = () => {
     const t = useTranslations('AboutUs');
     return (
         <section id="about" className="container py-1 mx-auto mb-[50px] about-us">
-            <h1 className="text-[32px] sm:text-[36px] md:text-[48px] font-extrabold text-center mb-5 text-[#111827]">{t('About us')}</h1>
             <div className="flex flex-col-reverse lg:flex-row items-center md:items-center gap-[10px] lg:gap-[60px]">
                 {/* Left Stats */}
                 <div className='flex flex-row gap-[20px] lg:gap-[30px] items-center w-full lg:w-[50%]'>
@@ -31,7 +30,8 @@ const Aboutus = () => {
                 </div>
                 {/* Right Info */}
                 <div className="flex flex-col justify-center flex-1 text-center lg:text-left">
-                    <h2 className="text-[32px] md:text-3xl font-bold text-orange-500 mb-4">{t('CompanyName')}</h2>
+                <h1 className="text-[32px] sm:text-[36px] md:text-[48px] font-extrabold text-center mb-5 text-[#111827]">{t('About us')}</h1>
+
                     <p className="text-[#111827] text-[16px] font-medium mb-2 w-full ">
                         {t('companydescription1')}
                         </p>

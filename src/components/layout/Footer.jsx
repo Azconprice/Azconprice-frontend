@@ -7,7 +7,7 @@ const Footer = () => {
   const t = useTranslations('footer');
 
   return (
-    <footer className="bg-[#0f1727] w-full py-10 px-6 text-white">
+    <footer className="bg-[#0f1727] w-full py-10 px-6 text-white mt-[30px]">
       <div className="relative flex flex-col items-center justify-between max-w-6xl gap-[30px] mx-auto md:flex-row">
         
        
