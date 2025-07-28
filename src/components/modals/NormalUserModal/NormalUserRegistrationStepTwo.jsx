@@ -10,14 +10,48 @@ const NormalUserRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initia
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const validatePassword = (password) => {
+    const requirements = {
+      length: password.length >= 8,
+      uppercase: /[A-Z]/.test(password),
+      lowercase: /[a-z]/.test(password),
+      number: /\d/.test(password),
+      special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+    };
+    return requirements;
+  };
+
+  const passwordRequirements = validatePassword(password);
+
   const handleContinue = () => {
     if (!email || !password || !confirmPassword) {
       setError('Bütün xanaları doldurun');
       return;
     }
 
-    if (password.length < 8) {
-      setError('Şifrə ən az 8 simvol olmalıdır');
+    if (!passwordRequirements.length) {
+      setError('Şifrə ən az 8 simvol olmalıdır'); 
+      return;
+    }
+
+    if (!passwordRequirements.uppercase) {
+      setError('Şifrədə ən az 1 böyük hərf (A-Z) olmalıdır');
+      return;
+    }
+
+    if (!passwordRequirements.lowercase) {
+      setError('Şifrədə ən az 1 kiçik hərf (a-z) olmalıdır');
+      return;
+    }
+
+    if (!passwordRequirements.number) {
+      setError('Şifrədə ən az 1 rəqəm (0-9) olmalıdır');
+      return;
+    }
+
+    if (!passwordRequirements.special) {
+      setError('Şifrədə ən az 1 xüsusi simvol (!@#$%^&*) olmalıdır');
       return;
     }
 
@@ -86,6 +120,32 @@ const NormalUserRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initia
             />
           </span>
         </div>
+
+        {password && (
+          <div className="mb-4 text-xs space-y-1">
+            <div className={`flex items-center space-x-2 ${passwordRequirements.length ? 'text-green-600' : 'text-red-500'}`}>
+              <span>{passwordRequirements.length ? '✓' : '✗'}</span>
+              <span>Ən az 8 simvol</span>
+            </div>
+            <div className={`flex items-center space-x-2 ${passwordRequirements.uppercase ? 'text-green-600' : 'text-red-500'}`}>
+              <span>{passwordRequirements.uppercase ? '✓' : '✗'}</span>
+              <span>Böyük hərf (A-Z)</span>
+            </div>
+            <div className={`flex items-center space-x-2 ${passwordRequirements.lowercase ? 'text-green-600' : 'text-red-500'}`}>
+              <span>{passwordRequirements.lowercase ? '✓' : '✗'}</span>
+              <span>Kiçik hərf (a-z)</span>
+            </div>
+            <div className={`flex items-center space-x-2 ${passwordRequirements.number ? 'text-green-600' : 'text-red-500'}`}>
+              <span>{passwordRequirements.number ? '✓' : '✗'}</span>
+              <span>Rəqəm (0-9)</span>
+            </div>
+            <div className={`flex items-center space-x-2 ${passwordRequirements.special ? 'text-green-600' : 'text-red-500'}`}>
+              <span>{passwordRequirements.special ? '✓' : '✗'}</span>
+              <span>Xüsusi simvol (!@#$%^&*)</span>
+            </div>
+          </div>
+        )}
+
         <div className="relative mb-4 ">
           <span className="absolute text-gray-400 -translate-y-1/2 left-4 top-1/2">
             <img src="/assets/icons/passwordicon.svg" alt="icon" className="w-[16px] h-[16px]" />
@@ -115,7 +175,7 @@ const NormalUserRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initia
         className={modalButtonStyles}
         onClick={handleContinue}
       >
-        {isLoading ? <div className="flex items-center justify-center">     
+        {isLoading ? <div className="flex items-center justify-center">
           <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
         </div> : 'Davam et'}
       </button>

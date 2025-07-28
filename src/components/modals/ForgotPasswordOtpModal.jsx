@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from './BaseModal';
 
 const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method, contact, contactType }) => {
-  const [otp, setOtp] = useState(['', '', '', '']);
+  const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [error, setError] = useState('');
   const [timeLeft, setTimeLeft] = useState(600);
   const [isLoading, setIsLoading] = useState(false);
@@ -10,7 +10,7 @@ const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method, co
   useEffect(() => {
     let timer;
     if (isOpen) {
-      setOtp(['', '', '', '']);
+      setOtp(['', '', '', '', '', '']);
       setError('');
       setTimeLeft(600);
       timer = setInterval(() => {
@@ -41,7 +41,7 @@ const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method, co
       newOtp[index] = value;
       setOtp(newOtp);
 
-      if (value !== '' && index < 3) {
+      if (value !== '' && index < 5) {
         document.getElementById(`otp-input-${index + 1}`).focus();
       }
     } else if (value === '' && index > 0) {
@@ -51,9 +51,9 @@ const ForgotPasswordOtpModal = ({ isOpen, onClose, onBack, onSuccess, method, co
 
   const handleVerifyOtp = async () => {
     const enteredOtp = otp.join('');
-    
-    if (enteredOtp.length !== 4) {
-      setError('OTP kodu 4 rəqəm olmalıdır.');
+
+    if (enteredOtp.length !== 6) {
+      setError('OTP kodu 6 rəqəm olmalıdır.');
       return;
     }
 

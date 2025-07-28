@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from './BaseModal';
 
 const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, method }) => {
-  const [otp, setOtp] = useState(['', '', '', '']);
+  const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [error, setError] = useState('');
   const [timeLeft, setTimeLeft] = useState(600);
 
   useEffect(() => {
     let timer;
     if (isOpen) {
-      setOtp(['', '', '', '']);
+      setOtp(['', '', '', '', '', '']);
       setError('');
       setTimeLeft(600);
       timer = setInterval(() => {
@@ -34,7 +34,7 @@ const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, method }) => {
       newOtp[index] = value;
       setOtp(newOtp);
 
-      if (value !== '' && index < 3) {
+      if (value !== '' && index < 5) {
         document.getElementById(`otp-input-${index + 1}`).focus();
       }
     } else if (value === '' && index > 0) {
