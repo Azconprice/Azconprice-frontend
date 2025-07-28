@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from './BaseModal';
 
-const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, method }) => {
+const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, initialData }) => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [error, setError] = useState('');
   const [timeLeft, setTimeLeft] = useState(600);
@@ -48,7 +48,7 @@ const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, method }) => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/otp-verify`, {
         method: 'POST',
         body: JSON.stringify({
-          phoneNumber: initialData.phoneNumber,
+          phoneNumber: `+994${initialData.phoneNumber}`,
           code: enteredOtp
         }),
         headers: {
@@ -56,7 +56,9 @@ const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, method }) => {
         }
 
       });
-      onSuccess();
+      if (res.ok) {
+        onSuccess();
+      }
     }
     catch (error) {
       console.error(error);
