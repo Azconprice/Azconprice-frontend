@@ -9,13 +9,7 @@
         "Register": "Qeydiyyat"
     },
     "footer": {
-        "Phone": "Əlaqə nömrəsi",
-        "Phone type": "Mobil/Whatsapp",
-        "Adress": "Ünvan",
-        "Get news from us": "Bizdən xəbər al",
-        "News decription": "Ən son yenilikləri əldə etmək üçün bizə abunə olun!",
-        "Location":"Bakı, Caspian Plaza, C.Cabbarlı 44.",
-        "Copyright footer":"AzConPrice. Bütün hüquqlar qorunur"
+          "Contact":"ƏLAQƏ"
     },
     "HeaderSection":{
         "Your construction": "Inşaatınızın",
@@ -42,5 +36,13 @@
     },
     "OurPartners": {
         "OurPartners": "Partnyorlarımız"
+    },
+    "profilesidebar":{
+        "Personal cabinet": "Şəxsi kabinet",
+        "Applications": "Müraciətlər",
+        "Files": "Göndərilən fayllar",
+        "Products": "Məhsullar",
+        "Company": "Şirkət",
+        "Security": "Təhlükəsizlik"
     }
 }

@@ -7,10 +7,12 @@ import profilePhoto from "@/assets/images/testuser.png";
 import { usePathname } from "next/navigation";
 import { getCurrentUser } from "@/utils/auth";
 import { logoutUser } from "@/utils/logout";
+import { useTranslations } from 'next-intl';
 
 const Sidebar = () => {
   const pathname = usePathname();
   const user = getCurrentUser();
+  const t = useTranslations('profilesidebar');
 
   const getUserDisplayName = () => {
     if (!user) return "İstifadəçi";
@@ -53,16 +55,9 @@ const Sidebar = () => {
             className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('details') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}
           >
             <Home className="w-[24px] h-[24px] shrink-0" color="#94A3B8" />
-            Şəxsi kabinet
+           {t('Personal cabinet')}
           </Link>
-          <Link
-            href="./files"
-            className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('files') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}
-          >
-            <List className="w-[24px] h-[24px] shrink-0" color="#94A3B8" />
-            Fayllar
-          </Link>
-          <Link
+           <Link
             href="./applications"
             className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('applications') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}
           >
@@ -70,8 +65,16 @@ const Sidebar = () => {
               className="w-[24px] h-[24px] shrink-0"
               color="#94A3B8"
             />
-            Müraciətlər
+           {t('Files')}
           </Link>
+          <Link
+            href="./files"
+            className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('files') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}
+          >
+            <List className="w-[24px] h-[24px] shrink-0" color="#94A3B8" />
+             {t('Applications')}
+          </Link>
+         
           {user?.role === 'Company' && (
             <Link
               href="./products"
@@ -81,7 +84,7 @@ const Sidebar = () => {
                 className="w-[24px] h-[24px] shrink-0"
                 color="#94A3B8"
               />
-              Şirkət məhsulları
+              {t('Files')}
             </Link>
           )}
           <Link
@@ -92,7 +95,7 @@ const Sidebar = () => {
               className="w-[24px] h-[24px] shrink-0 rotate-45"
               color="#94A3B8"
             />
-            Təhlükəsizlik
+                 {t('Security')}
           </Link>
         </div>
       </div>

@@ -9,14 +9,16 @@
         "Register": "Регистрация"
     },
     "footer": {
-        "Phone": "Контактный номер",
-        "Phone type": "Телефон/WhatsApp",
-        "Adress": "Адрес",
-        "Get news from us": "Получать новости от нас",
-         "News decription": "Подпишитесь на нас, чтобы получать последние обновления!",
-         "Location": "Баку, Каспиан Плаза, Дж. Джаббарлы 44.",
-         "Copyright footer": "AzConPrice. Все права защищены"
+          "Contact":"Контакт"
     },
+    "profilesidebar": {
+    "Personal cabinet": "Личный кабинет",
+    "Applications": "Заявки",
+    "Files": "Отправленные файлы",
+    "Products": "Продукты",
+    "Company": "Компания",
+    "Security": "Безопасность"
+},
      "HeaderSection":{
         "Your construction": "Ваше строительство",
         "Strong with us": "Сильнее с нами",

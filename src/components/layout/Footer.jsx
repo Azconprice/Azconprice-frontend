@@ -12,7 +12,7 @@ const Footer = () => {
         
        
         <div className="mt-10 text-center md:text-left md:mt-0">
-          <p className="font-bold uppercase text-[19px]">Əlaqə</p>
+          <p className="font-bold uppercase text-[19px]">{t('Contact')}</p>
           <p className="text-[16px] font-semibold">+994 51 644 2982</p>
           <p className="text-[16px] font-semibold">azconprice@gmail.com</p>
         </div>

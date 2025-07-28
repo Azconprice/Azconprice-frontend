@@ -9,14 +9,16 @@
         "Register": "Register"
     },
     "footer": {
-        "Phone": "Contact Number",
-        "Phone type": "Mobile/Whatsapp",
-        "Adress": "Address",
-        "Get news from us": "Get News from Us",
-         "News decription": "Subscribe to us to get the latest updates!",
-         "Location":"Baku, Caspian Plaza, C.Cabbarli 44.",
-         "Copyright footer":"AzConPrice. All rights reserved"
+        "Contact":"CONTACT"
     },
+    "profilesidebar": {
+    "Personal cabinet": "Personal cabinet",
+    "Applications": "Applications",
+    "Files": "Sent files",
+    "Products": "Products",
+    "Company": "Company",
+    "Security": "Security"
+},
     "HeaderSection":{
         "Your construction": "Your Construction",
         "Strong with us": "Strong with Us",
