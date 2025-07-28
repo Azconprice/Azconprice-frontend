@@ -6,11 +6,12 @@ import { ChevronDown, User, Settings, LogOut } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { getCurrentUser } from "@/utils/auth";
 import { logoutUser } from "@/utils/logout";
-
+import { useTranslations } from 'next-intl';
 const Header = ({ title }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [user, setUser] = useState(null);
   const dropdownRef = useRef(null);
+  const t = useTranslations('profilesidebar');
 
   useEffect(() => {
     const currentUser = getCurrentUser();
@@ -40,26 +41,26 @@ const Header = ({ title }) => {
   };
 
   const getUserDisplayName = () => {
-    if (!user) return "İstifadəçi";
+    if (!user) return t('User');
     const firstName = user.firstName || "";
     const lastName = user.lastName || "";
     if (firstName && lastName) {
       return `${firstName} ${lastName.charAt(0)}.`;
     }
-    return firstName || lastName || "İstifadəçi";
+    return firstName || lastName || t('User');
   };
 
   const getUserRole = () => {
-    if (!user) return "İstifadəçi";
+    if (!user) return t('User');
     switch (user.role) {
       case 'User':
-        return 'İstifadəçi';
+        return t('User');
       case 'Company':
-        return 'Şirkət';
+        return t('Company');
       case 'Worker':
-        return 'İşçi';
+        return t('Worker');
       default:
-        return 'İstifadəçi';
+        return t('User');
     }
   };
 
