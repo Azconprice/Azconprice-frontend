@@ -42,7 +42,9 @@
         "Applications": "Müraciətlər",
         "Files": "Göndərilən fayllar",
         "Products": "Məhsullar",
+        "Security": "Təhlükəsizlik",
+        "User": "İstifadəçi",
         "Company": "Şirkət",
-        "Security": "Təhlükəsizlik"
+        "Worker": "İşçi"
     }
 }

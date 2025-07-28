@@ -15,26 +15,26 @@ const Sidebar = () => {
   const t = useTranslations('profilesidebar');
 
   const getUserDisplayName = () => {
-    if (!user) return "İstifadəçi";
+    if (!user) return t('User');
     const firstName = user.firstName || "";
     const lastName = user.lastName || "";
     if (firstName && lastName) {
       return `${firstName} ${lastName}`;
     }
-    return firstName || lastName || "İstifadəçi";
+    return firstName || lastName || t('User');
   };
 
   const getUserRole = () => {
-    if (!user) return "İstifadəçi";
+    if (!user) return t('User');
     switch (user.role) {
       case 'User':
-        return 'İstifadəçi';
+        return  t('User');
       case 'Company':
-        return 'Şirkət';
+        return t('Company');
       case 'Worker':
-        return 'İşçi';
+        return t('Worker');
       default:
-        return 'İstifadəçi';
+        return t('User');
     }
   };
 

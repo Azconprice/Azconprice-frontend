@@ -17,7 +17,9 @@
     "Files": "Sent files",
     "Products": "Products",
     "Company": "Company",
-    "Security": "Security"
+    "Security": "Security",
+    "User": "User",
+    "Worker": "Worker"
 },
     "HeaderSection":{
         "Your construction": "Your Construction",

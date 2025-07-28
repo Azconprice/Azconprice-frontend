@@ -17,7 +17,9 @@
     "Files": "Отправленные файлы",
     "Products": "Продукты",
     "Company": "Компания",
-    "Security": "Безопасность"
+    "Security": "Безопасность",
+    "User": "Пользователь",
+    "Worker": "Работник"
 },
      "HeaderSection":{
         "Your construction": "Ваше строительство",
