@@ -1,12 +1,12 @@
 {
     "navbar": {
         "Home page": "Ana səhifə",
-        "About us": "Haqqımızda",
-        "Məhsullar": "Məhsullar",
-        "Contact us": "Əlaqə",
+        "About us": "HAQQIMIZDA",
+        "Məhsullar": "MƏHSULLAR",
+        "Contact us": "ƏLAQƏ",
         "Search": "Axtar",
-        "Login": "Daxil ol",
-        "Register": "Qeydiyyat"
+        "Login": "DAXİL OL",
+        "Register": "QEYDİYYAT"
     },
     "footer": {
           "Contact":"ƏLAQƏ"

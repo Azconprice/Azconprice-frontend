@@ -22,7 +22,7 @@ import CompanyModals from '../modals/CompanyModal/CompanyModals';
 import MasterModals from '../modals/MasterModal/MasterModals';
 import { getCurrentUser } from '@/utils/auth';
 import { logoutUser } from '@/utils/logout';
-import { Settings, LogOut, ChevronDown } from 'lucide-react';
+import { Settings, LogOut, ChevronDown, User } from 'lucide-react';
 import profilePhoto from '@/assets/images/testuser.png';
 
 import { Link, Element } from 'react-scroll';
@@ -40,7 +40,7 @@ const Navbar = ({ specializations }) => {
   const [successMessage, setSuccessMessage] = useState('')
   const [resetPasswordData, setResetPasswordData] = useState(null)
   const user = getCurrentUser()
-  
+
 
   const languages = [
     { code: 'az', name: 'AZ' },
@@ -91,7 +91,7 @@ const Navbar = ({ specializations }) => {
   };
 
   const getUserRole = () => {
-    
+
     if (!user) return "İstifadəçi";
     switch (user.role) {
       case 'User':
@@ -127,7 +127,7 @@ const Navbar = ({ specializations }) => {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024) 
+      setIsMobile(window.innerWidth < 1024)
     }
 
     checkMobile()
@@ -137,42 +137,34 @@ const Navbar = ({ specializations }) => {
 
   return (
     <>
-    <div className='pl-[15px] pr-[15px] md:pr-[10px] md:pl-[10px]'>
-      
-  
-      <section className="relative  w-full mt-[20px] mb-[120px] mx-auto flex flex-col ">
-        <Image
-          src={isMobile ? HeaderBackgroundMobile : HeaderBackground}
-          alt="Background Shape"
-          className="absolute z-0 w-full h-full"
-        />
-        <div className='relative z-10 pt-[10px] pb-[20px] pl-[20px]  justify-between pr-0 w-full flex flex-row gap-[30px]'>
-          <div className='flex flex-row items-center w-[70%] gap-[30px] md:pl-12 pl-0'>
-            <div className='cursor-pointer'>
-              <Link href="/"> 
-              <img src="/assets/images/logo.svg" alt="logo" className='w-[91px] h-[91px]'/>
-                </Link>
-            </div>
-            <div className='hidden lg:flex flex-row justify-center w-full items-center gap-[60px]'>
-              <Link href='/'><h3 className="hover:text-orange-500 bg-[#101827] px-8 text-[16px] text-white rounded-3xl py-2 cursor-pointer">{t('Home page')}</h3></Link>
-             <Link to="about"  smooth={true} duration={500} offset={-100}><h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('About us')}</h3></Link>
-             <Link href='/'> <h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Məhsullar')}</h3></Link>
-             <Link to='contact' smooth={true} duration={1000} offset={-100}><h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Contact us')}</h3></Link>
-            </div>
+      <section className="">
+        <div className='justify-between  items-center max-w-[1300px] mt-[30px] px-[30px] mx-auto flex flex-row'>
+
+          <div className='cursor-pointer'>
+            <Link href="/">
+              <img src="/assets/images/logo.svg" alt="logo" className='md:w-[120px] md:h-[120px] w-[80px]  h-[80px] shrink-0 ' />
+            </Link>
           </div>
-          <div className='hidden lg:flex flex-row justify-between gap-[10px] xl:gap-[20px] items-center mt-[-10px] mr-[10px] 2xl:mr-[60px]'>
+          <div className='flex-row items-center justify-center hidden w-full lg:flex  gap-[70px]'>
+            {/* <Link href='/'><h3 className="hover:text-orange-500 bg-[#101827] px-8 text-[16px] text-white rounded-3xl py-2 cursor-pointer">{t('Home page')}</h3></Link> */}
+            <Link to="about" smooth={true} duration={500} offset={-100}><h3 className="hover:text-orange-500 cursor-pointer text-[17px]">{t('About us')}</h3></Link>
+            <Link href='/'> <h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Məhsullar')}</h3></Link>
+            <Link to='contact' smooth={true} duration={1000} offset={-100}><h3 className="hover:text-[orange-500] cursor-pointer text-[17px]">{t('Contact us')}</h3></Link>
+          </div>
+
+          <div className='hidden lg:flex flex-row justify-between gap-[10px] xl:gap-[20px] items-center '>
             {!user ? (
               <>
                 <div>
-                  <button onClick={() => setActiveModal('login')} className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Login')}</button>
+                  <button onClick={() => setActiveModal('login')} className=" cursor-pointer text-[17px] hover:bg-[#d1cfcf] bg-[#F0EEEE] rounded-3xl px-5 xl:px-6 py-[10px] text-nowrap">{t('Login')}</button>
                 </div>
                 <div>
-                  <button onClick={() => setActiveModal('register')} className="hover:bg-orange-500 bg-[#F37321] px-5 xl:px-8 py-2 text-[16px] cursor-pointer text-white rounded-3xl">{t('Register')}</button>
+                  <button onClick={() => setActiveModal('register')} className="hover:bg-[#2e374a] bg-[#0F1727] px-5 xl:px-6 py-[10px] text-[17px] cursor-pointer text-white rounded-3xl flex flex-row gap-[10px]">{t('Register')} <User fill='white' /></button>
                 </div>
               </>
             ) : (
               <div className="relative" ref={userDropdownRef}>
-                <div 
+                <div
                   className="flex items-center justify-between gap-[12px] cursor-pointer"
                   onClick={() => setUserDropdownOpen(!userDropdownOpen)}
                 >
@@ -189,27 +181,26 @@ const Navbar = ({ specializations }) => {
                       <p className="text-[10px] font-[500] text-[#1018278F]">{getUserRole()}</p>
                     </div>
                   </div>
-                  <ChevronDown 
-                    className={`w-[16px] h-[16px] shrink-0 transition-transform duration-200 ${
-                      userDropdownOpen ? 'rotate-180' : ''
-                    }`} 
-                    color="#101827" 
+                  <ChevronDown
+                    className={`w-[16px] h-[16px] shrink-0 transition-transform duration-200 ${userDropdownOpen ? 'rotate-180' : ''
+                      }`}
+                    color="#101827"
                   />
                 </div>
 
                 {userDropdownOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-[180px] bg-white border border-[#E2E8F0] rounded-lg shadow-lg z-[1001]">
+                  <div className="absolute right-0  mt-2 w-[180px] bg-white border border-[#E2E8F0] rounded-lg shadow-lg z-[1001]">
                     <div className="py-2">
-                      <button 
+                      <button
                         onClick={() => router.push(`/${locale}/profile/details`)}
                         className="w-full px-4 py-2 text-left hover:bg-[#F8FAFC] flex items-center gap-3 text-[14px] text-[#475569] cursor-pointer"
                       >
                         <Settings size={16} />
                         Profil ayarları
                       </button>
-                      
+
                       <div className="border-t border-[#E2E8F0] mt-1 pt-1">
-                        <button 
+                        <button
                           onClick={handleLogout}
                           className="w-full px-4 py-2 text-left hover:bg-[#FEF2F2] flex items-center gap-3 text-[14px] text-[#DC2626] cursor-pointer"
                         >
@@ -222,7 +213,7 @@ const Navbar = ({ specializations }) => {
                 )}
               </div>
             )}
-              
+
             <div className="relative " ref={dropdownRef}>
               <button
                 className="hover:text-orange-500 cursor-pointer text-[16px] flex flex-row items-center gap-[3px]"
@@ -246,16 +237,16 @@ const Navbar = ({ specializations }) => {
                 </div>
               )}
             </div>
-              
+
           </div>
-          <div className="flex lg:hidden w-[25%] justify-end self-start">
-            <button className='cursor-pointer pr-[30px]' onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <div className="flex lg:hidden w-[25%] justify-end ">
+            <button className='cursor-pointer ' onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               <FiMenu size={32} />
             </button>
           </div>
         </div>
         {mobileMenuOpen && (
-          <div className="flex lg:hidden w-full flex-col justify-start h-1/2 overflow-y-auto relative z-40 px-[20px] py-[10px]">
+          <div className="flex lg:hidden w-full flex-col justify-start h-1/2 overflow-y-auto relative z-40 px-[20px] py-[20px]">
             <div className="flex flex-row w-full gap-4 mb-4">
               {languages.map((lang) => (
                 <button
@@ -288,14 +279,14 @@ const Navbar = ({ specializations }) => {
                       <p className="text-[12px] font-[500] text-[#1018278F]">{getUserRole()}</p>
                     </div>
                   </div>
-                  <button 
+                  <button
                     onClick={() => router.push(`/${locale}/profile/details`)}
                     className="flex items-center gap-3 text-[16px] text-[#475569] hover:text-orange-500"
                   >
                     <Settings size={18} />
                     Profil ayarları
                   </button>
-                  <button 
+                  <button
                     onClick={handleLogout}
                     className="flex items-center gap-3 text-[16px] text-[#DC2626] hover:text-red-700"
                   >
@@ -306,92 +297,92 @@ const Navbar = ({ specializations }) => {
               )}
             </div>
             <div className="flex flex-col w-full gap-4">
-              <Link href="/"><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Home page')}</h3></Link>
-              <Link to="about"  smooth={true} duration={500} offset={-50}><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('About us')}</h3></Link>
+              {/* <Link href="/"><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Home page')}</h3></Link> */}
+              <Link to="about" smooth={true} duration={500} offset={-50}><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('About us')}</h3></Link>
               <Link href="/"><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Məhsullar')}</h3></Link>
-              <Link to="contact"  smooth={true} duration={500} offset={-150}><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Contact us')}</h3></Link>
+              <Link to="contact" smooth={true} duration={500} offset={-150}><h3 className="text-xl font-semibold cursor-pointer hover:text-orange-500">{t('Contact us')}</h3></Link>
             </div>
           </div>
         )}
         <HeaderSection />
       </section>
-        </div>
-      <RegistrationModal 
-        isOpen={activeModal === 'register'} 
-        onClose={() => setActiveModal(null)} 
-        onNext={handleNext} 
+
+      <RegistrationModal
+        isOpen={activeModal === 'register'}
+        onClose={() => setActiveModal(null)}
+        onNext={handleNext}
       />
-    
-      <LoginModal 
-        isOpen={activeModal === 'login'} 
-        onClose={() => setActiveModal(null)} 
-        onForgotPassword={() => setActiveModal('forgotPassword')} 
-        onSuccess={() => setActiveModal('success')} 
+
+      <LoginModal
+        isOpen={activeModal === 'login'}
+        onClose={() => setActiveModal(null)}
+        onForgotPassword={() => setActiveModal('forgotPassword')}
+        onSuccess={() => setActiveModal('success')}
       />
-      <ForgotPasswordMethodModal 
-        isOpen={activeModal === 'forgotPassword'} 
-        onClose={() => setActiveModal(null)} 
-        onBack={() => setActiveModal('login')} 
-        onSelectMethod={(method) => setActiveModal(method === 'phone' ? 'forgotPasswordNumberSent' : 'forgotPasswordEmailSent')} 
+      <ForgotPasswordMethodModal
+        isOpen={activeModal === 'forgotPassword'}
+        onClose={() => setActiveModal(null)}
+        onBack={() => setActiveModal('login')}
+        onSelectMethod={(method) => setActiveModal(method === 'phone' ? 'forgotPasswordNumberSent' : 'forgotPasswordEmailSent')}
       />
-      <ForgotPasswordEmailSentModal 
-        isOpen={activeModal === 'forgotPasswordEmailSent'} 
-        onClose={() => setActiveModal(null)} 
-        onBack={() => setActiveModal('forgotPassword')} 
+      <ForgotPasswordEmailSentModal
+        isOpen={activeModal === 'forgotPasswordEmailSent'}
+        onClose={() => setActiveModal(null)}
+        onBack={() => setActiveModal('forgotPassword')}
         onSuccess={(data) => {
           setResetPasswordData(data);
           setActiveModal('resetPasswordEmailOtp');
-        }} 
+        }}
       />
-      <ForgotPasswordNumberSentModal 
-        isOpen={activeModal === 'forgotPasswordNumberSent'} 
-        onClose={() => setActiveModal(null)} 
-        onBack={() => setActiveModal('forgotPassword')} 
+      <ForgotPasswordNumberSentModal
+        isOpen={activeModal === 'forgotPasswordNumberSent'}
+        onClose={() => setActiveModal(null)}
+        onBack={() => setActiveModal('forgotPassword')}
         onSubmit={(data) => {
           setResetPasswordData(data);
           setActiveModal('resetPasswordPhoneOtp');
-        }} 
+        }}
       />
-      <ForgotPasswordOtpModal 
-        isOpen={activeModal === 'resetPasswordPhoneOtp' || activeModal === 'resetPasswordEmailOtp'} 
-        onClose={() => setActiveModal(null)} 
-        onBack={() => setActiveModal(activeModal === 'resetPasswordPhoneOtp' ? 'forgotPasswordNumberSent' : 'forgotPasswordEmailSent')} 
+      <ForgotPasswordOtpModal
+        isOpen={activeModal === 'resetPasswordPhoneOtp' || activeModal === 'resetPasswordEmailOtp'}
+        onClose={() => setActiveModal(null)}
+        onBack={() => setActiveModal(activeModal === 'resetPasswordPhoneOtp' ? 'forgotPasswordNumberSent' : 'forgotPasswordEmailSent')}
         onSuccess={(data) => {
           setResetPasswordData(data);
           setActiveModal('resetPassword');
-        }} 
+        }}
         method={activeModal === 'resetPasswordPhoneOtp' ? 'phone' : 'email'}
         contact={resetPasswordData?.contact}
         contactType={resetPasswordData?.contactType}
       />
-      <ResetPasswordModal 
-        isOpen={activeModal === 'resetPassword'} 
-        onClose={() => setActiveModal(null)} 
-        onBack={() => setActiveModal('forgotPassword')} 
+      <ResetPasswordModal
+        isOpen={activeModal === 'resetPassword'}
+        onClose={() => setActiveModal(null)}
+        onBack={() => setActiveModal('forgotPassword')}
         onSuccess={(message) => {
           setSuccessMessage(message);
           setActiveModal('success');
           setResetPasswordData(null);
-        }} 
+        }}
         contact={resetPasswordData?.contact}
         contactType={resetPasswordData?.contactType}
       />
-      <SuccessModal 
-        isOpen={activeModal === 'success'} 
+      <SuccessModal
+        isOpen={activeModal === 'success'}
         onClose={() => setActiveModal(null)}
         message={successMessage}
       />
-      <NormalUserModals 
+      <NormalUserModals
         isOpen={activeModal === 'normalUserRegistration'}
         onClose={() => setActiveModal(null)}
         onSuccess={handleRegistrationSuccess}
       />
-      <CompanyModals 
+      <CompanyModals
         isOpen={activeModal === 'companyRegistration'}
         onClose={() => setActiveModal(null)}
         onSuccess={handleRegistrationSuccess}
       />
-      <MasterModals 
+      <MasterModals
         isOpen={activeModal === 'masterRegistration'}
         onClose={() => setActiveModal(null)}
         onSuccess={handleRegistrationSuccess}
