@@ -168,7 +168,7 @@ const Navbar = ({ specializations }) => {
                   className="flex items-center justify-between gap-[12px] cursor-pointer"
                   onClick={() => setUserDropdownOpen(!userDropdownOpen)}
                 >
-                  <div className="flex items-center gap-[8px]">
+                  <div className="flex items-center gap-[8px] ">
                     <Image
                       width={32}
                       height={32}
@@ -176,9 +176,9 @@ const Navbar = ({ specializations }) => {
                       alt="user"
                       className="rounded-full"
                     />
-                    <div>
+                    <div className='w-[80px]'>
                       <p className="text-[14px] font-[700] text-[#1E293B] uppercase">{getUserDisplayName()}</p>
-                      <p className="text-[10px] font-[500] text-[#1018278F]">{getUserRole()}</p>
+                      <p className="text-[12px] font-[500] text-[#1018278F]">{getUserRole()}</p>
                     </div>
                   </div>
                   <ChevronDown
