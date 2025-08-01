@@ -179,7 +179,7 @@ const ChangePassword = () => {
                 className="w-full border-1 border-[#CBD5E1] rounded-full p-[12px] text-[16px] font-[500] text-[#475569] pr-12"
               />
               <span
-                className="absolute right-4 top-[20px] -translate-y-1/2 cursor-pointer"
+                className="absolute right-4 top-[50%] -translate-y-1/2 cursor-pointer"
                 onClick={() => setShowCurrentPassword((prev) => !prev)}
               >
                 <img
@@ -208,7 +208,7 @@ const ChangePassword = () => {
                 className="w-full border-1 border-[#CBD5E1] rounded-full p-[12px] text-[16px] font-[500] text-[#475569] pr-12"
               />
               <span
-                className="absolute right-4 top-[20px] -translate-y-1/2 cursor-pointer"
+                className="absolute right-4 top-[50%] -translate-y-1/2 cursor-pointer"
                 onClick={() => setShowNewPassword((prev) => !prev)}
               >
                 <img
@@ -237,7 +237,7 @@ const ChangePassword = () => {
                 className="w-full border-1 border-[#CBD5E1] rounded-full p-[12px] text-[16px] font-[500] text-[#475569] pr-12"
               />
               <span
-                className="absolute right-4 top-[20px] -translate-y-1/2 cursor-pointer"
+                className="absolute right-4 top-[50%] -translate-y-1/2 cursor-pointer"
                 onClick={() => setShowConfirmPassword((prev) => !prev)}
               >
                 <img

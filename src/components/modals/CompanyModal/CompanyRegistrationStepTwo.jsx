@@ -86,8 +86,8 @@ const CompanyRegistrationStepTwo = ({ isOpen, onClose, onBack, onNext, initialDa
   };
 
   const handleContinue = () => {
-    if (!voenFile || !salesCategory) {
-      setError('Bütün xanaları doldurun');
+    if (!salesCategory) {
+      setError('Satış kateqoriyası seçin');
       return;
     }
     setError('');

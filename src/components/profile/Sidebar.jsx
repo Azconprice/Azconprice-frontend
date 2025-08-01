@@ -65,14 +65,14 @@ const Sidebar = () => {
               className="w-[24px] h-[24px] shrink-0"
               color="#94A3B8"
             />
-           {t('Files')}
+           {t('Applications')}
           </Link>
           <Link
             href="./files"
             className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('files') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}
           >
             <List className="w-[24px] h-[24px] shrink-0" color="#94A3B8" />
-             {t('Applications')}
+             {t('Files')}
           </Link>
          
           {user?.role === 'Company' && (
@@ -84,7 +84,19 @@ const Sidebar = () => {
                 className="w-[24px] h-[24px] shrink-0"
                 color="#94A3B8"
               />
-              {t('Files')}
+              {t('Products')}
+            </Link>
+          )}
+          {user?.role === 'Worker' && (
+            <Link
+              href="./services"
+              className={`w-full flex items-center gap-[8px] py-[10px] px-[16px] rounded-full font-[700] text-[16px] ${pathname.includes('services') ? 'bg-[#101827] text-[#F0EEEE]' : 'text-[#1E293B]'}`}
+            >
+              <Package
+                className="w-[24px] h-[24px] shrink-0"
+                color="#94A3B8"
+              />
+              {t('Services')}
             </Link>
           )}
           <Link
