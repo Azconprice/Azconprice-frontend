@@ -13,16 +13,16 @@ const page = async () => {
   const t = await getTranslations()
 
   return (
-    <> 
-   <main className='max-w-[1300px] mx-auto'>
+    <>
+      <main className='max-w-[1300px] mx-auto'>
         <Aboutus />
-         <Guide/>
+        <Guide />
         <OurSollutions />
         <Partners />
-        <ContactForm/>
+        <ContactForm />
         <Faq />
-        </main>
-        
+      </main>
+
     </>
   )
 }
