@@ -1,16 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import BaseModal, { modalInputStyles, modalButtonStyles, modalErrorStyles } from './BaseModal';
+import React, { useState, useEffect } from "react";
+import BaseModal, {
+  modalInputStyles,
+  modalButtonStyles,
+  modalErrorStyles,
+} from "./BaseModal";
 
-const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, initialData }) => {
-  const [otp, setOtp] = useState(['', '', '', '', '', '']);
-  const [error, setError] = useState('');
+const OtpVerifyModal = ({
+  isOpen,
+  onClose,
+  onBack,
+  onSuccess,
+  initialData,
+}) => {
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [error, setError] = useState("");
   const [timeLeft, setTimeLeft] = useState(600);
 
   useEffect(() => {
     let timer;
     if (isOpen) {
-      setOtp(['', '', '', '', '', '']);
-      setError('');
+      setOtp(["", "", "", "", "", ""]);
+      setError("");
       setTimeLeft(600);
       timer = setInterval(() => {
         setTimeLeft((prevTime) => {
@@ -34,38 +44,39 @@ const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, initialData }) => 
       newOtp[index] = value;
       setOtp(newOtp);
 
-      if (value !== '' && index < 5) {
+      if (value !== "" && index < 5) {
         document.getElementById(`otp-input-${index + 1}`).focus();
       }
-    } else if (value === '' && index > 0) {
+    } else if (value === "" && index > 0) {
       document.getElementById(`otp-input-${index - 1}`).focus();
     }
   };
 
   const handleVerifyOtp = async () => {
-    const enteredOtp = otp.join('');
+    const enteredOtp = otp.join("");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/otp-verify`, {
-        method: 'POST',
-        body: JSON.stringify({
-          phoneNumber: `+994${initialData.phoneNumber}`,
-          code: enteredOtp
-        }),
-        headers: {
-          'Content-Type': 'application/json'
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/otp-verify`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            phoneNumber: `+994${initialData.phoneNumber}`,
+            code: enteredOtp,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-
-      });
+      );
       if (res.ok) {
         onSuccess();
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
     }
   };
 
-  const subtitleText = 'Telefon nömrənizə gələn OTP kodunu daxil edin';
+  const subtitleText = "Telefon nömrənizə gələn OTP kodunu daxil edin";
 
   return (
     <BaseModal
@@ -84,9 +95,9 @@ const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, initialData }) => 
             type="text"
             maxLength="1"
             value={digit}
-            onChange={e => handleOtpChange(index, e.target.value)}
-            onKeyDown={e => {
-              if (e.key === 'Backspace' && otp[index] === '' && index > 0) {
+            onChange={(e) => handleOtpChange(index, e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Backspace" && otp[index] === "" && index > 0) {
                 document.getElementById(`otp-input-${index - 1}`).focus();
               }
             }}
@@ -96,7 +107,8 @@ const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, initialData }) => 
       </div>
 
       <div className="w-full mb-6 text-sm text-center text-gray-300">
-        Kodu yenidən göndər: {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+        Kodu yenidən göndər: {Math.floor(timeLeft / 60)}:
+        {(timeLeft % 60).toString().padStart(2, "0")}
       </div>
 
       {error && <div className={modalErrorStyles}>{error}</div>}
@@ -112,4 +124,4 @@ const OtpVerifyModal = ({ isOpen, onClose, onBack, onSuccess, initialData }) => 
   );
 };
 
-export default OtpVerifyModal; 
+export default OtpVerifyModal;
