@@ -149,7 +149,7 @@ const Navbar = ({ specializations }) => {
             {/* <Link href='/'><h3 className="hover:text-orange-500 bg-[#101827] px-8 text-[16px] text-white rounded-3xl py-2 cursor-pointer">{t('Home page')}</h3></Link> */}
             <Link to="about" smooth={true} duration={500} offset={-100}><h3 className="hover:text-orange-500 cursor-pointer text-[17px]">{t('About us')}</h3></Link>
             <Link href='/'> <h3 className="hover:text-orange-500 cursor-pointer text-[16px]">{t('Məhsullar')}</h3></Link>
-            <Link to='contact' smooth={true} duration={1000} offset={-100}><h3 className="hover:text-[orange-500] cursor-pointer text-[17px]">{t('Contact us')}</h3></Link>
+            <Link to='contact' smooth={true} duration={1000} offset={-100}><h3 className="hover:text-orange-500 cursor-pointer text-[17px]">{t('Contact us')}</h3></Link>
           </div>
 
           <div className='hidden lg:flex flex-row justify-between gap-[10px] xl:gap-[20px] items-center '>
@@ -168,7 +168,7 @@ const Navbar = ({ specializations }) => {
                   className="flex items-center justify-between gap-[12px] cursor-pointer"
                   onClick={() => setUserDropdownOpen(!userDropdownOpen)}
                 >
-                  <div className="flex items-center gap-[8px]">
+                  <div className="flex items-center gap-[8px] ">
                     <Image
                       width={32}
                       height={32}
@@ -176,9 +176,9 @@ const Navbar = ({ specializations }) => {
                       alt="user"
                       className="rounded-full"
                     />
-                    <div>
+                    <div className='w-[80px]'>
                       <p className="text-[14px] font-[700] text-[#1E293B] uppercase">{getUserDisplayName()}</p>
-                      <p className="text-[10px] font-[500] text-[#1018278F]">{getUserRole()}</p>
+                      <p className="text-[12px] font-[500] text-[#1018278F]">{getUserRole()}</p>
                     </div>
                   </div>
                   <ChevronDown

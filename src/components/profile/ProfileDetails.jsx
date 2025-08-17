@@ -167,7 +167,7 @@ const ProfileDetails = ({ initialData, user }) => {
     >
       <div className="flex items-center justify-between">
         <h3 className="text-[20px] font-[700] text-[#1E293B]">Profil</h3>
-        <div className="flex items-center gap-[8px]">
+        {/* <div className="flex items-center gap-[8px]">
           <button className="shrink-0 w-[40px] h-[40px] rounded-full flex items-center justify-center cursor-pointer border-1 border-[#CBD5E1] relative group">
             <Info size={16} color="#475569" />
 
@@ -187,7 +187,7 @@ const ProfileDetails = ({ initialData, user }) => {
             {user?.role || "User"}
             <Star size={20} color="#FFFFFF" />
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="w-full h-[1px] bg-[#E2E8F0] my-[24px]"></div>

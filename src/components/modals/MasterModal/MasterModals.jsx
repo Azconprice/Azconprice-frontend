@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import MasterRegistrationStepOne from './MasterRegistrationStepOne'
 import MasterRegistrationStepTwo from './MasterRegistrationStepTwo'
 import MasterRegistrationStepThree from './MasterRegistrationStepThree'
+import MasterRegistrationStepFour from './MasterRegistrationStepFour'
 import OtpTypeModal from './OtpTypeModal'
 import MasterOtpModal from './MasterOtpModal'
 const MasterModals = ({ isOpen, onClose, onSuccess, specializations }) => {
@@ -47,12 +48,18 @@ const MasterModals = ({ isOpen, onClose, onSuccess, specializations }) => {
       formDataToSend.append('Password', completeData.password)
       formDataToSend.append('ConfirmPassword', completeData.confirmPassword)
       formDataToSend.append('PhoneNumber', completeData.phoneNumber)
-      formDataToSend.append('Specizalizations', completeData.specialty)
+      formDataToSend.append('ProfessionId', completeData.professionId || '')
+      if (Array.isArray(completeData.specialty)) {
+        completeData.specialty.forEach(specId => {
+          formDataToSend.append('Specizalizations', specId)
+        })
+      }
       formDataToSend.append('HaveTaxId', completeData.voen ? 'true' : 'false')
       formDataToSend.append('TaxId', completeData.voen || '')
       formDataToSend.append('Address', completeData.address)
-      formDataToSend.append('Experience', completeData.experience.toString())
-      formDataToSend.append('Price', completeData.price.toString())
+      formDataToSend.append('MeasurementUnitId', completeData.measurementUnitId || '')
+      formDataToSend.append('Experience', completeData.experience?.toString() || '0')
+      formDataToSend.append('Price', completeData.price ? parseFloat(completeData.price).toString() : '0')
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Auth/register/worker`, {
         method: 'POST',
@@ -120,11 +127,20 @@ const MasterModals = ({ isOpen, onClose, onSuccess, specializations }) => {
           initialData={formData}
           onClose={onClose}
           isOpen={isOpen}
-          specializations={specializations}
         />
       )}
       {currentStep === 3 && (
         <MasterRegistrationStepThree
+          onNext={handleNext}
+          onBack={handleBack}
+          initialData={formData}
+          onClose={onClose}
+          isOpen={isOpen}
+          specializations={specializations}
+        />
+      )}
+      {currentStep === 4 && (
+        <MasterRegistrationStepFour
           onNext={handleSubmit}
           onBack={handleBack}
           initialData={formData}
@@ -133,7 +149,7 @@ const MasterModals = ({ isOpen, onClose, onSuccess, specializations }) => {
           isLoading={isLoading}
         />
       )}
-      {currentStep === 4 && (
+      {currentStep === 5 && (
         <OtpTypeModal
           onSelectMethod={handleSelectMethod}
           onBack={handleBack}
@@ -142,7 +158,7 @@ const MasterModals = ({ isOpen, onClose, onSuccess, specializations }) => {
           isOpen={isOpen}
         />
       )}
-      {currentStep === 5 && (
+      {currentStep === 6 && (
         <MasterOtpModal
           onBack={handleBack}
           initialData={formData}
