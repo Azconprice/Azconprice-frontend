@@ -1,10 +1,11 @@
 'use client'
-import React, { useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from 'next-intl';
 import { ChevronDown } from 'lucide-react';
 
 const ContactForm = () => {
   const t = useTranslations('ContactForm');
+  const selectRef = useRef(null);
 
   const [formData, setFormData] = useState({
     fullName: '',
@@ -105,6 +106,20 @@ const ContactForm = () => {
     }
   };
 
+  // --- kənara klik zamanı select-i bağlama ---
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (selectRef.current && !selectRef.current.contains(event.target)) {
+        setOpenSelect(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <section id="contact" className="flex flex-col md:flex-row w-[90%] max-w-6xl mx-auto mt-[50px] rounded-3xl overflow-hidden shadow-2xl">
       <div className="flex-1 bg-[#101827] text-white p-8 md:p-12 flex items-center flex-col justify-center">
@@ -153,7 +168,7 @@ const ContactForm = () => {
             )}
           </div>
 
-          
+          {/* Email */}
           <div>
             <input
               type="email"
@@ -170,7 +185,9 @@ const ContactForm = () => {
               <p className="mt-1 text-sm text-red-500">{validationErrors.email}</p>
             )}
           </div>
-          <div className="relative">
+
+          {/* Custom Select */}
+          <div className="relative" ref={selectRef}>
             <button
               type="button"
               onClick={() => setOpenSelect(!openSelect)}
@@ -251,7 +268,7 @@ const ContactForm = () => {
             </div>
           )}
 
-
+          {/* Submit button */}
           <div className="pt-2">
             <button
               type="submit"
