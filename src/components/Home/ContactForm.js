@@ -161,7 +161,7 @@ const ContactForm = () => {
               placeholder={t('placeholders.email')}
               value={formData.email}
               onChange={handleInputChange}
-              className={`w-full px-0 py-2 border-0 text-[18px] border-b bg-transparent focus:outline-none transition-colors duration-200 placeholder-gray-500 ${validationErrors.email
+              className={`w-full px-0 py-2 border-0 text-[18px] border-b  bg-transparent focus:outline-none transition-colors duration-200 placeholder-gray-500 ${validationErrors.email
                   ? 'border-red-500 focus:border-red-500'
                   : 'border-[rgba(16,24,39,1)] focus:border-orange-500'
                 }`}
@@ -174,12 +174,12 @@ const ContactForm = () => {
             <button
               type="button"
               onClick={() => setOpenSelect(!openSelect)}
-              className={`w-full flex justify-between items-center cursor-pointer px-0 py-2 border-0 border-b text-[18px] bg-transparent transition-colors duration-200 ${validationErrors.applicationType
+              className={`w-full cursor-pointer flex justify-between items-center  px-0 py-2 border-0 border-b text-[18px] bg-transparent transition-colors duration-200 ${validationErrors.applicationType
                   ? 'border-red-500 focus:border-red-500'
                   : 'border-[rgba(16,24,39,1)] focus:border-orange-500'
                 }`}
             >
-              <span className={formData.applicationType ? "text-black" : "text-gray-500"}>
+              <span className={formData.applicationType ?   "text-black cursor-pointer" : "text-gray-500 cursor-pointer"}>
                 {formData.applicationType
                   ? {
                     PlanInqury: t('options.planInquiry'),
