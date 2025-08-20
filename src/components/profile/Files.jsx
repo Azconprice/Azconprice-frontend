@@ -7,8 +7,8 @@ import { X } from 'lucide-react';
 const Files = () => {
     return (
         <div className="p-[32px] mt-[80px] overflow-y-auto h-[calc(100vh-80px)]">
-            <div className="flex flex-col md:flex-row gap-[18px]">
-                <div className="lg:w-[400px] md:w-[350px] h-fit w-full bg-[#101827] p-[20px] rounded-[22px]">
+            <div className="flex flex-col gap-[18px]">
+                <div className=" h-fit bg-[#101827] p-[20px] rounded-[22px]">
                     <h3 className="text-white font-bold text-[16px] text-center mb-[20px]">Faylı göndərin</h3>
                     <div className="bg-white border-1 border-[#F37321] flex flex-col justify-center items-center p-[30px] rounded-[12px]">
                         <Image
@@ -84,10 +84,12 @@ const Files = () => {
                             </div>
                         </div>
                     </div>
-
-                    <button className='w-[100px] py-[10px] bg-[#F37321] border-1 border-[#F37321] text-white rounded-full transition hover:opacity-90 text-[12px] font-[500] cursor-pointer'>
+<div className='flex items-center justify-center w-full'>
+    <button className='w-[240px] py-[10px] bg-[#F37321] border-1 border-[#F37321] text-white rounded-full transition hover:opacity-90 text-[12px] font-[500] cursor-pointer'>
                         Göndər
                     </button>
+</div>
+                    
                 </div>
 
                 <div className='flex-grow shadow-[0px_4px_4px_0px_#00000040] rounded-[20px] bg-[#F8FAFC]'>
