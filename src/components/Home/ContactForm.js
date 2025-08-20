@@ -114,7 +114,7 @@ const ContactForm = () => {
           <span className="text-orange-500">{t('title.highlight')}</span>
         </h2>
       </div>
-      
+
       <div className="flex-1 p-8 md:p-12 bg-[#F0EEEE]">
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Full Name */}
@@ -125,17 +125,16 @@ const ContactForm = () => {
               placeholder={t('placeholders.fullName')}
               value={formData.fullName}
               onChange={handleInputChange}
-              className={`w-full px-0 py-2 border-0 border-b text-[18px] bg-transparent focus:outline-none transition-colors duration-200 placeholder-gray-500 ${
-                validationErrors.fullName 
-                  ? 'border-red-500 focus:border-red-500' 
+              className={`w-full px-0 py-2 border-0 border-b text-[18px] bg-transparent focus:outline-none transition-colors duration-200 placeholder-gray-500 ${validationErrors.fullName
+                  ? 'border-red-500 focus:border-red-500'
                   : 'border-[rgba(16,24,39,1)] focus:border-orange-500'
-              }`}
+                }`}
             />
             {validationErrors.fullName && (
               <p className="mt-1 text-sm text-red-500">{validationErrors.fullName}</p>
             )}
           </div>
-          
+
           {/* Phone */}
           <div>
             <input
@@ -144,18 +143,17 @@ const ContactForm = () => {
               placeholder={t('placeholders.phoneNumber')}
               value={formData.phoneNumber}
               onChange={handleInputChange}
-              className={`w-full px-0 py-2 border-0 text-[18px] border-b bg-transparent focus:outline-none transition-colors duration-200 placeholder-gray-500 ${
-                validationErrors.phoneNumber 
-                  ? 'border-red-500 focus:border-red-500' 
+              className={`w-full px-0 py-2 border-0 text-[18px] border-b bg-transparent focus:outline-none transition-colors duration-200 placeholder-gray-500 ${validationErrors.phoneNumber
+                  ? 'border-red-500 focus:border-red-500'
                   : 'border-[rgba(16,24,39,1)] focus:border-orange-500'
-              }`}
+                }`}
             />
             {validationErrors.phoneNumber && (
               <p className="mt-1 text-sm text-red-500">{validationErrors.phoneNumber}</p>
             )}
           </div>
+
           
-          {/* Email */}
           <div>
             <input
               type="email"
@@ -163,36 +161,32 @@ const ContactForm = () => {
               placeholder={t('placeholders.email')}
               value={formData.email}
               onChange={handleInputChange}
-              className={`w-full px-0 py-2 border-0 text-[18px] border-b bg-transparent focus:outline-none transition-colors duration-200 placeholder-gray-500 ${
-                validationErrors.email 
-                  ? 'border-red-500 focus:border-red-500' 
+              className={`w-full px-0 py-2 border-0 text-[18px] border-b bg-transparent focus:outline-none transition-colors duration-200 placeholder-gray-500 ${validationErrors.email
+                  ? 'border-red-500 focus:border-red-500'
                   : 'border-[rgba(16,24,39,1)] focus:border-orange-500'
-              }`}
+                }`}
             />
             {validationErrors.email && (
               <p className="mt-1 text-sm text-red-500">{validationErrors.email}</p>
             )}
           </div>
-          
-          {/* Custom Select */}
           <div className="relative">
             <button
               type="button"
               onClick={() => setOpenSelect(!openSelect)}
-              className={`w-full flex justify-between items-center px-0 py-2 border-0 border-b text-[18px] bg-transparent transition-colors duration-200 ${
-                validationErrors.applicationType
+              className={`w-full flex justify-between items-center cursor-pointer px-0 py-2 border-0 border-b text-[18px] bg-transparent transition-colors duration-200 ${validationErrors.applicationType
                   ? 'border-red-500 focus:border-red-500'
                   : 'border-[rgba(16,24,39,1)] focus:border-orange-500'
-              }`}
+                }`}
             >
               <span className={formData.applicationType ? "text-black" : "text-gray-500"}>
                 {formData.applicationType
                   ? {
-                      PlanInqury: t('options.planInquiry'),
-                      Support: t('options.support'),
-                      Registration: t('options.registration'),
-                      ComplaintAndSuggestion: t('options.complaint')
-                    }[formData.applicationType]
+                    PlanInqury: t('options.planInquiry'),
+                    Support: t('options.support'),
+                    Registration: t('options.registration'),
+                    ComplaintAndSuggestion: t('options.complaint')
+                  }[formData.applicationType]
                   : t('placeholders.applicationType')}
               </span>
               <ChevronDown className="w-5 h-5 text-gray-400" />
@@ -202,25 +196,25 @@ const ContactForm = () => {
               <div className="absolute z-10 w-full mt-2 overflow-y-auto bg-white border border-gray-200 rounded-lg shadow-lg max-h-56">
                 <div
                   onClick={() => handleSelectChange("PlanInqury")}
-                  className="px-4 py-2 cursor-pointer hover:bg-orange-100"
+                  className="px-4 py-2 cursor-pointer hover:bg-orange-200"
                 >
                   {t('options.planInquiry')}
                 </div>
                 <div
                   onClick={() => handleSelectChange("Support")}
-                  className="px-4 py-2 cursor-pointer hover:bg-orange-100"
+                  className="px-4 py-2 cursor-pointer hover:bg-orange-200"
                 >
                   {t('options.support')}
                 </div>
                 <div
                   onClick={() => handleSelectChange("Registration")}
-                  className="px-4 py-2 cursor-pointer hover:bg-orange-100"
+                  className="px-4 py-2 cursor-pointer hover:bg-orange-200"
                 >
                   {t('options.registration')}
                 </div>
                 <div
                   onClick={() => handleSelectChange("ComplaintAndSuggestion")}
-                  className="px-4 py-2 cursor-pointer hover:bg-orange-100"
+                  className="px-4 py-2 cursor-pointer hover:bg-orange-200"
                 >
                   {t('options.complaint')}
                 </div>
@@ -231,7 +225,7 @@ const ContactForm = () => {
               <p className="mt-1 text-sm text-red-500">{validationErrors.applicationType}</p>
             )}
           </div>
-          
+
           {/* Notes */}
           <div>
             <textarea
@@ -243,30 +237,29 @@ const ContactForm = () => {
               className="w-full px-0 py-2 text-[18px] border-0 border-b border-[rgba(16,24,39,1)] bg-transparent focus:border-orange-500 focus:outline-none transition-colors duration-200 placeholder-gray-500 resize-none"
             />
           </div>
-          
+
           {/* Messages */}
           {submitStatus === 'success' && (
             <div className="text-[20px] text-green-700">
               {t('messages.success')}
             </div>
           )}
-          
+
           {submitStatus === 'error' && (
             <div className="text-red-700">
               {t('messages.error')}
             </div>
-          )} 
-          
-          
+          )}
+
+
           <div className="pt-2">
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full font-semibold text-[18px] py-3 rounded-full transition-colors duration-300 ${
-                isSubmitting 
-                  ? 'bg-gray-400 cursor-not-allowed text-white' 
+              className={`w-full font-semibold text-[18px] py-3 rounded-full transition-colors duration-300 ${isSubmitting
+                  ? 'bg-gray-400 cursor-not-allowed text-white'
                   : 'bg-orange-500 hover:bg-orange-600 text-white cursor-pointer'
-              }`}
+                }`}
             >
               {isSubmitting ? t('buttons.sending') : t('buttons.send')}
             </button>
