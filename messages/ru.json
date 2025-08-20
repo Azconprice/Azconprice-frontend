@@ -45,7 +45,43 @@
 },
 "OurPartners": {
     "OurPartners": "Наши партнёры"
-}
+},
+"ContactForm": {
+    "title": {
+      "line1": "Реализуй свой",
+      "line2": "проект с",
+      "highlight": "AzConPrice"
+    },
+    "placeholders": {
+      "fullName": "Полное имя",
+      "phoneNumber": "Номер телефона",
+      "email": "Электронная почта",
+      "applicationType": "Тип обращения",
+      "notes": "Ваши заметки"
+    },
+    "options": {
+      "planInquiry": "Запрос плана",
+      "support": "Поддержка",
+      "registration": "Регистрация",
+      "complaint": "Жалоба и предложение"
+    },
+    "buttons": {
+      "send": "Отправить информацию",
+      "sending": "Отправка..."
+    },
+    "messages": {
+      "success": "Ваш запрос успешно отправлен!",
+      "error": "Произошла ошибка при отправке запроса. Попробуйте снова."
+    },
+    "errors": {
+      "fullName": "Полное имя обязательно",
+      "phoneNumber": "Номер телефона обязателен",
+      "phoneNumberInvalid": "Введите корректный номер телефона",
+      "email": "Электронная почта обязательна",
+      "emailInvalid": "Введите корректный адрес электронной почты",
+      "applicationType": "Выберите тип обращения"
+    }
+  }
 
 
 }

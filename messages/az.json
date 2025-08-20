@@ -46,5 +46,41 @@
         "User": "İstifadəçi",
         "Company": "Şirkət",
         "Worker": "İşçi"
+    },
+    "ContactForm": {
+    "title": {
+      "line1": "Layihəni",
+      "line2": "gerçəkləşdir",
+      "highlight": "AzConPrice"
+    },
+    "placeholders": {
+      "fullName": "Ad Soyad",
+      "phoneNumber": "Telefon Nömrəsi",
+      "email": "Email",
+      "applicationType": "Müraciət növü",
+      "notes": "Qeydiniz"
+    },
+    "options": {
+      "planInquiry": "Plan Sorğusu",
+      "support": "Dəstək",
+      "registration": "Qeydiyyat",
+      "complaint": "Şikayət və Təklif"
+    },
+    "buttons": {
+      "send": "Məlumatı göndər",
+      "sending": "Göndərilir..."
+    },
+    "messages": {
+      "success": "Sorğunuz uğurla təqdim edildi!",
+      "error": "Sorğunu təqdim edərkən xəta baş verdi. Yenidən cəhd edin."
+    },
+    "errors": {
+      "fullName": "Ad Soyad tələb olunur",
+      "phoneNumber": "Telefon nömrəsi tələb olunur",
+      "phoneNumberInvalid": "Zəhmət olmasa düzgün telefon nömrəsi daxil edin",
+      "email": "Email tələb olunur",
+      "emailInvalid": "Zəhmət olmasa düzgün email daxil edin",
+      "applicationType": "Müraciət növü seçin"
     }
+  }
 }
