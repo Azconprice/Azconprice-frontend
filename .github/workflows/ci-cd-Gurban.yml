@@ -18,17 +18,16 @@ jobs:
         with:
           node-version: '20.15.0'
 
-      - name: Install dependencies & build React app
+      - name: Install dependencies & Build Next.js
         run: |
-          cd react
-          npm install
+          npm ci
           npm run build
 
       - name: Docker Login
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build Docker Image
-        run: docker build -t agilazizovf/azconpricefront ./react
+        run: docker build -t agilazizovf/azconpricefront .
 
       - name: Push Docker Image
         run: docker push agilazizovf/azconpricefront
@@ -49,6 +48,6 @@ jobs:
             docker stop azconpricefront || true
             docker rm azconpricefront || true
             docker run -d \
-            --name azconpricefront \
-            -p 4242:80 \
-            agilazizovf/azconpricefront
+              --name azconpricefront \
+              -p 8080:3000 \
+              agilazizovf/azconpricefront

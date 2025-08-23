@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: agilazizovf/azconpricefront
+    container_name: azconpricefront
+    restart: always
+    ports:
+      - "8080:3000"
